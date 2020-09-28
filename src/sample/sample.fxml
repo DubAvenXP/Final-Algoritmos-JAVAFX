@@ -28,7 +28,7 @@
                         </Label>
                         <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/facturacion_icon.png" />
+                              <Image url="@ui/images/facturacion_icon.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -38,7 +38,7 @@
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="24.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/inventario_icon.png" />
+                              <Image url="@ui/images/inventario_icon.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="41.0" text="Inventario" textFill="WHITE">
@@ -56,7 +56,7 @@
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/report_icon.png" />
+                              <Image url="@ui/images/report_icon.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="41.0" text="Reportes" textFill="WHITE">
@@ -74,7 +74,7 @@
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="24.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/estadisticas_icon.png" />
+                              <Image url="@ui/images/estadisticas_icon.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="41.0" text="Estadisticas" textFill="WHITE">
@@ -92,7 +92,7 @@
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="24.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/admin_icon.png" />
+                              <Image url="@ui/images/admin_icon.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="41.0" text="Admin" textFill="WHITE">
