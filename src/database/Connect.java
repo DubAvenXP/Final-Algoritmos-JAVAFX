@@ -3,6 +3,9 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Esta clase es la encargada de hacer la conexion a la base de datos en PostgreSQL
+ */
 public class Connect {
 
     public static void connection(){
