@@ -22,11 +22,7 @@ public class Menu {
 
             switch (option) {
                 case 1:
-                    try {
-                        ClienteService.createClient();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    ClienteService.createClient();
                     break;
                 case 2:
                     ClienteService.listClient();

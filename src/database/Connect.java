@@ -17,6 +17,7 @@ public class Connect {
         String password = "password";
         try{
             if (connection == null){
+                Runtime.getRuntime().addShutdownHook(new getClose() );
                 connection = DriverManager.getConnection(db, user, password);
             }
             return connection;
@@ -29,8 +30,8 @@ public class Connect {
         @Override
         public void run() {
             try {
-                Connection connection = Connect.getConnection();
-                connection.close();
+                Connection conn = Connect.getConnection();
+                conn.close();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
