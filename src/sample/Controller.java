@@ -22,68 +22,88 @@ public class Controller {
 
 
     public void onFacturationButtonClicked(MouseEvent mouseEvent){
-        facturationPanel.setVisible(true);
-        facturationArrow.setVisible(true);
-        inventaryPanel.setVisible(false);
-        inventaryArrow.setVisible(false);
-        reportPanel.setVisible(false);
-        reportArrow.setVisible(false);
-        stadisticsPanel.setVisible(false);
-        stadisticsArrow.setVisible(false);
-        adminPanel.setVisible(false);
-        adminArrow.setVisible(false);
+        showPanel(1);
     }
     public void onInventaryButtonClicked(MouseEvent mouseEvent){
-        facturationPanel.setVisible(false);
-        facturationArrow.setVisible(false);
-        inventaryPanel.setVisible(true);
-        inventaryArrow.setVisible(true);
-        reportPanel.setVisible(false);
-        reportArrow.setVisible(false);
-        stadisticsPanel.setVisible(false);
-        stadisticsArrow.setVisible(false);
-        adminPanel.setVisible(false);
-        adminArrow.setVisible(false);
+        showPanel(2);
     }
     public void onReportButtonClicked(MouseEvent mouseEvent){
-        inventaryPanel.setVisible(false);
-        inventaryArrow.setVisible(false);
-        facturationPanel.setVisible(false);
-        facturationArrow.setVisible(false);
-        reportPanel.setVisible(true);
-        reportArrow.setVisible(true);
-        stadisticsPanel.setVisible(false);
-        stadisticsArrow.setVisible(false);
-        adminPanel.setVisible(false);
-        adminArrow.setVisible(false);
+        showPanel(3);
     }
     public void onStadisticsButtonClicked(MouseEvent mouseEvent){
-        inventaryPanel.setVisible(false);
-        inventaryArrow.setVisible(false);
-        facturationPanel.setVisible(false);
-        facturationArrow.setVisible(false);
-        reportPanel.setVisible(false);
-        reportArrow.setVisible(false);
-        stadisticsPanel.setVisible(true);
-        stadisticsArrow.setVisible(true);
-        adminPanel.setVisible(false);
-        adminArrow.setVisible(false);
+        showPanel(4);
     }
     public void onAdminButtonClicked(MouseEvent mouseEvent){
-        inventaryPanel.setVisible(false);
-        inventaryArrow.setVisible(false);
-        facturationPanel.setVisible(false);
-        facturationArrow.setVisible(false);
-        reportPanel.setVisible(false);
-        reportArrow.setVisible(false);
-        stadisticsPanel.setVisible(false);
-        stadisticsArrow.setVisible(false);
-        adminPanel.setVisible(true);
-        adminArrow.setVisible(true);
+        showPanel(5);
     }
 
     public void onExitButtonClicked(MouseEvent mouseEvent){
         Platform.exit();
         System.exit(0);
+    }
+
+    public void showPanel(int panelNumber){
+        switch (panelNumber){
+            case 1:
+                facturationPanel.setVisible(true);
+                facturationArrow.setVisible(true);
+                inventaryPanel.setVisible(false);
+                inventaryArrow.setVisible(false);
+                reportPanel.setVisible(false);
+                reportArrow.setVisible(false);
+                stadisticsPanel.setVisible(false);
+                stadisticsArrow.setVisible(false);
+                adminPanel.setVisible(false);
+                adminArrow.setVisible(false);
+                break;
+            case 2:
+                facturationPanel.setVisible(false);
+                facturationArrow.setVisible(false);
+                inventaryPanel.setVisible(true);
+                inventaryArrow.setVisible(true);
+                reportPanel.setVisible(false);
+                reportArrow.setVisible(false);
+                stadisticsPanel.setVisible(false);
+                stadisticsArrow.setVisible(false);
+                adminPanel.setVisible(false);
+                adminArrow.setVisible(false);
+                break;
+            case 3:
+                inventaryPanel.setVisible(false);
+                inventaryArrow.setVisible(false);
+                facturationPanel.setVisible(false);
+                facturationArrow.setVisible(false);
+                reportPanel.setVisible(true);
+                reportArrow.setVisible(true);
+                stadisticsPanel.setVisible(false);
+                stadisticsArrow.setVisible(false);
+                adminPanel.setVisible(false);
+                adminArrow.setVisible(false);
+                break;
+            case 4:
+                inventaryPanel.setVisible(false);
+                inventaryArrow.setVisible(false);
+                facturationPanel.setVisible(false);
+                facturationArrow.setVisible(false);
+                reportPanel.setVisible(false);
+                reportArrow.setVisible(false);
+                stadisticsPanel.setVisible(true);
+                stadisticsArrow.setVisible(true);
+                adminPanel.setVisible(false);
+                adminArrow.setVisible(false);
+                break;
+            case 5:
+                inventaryPanel.setVisible(false);
+                inventaryArrow.setVisible(false);
+                facturationPanel.setVisible(false);
+                facturationArrow.setVisible(false);
+                reportPanel.setVisible(false);
+                reportArrow.setVisible(false);
+                stadisticsPanel.setVisible(false);
+                stadisticsArrow.setVisible(false);
+                adminPanel.setVisible(true);
+                adminArrow.setVisible(true);
+                break;
+        }
     }
 }

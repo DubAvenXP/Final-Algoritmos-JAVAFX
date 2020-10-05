@@ -1,3 +1,14 @@
 
-X
-java:S2094"BRemove this empty class, write its code or make it an "interface".(Øó´Ÿ
+N
+java:S1172"1Remove this unused method parameter "mouseEvent".(àâ‹û8è³Î°Ï.
+S
+java:S1172"1Remove this unused method parameter "mouseEvent".(óø±™øÿÿÿÿ8è³Î°Ï.
+S
+java:S1172"1Remove this unused method parameter "mouseEvent".(şùÌõûÿÿÿÿ8ïõË°Ï.
+S
+java:S1172("1Remove this unused method parameter "mouseEvent".(—şÆòşÿÿÿÿ8íúÃ¯Ï.
+S
+java:S1172$"1Remove this unused method parameter "mouseEvent".(¶®»÷ÿÿÿÿÿ8©ôÎ°Ï.
+S
+java:S1172!"1Remove this unused method parameter "mouseEvent".(¾Ó°°ÿÿÿÿÿ8è³Î°Ï.
+C	java:S131.""Add a default case to this switch.(‹À©±ıÿÿÿÿ8—’Ä°Ï.
