@@ -9,32 +9,24 @@ import java.sql.SQLException;
  */
 public class Connect {
 
-    public static Connection connection;
-
-    public static Connection getConnection(){
-        String db = "jdbc:postgresql://localhost:5432/algoritmos";
-        String user = "postgres";
-        String password = "password";
-        try{
-            if (connection == null){
-                Runtime.getRuntime().addShutdownHook(new getClose() );
-                connection = DriverManager.getConnection(db, user, password);
-            }
-            return connection;
-        }catch (SQLException e) {
-            throw new RuntimeException("Connection error", e);
+    public Connection getConnection(){
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/algoritmos",
+                    "postgres","password");
+            if (connection != null) System.out.println("Connection established");
+        } catch (SQLException e) {
+            System.out.println(e);
         }
+        return connection;
     }
 
-    static class getClose extends Thread{
-        @Override
-        public void run() {
-            try {
-                Connection conn = Connect.getConnection();
-                conn.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+    public void closeConnection(){
+        try {
+            getConnection().close();
+            System.out.println("Connection to DB closed");
+        } catch (SQLException e) {
+            System.out.println("Connection to the DB could not be closed" + e);
         }
     }
 
