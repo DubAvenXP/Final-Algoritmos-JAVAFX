@@ -1,5 +1,6 @@
 package sample;
 
+import database.Connect;
 import database.Menu;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -10,6 +11,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.sql.Connection;
+import java.util.Scanner;
 
 public class Main extends Application {
     private double xOffset;
@@ -45,7 +49,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
-//        Menu.showMenu();
+        Menu.showMenu();
     }
 }

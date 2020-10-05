@@ -36,6 +36,13 @@ public class ClienteService {
         ClienteDao.viewClientDB();
     }
 
+    public static void listClientId(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Escribe el id del cliente que quieres ver");
+        int idCliente = sc.nextInt();
+        ClienteDao.viewClientById(idCliente);
+    }
+
     public static void deleteClient(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Escribe el id del cliente que quieres borrar");
