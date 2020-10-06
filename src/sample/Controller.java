@@ -1,6 +1,5 @@
 package sample;
 
-import database.models.Cliente;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -143,13 +142,13 @@ public class Controller {
     }
 
     public void crearClientePrueba(MouseEvent event){
-        Cliente cliente = new Cliente();
-        cliente.setIdCliente(Integer.parseInt(idCCInput.getText()));
-        cliente.setNit(nitCCInput.getText());
-        cliente.setNombre(nameCCInput.getText());
-        cliente.setApellido(lastNameCCInput.getText());
-        cliente.setDireccion(directionCCInput.getText());
-        cliente.setTelefono(phoneCCInput.getText());
-        database.service.ClienteService.createClient(cliente);
+        Integer id = Integer.parseInt(idCCInput.getText());
+        String nit = nitCCInput.getText();
+        String name = nameCCInput.getText();
+        String lastName = lastNameCCInput.getText();
+        String direction = directionCCInput.getText();
+        String phone = phoneCCInput.getText();
+        database.service.ClienteService.createClient(
+                id, nit, name, lastName, direction, phone);
     }
 }
