@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.sql.Connection;
-import java.util.Scanner;
+
 
 public class Main extends Application {
     private double xOffset;
