@@ -8,15 +8,7 @@ import java.util.Scanner;
 //Esta clase es la intermedia entre la capa dao y el modelo
 public class ClienteService {
 
-    public static void createClient(Integer id, String nit,  String name, String lastName,
-                                    String direction, String phone) {
-        Cliente cliente = new Cliente();
-        cliente.setIdCliente(id);
-        cliente.setNit(nit);
-        cliente.setNombre(name);
-        cliente.setApellido(lastName);
-        cliente.setDireccion(direction);
-        cliente.setTelefono(phone);
+    public static void createClient(Cliente cliente) {
         ClienteDao.createClientDB(cliente);
     }
 
