@@ -11,18 +11,27 @@ import javafx.scene.layout.AnchorPane;
 
 public class Controller {
 
+    /*Arrows nav manu*/
     @FXML private ImageView facturationArrow;
     @FXML private ImageView inventaryArrow;
     @FXML private ImageView reportArrow;
     @FXML private ImageView stadisticsArrow;
     @FXML private ImageView adminArrow;
 
+    /*Panels nav menu*/
     @FXML private AnchorPane facturationPanel;
     @FXML private AnchorPane inventaryPanel;
     @FXML private AnchorPane reportPanel;
     @FXML private AnchorPane stadisticsPanel;
     @FXML private AnchorPane adminPanel;
 
+    /*Admin Panels*/
+    @FXML private AnchorPane menuAdminPanel;
+    @FXML private AnchorPane createClientPanel;
+    @FXML private  AnchorPane updateDeleteClientPanel;
+    @FXML private  AnchorPane clientAdminMenu;
+
+    /*Admin Create Clients Variables*/
     @FXML private TextField idCCInput;
     @FXML private TextField nitCCInput;
     @FXML private TextField nameCCInput;
@@ -151,5 +160,32 @@ public class Controller {
         cliente.setDireccion(directionCCInput.getText());
         cliente.setTelefono(phoneCCInput.getText());
         database.service.ClienteService.createClient(cliente);
+    }
+
+    public void onAdminClientButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(false);
+        clientAdminMenu.setVisible(true);
+        createClientPanel.setVisible((true));
+    }
+
+    public void onBackAdminClientButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(true);
+        clientAdminMenu.setVisible(false);
+        createClientPanel.setVisible(false);
+        updateDeleteClientPanel.setVisible(false);
+    }
+
+    public void onCreateAdminClientButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(false);
+        clientAdminMenu.setVisible(true);
+        createClientPanel.setVisible(true);
+        updateDeleteClientPanel.setVisible(false);
+    }
+
+    public void onUpdateDeleteAdminClientButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(false);
+        createClientPanel.setVisible(false);
+        clientAdminMenu.setVisible(true);
+        updateDeleteClientPanel.setVisible(true);
     }
 }
