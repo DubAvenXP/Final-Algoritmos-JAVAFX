@@ -1,0 +1,18 @@
+
+T
+java:S1128">Remove this unused import 'database.service.ProveedorService'.(ðÀ¨ë
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ªÿº¥
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ŠÎ®¥
+P
+java:S1118":Add a private constructor to hide the implicit public one.(Ìì¢Ï
+S	java:S106"9Replace this use of System.out or System.err by a logger.(£¢Ô÷üÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(âËá‚ùÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ÚöÇÌ
+H
+java:S1128"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(’àœ”úÿÿÿÿ
+Q
+java:S1128"6Remove this unused import 'database.models.Proveedor'.(¶¢“Îûÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Ç›ƒ¡
+R
+java:S1128"<Remove this unused import 'database.service.ClienteService'.(©ñý
