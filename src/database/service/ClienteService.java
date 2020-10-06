@@ -19,40 +19,19 @@ public class ClienteService {
     public static void listClientId(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Escribe el id del cliente que quieres ver");
-        int idCliente = sc.nextInt();
-        ClienteDao.viewClientById(idCliente);
+        String nit = sc.next();
+        ClienteDao.viewClientById(nit);
     }
 
     public static void deleteClient(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Escribe el id del cliente que quieres borrar");
-        int idCliente = sc.nextInt();
-        ClienteDao.deleteClientDB(idCliente);
+        System.out.println("Escribe el nit del cliente que quieres borrar");
+        String nit = sc.next();
+        ClienteDao.deleteClientDB(nit);
     }
 
-    public static void updateClient(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Escribe el id del cliente a editar");
-        Integer id = sc.nextInt();
-        System.out.println("Escribe el nuevo nit del cliente");
-        String nit = sc.next();
-        System.out.println("Ingresa el nuevo nombre del cliente");
-        String name = sc.next();
-        System.out.println("Ingresa el nuevo apellido del cliente");
-        String lastName = sc.next();
-        System.out.println("Ingresa la nuevo direccion del cliente");
-        String direction = sc.next();
-        System.out.println("Ingresa el nuevo telefono del cliente");
-        String phone = sc.next();
-
-        Cliente cliente = new Cliente();
-        cliente.setIdCliente(id);
-        cliente.setNit(nit);
-        cliente.setNombre(name);
-        cliente.setApellido(lastName);
-        cliente.setDireccion(direction);
-        cliente.setTelefono(phone);
-        ClienteDao.updateClientDB(cliente);
+    public static void updateClient(Cliente cliente){
+        ClienteDao.createClientDB(cliente);
     }
 
 }

@@ -1,12 +1,15 @@
 package database.dao;
 
 import database.Connect;
+import database.models.Producto;
 import database.models.Vendedor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VendedorDao {
 
@@ -32,64 +35,74 @@ public class VendedorDao {
 
     }
 
-    public static void viewSellerDB() {
+    public static List viewSellerDB() {
         Connect connect = new Connect();
-        PreparedStatement ps;
-        ResultSet rs;
-        try (Connection connection = connect.getConnection()) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Vendedor> vendedores = new ArrayList<>();
+        Producto producto = new Producto();
+        Vendedor vendedor = new Vendedor();
+
+        try(Connection connection = connect.getConnection()){
             String sql = "SELECT * FROM public.vendedor";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
 
-            while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("idVendedor"));
-                System.out.println("NOMBRE: " + rs.getString("nombre"));
-                System.out.println("APELLIDO: " + rs.getString("apellido"));
-                System.out.println("DPI: " + rs.getString("dpi"));
-                System.out.println("DIRECCION: " + rs.getString("direccion"));
-                System.out.println("TELEFONO: " + rs.getString("telefono"));
-                System.out.println("");
+            while (rs.next()){
+                vendedor.setIdVendedor(rs.getInt(1));
+                vendedor.setNombre(rs.getString(2));
+                vendedor.setApellido(rs.getString(3));
+                vendedor.setDpi(rs.getString(4));
+                vendedor.setDireccion(rs.getString(5));
+                vendedor.setTelefono(rs.getString(6));
+                vendedores.add(vendedor);
             }
         } catch (SQLException e) {
-            System.out.println("No se pudieron traer los vendedores" + e);
+            System.out.println("No se traer el vendedor" + e);
         }
         connect.closeConnection();
+        return vendedores ;
     }
 
-    public static void viewSellerByID(int idVendedor) {
+    public static List viewSellerByID(String dpi) {
         Connect connect = new Connect();
         PreparedStatement ps;
         ResultSet rs = null;
+        List<Vendedor> vendedores = new ArrayList<>();
+        Vendedor vendedor = new Vendedor();
+
         try (Connection connection = connect.getConnection()) {
             String sql = "SELECT \"idVendedor\", nombre, apellido, dpi, direccion, telefono\n" +
-                    "\tFROM public.vendedor where \"idVendedor\"=?;";
+                    "\tFROM public.vendedor where dpi=?;";
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, idVendedor);
+            ps.setString(1, dpi);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("idVendedor"));
-                System.out.println("NOMBRE: " + rs.getString("nombre"));
-                System.out.println("APELLIDO: " + rs.getString("apellido"));
-                System.out.println("DPI: " + rs.getString("dpi"));
-                System.out.println("DIRECCION: " + rs.getString("direccion"));
-                System.out.println("TELEFONO: " + rs.getString("telefono"));
-                System.out.println("");
+                vendedor.setIdVendedor(rs.getInt(1));
+                vendedor.setNombre(rs.getString(2));
+                vendedor.setApellido(rs.getString(3));
+                vendedor.setDpi(rs.getString(4));
+                vendedor.setDireccion(rs.getString(5));
+                vendedor.setTelefono(rs.getString(6));
+                vendedores.add(vendedor);
             }
         } catch (SQLException e) {
             System.out.println("No se pudo traer al vendedor\n" + e);
         }
         connect.closeConnection();
+        return vendedores;
     }
 
-    public static void deleteSellerDB(int idVendedor) {
+    public static void deleteSellerDB(String dpi) {
         Connect connect = new Connect();
         PreparedStatement ps;
         try (Connection connection = connect.getConnection()) {
-            String sql = "delete from \"vendedor\" where \"vendedor\".\"idVendedor\" = ?;\n";
+            String sql = "delete from \"vendedor\" where dpi = ?";
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, idVendedor);
+            ps.setString(1, dpi);
             ps.executeUpdate();
+            System.out.println("Vendedor eliminado");
         } catch (SQLException e) {
             System.out.println("El vendedor no se pudo borrar" + e);
         }

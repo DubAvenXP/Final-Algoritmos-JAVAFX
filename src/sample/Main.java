@@ -50,6 +50,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        //Menu.showMenu();
+//        Menu.showMenu();
     }
 }

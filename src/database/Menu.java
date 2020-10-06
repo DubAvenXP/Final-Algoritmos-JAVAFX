@@ -2,6 +2,7 @@ package database;
 
 import database.models.Proveedor;
 import database.service.ClienteService;
+import database.service.ProductoService;
 import database.service.ProveedorService;
 import database.service.VendedorService;
 
@@ -16,29 +17,38 @@ public class Menu {
 
         do {
             System.out.println("<----------------------------------->");
-            System.out.println("1. Crear Proveedor");
-            System.out.println("2. Ver lista Proveedor");
-            System.out.println("3. Borrar Proveedor");
-            System.out.println("4. Editar Proveedor");
-            System.out.println("5. Ver Proveedor por ID");
+            System.out.println("1. Crear");
+            System.out.println("2. Ver lista");
+            System.out.println("3. Ver por ID");
+            System.out.println("4. Editar");
+            System.out.println("5. Borrar");
             System.out.println("6. Salir");
             option = input.nextInt();
 
             switch (option) {
                 case 1:
-                    VendedorService.createSeller();
+//                    ClienteService.createClient();
+//                    ProductoService.createProduct();
                     break;
                 case 2:
-                    VendedorService.listSeller();
+//                    ClienteService.listClient();
+//                    ProveedorService.listProvider();
+//                    ProductoService.listProduct();
                     break;
                 case 3:
-                    VendedorService.deleteSeller();
+//                    ClienteService.listClientId();
+//                    ProveedorService.listProviderByID();
+//                    ProductoService.listProductByID();
                     break;
                 case 4:
-                    VendedorService.updateSeller();
+//                    ClienteService.updateClient();
+//                    ProveedorService.updateProvider();
+//                    ProductoService.updateProduct();
                     break;
                 case 5:
-                    VendedorService.listSellerByID();
+//                    ClienteService.deleteClient();
+//                    ProveedorService.deleteProvider();
+//                    ProductoService.deleteProduct();
                     break;
                 default:
                     break;
