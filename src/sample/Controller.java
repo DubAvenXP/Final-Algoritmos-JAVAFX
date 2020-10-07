@@ -27,9 +27,11 @@ public class Controller {
 
     /*Admin Panels*/
     @FXML private AnchorPane menuAdminPanel;
+
+    /*Admin clients Panels*/
     @FXML private AnchorPane createClientPanel;
-    @FXML private  AnchorPane updateDeleteClientPanel;
-    @FXML private  AnchorPane clientAdminMenu;
+    @FXML private AnchorPane updateDeleteClientPanel;
+    @FXML private AnchorPane clientAdminMenu;
 
     /*Admin Create Clients Variables*/
     @FXML private TextField idCCInput;
@@ -38,6 +40,17 @@ public class Controller {
     @FXML private TextField lastNameCCInput;
     @FXML private TextField directionCCInput;
     @FXML private TextField phoneCCInput;
+
+    /*Admin Providers Panels*/
+    @FXML private AnchorPane providersAdminMenu;
+    @FXML private AnchorPane createProvidersPanel;
+    @FXML private AnchorPane updateDeleteProviderPanel;
+
+    /*Admin Products Panels*/
+    @FXML private AnchorPane productsAdminMenu;
+    @FXML private AnchorPane createProductsPanel;
+    @FXML private AnchorPane updateDeleteProductsPanel;
+
 
 
     public void onFacturationButtonClicked(MouseEvent mouseEvent){
@@ -162,6 +175,7 @@ public class Controller {
         database.service.ClienteService.createClient(cliente);
     }
 
+    /*Admin CLIENT*/
     public void onAdminClientButtonClicked(MouseEvent mouseEvent){
         menuAdminPanel.setVisible(false);
         clientAdminMenu.setVisible(true);
@@ -187,5 +201,61 @@ public class Controller {
         createClientPanel.setVisible(false);
         clientAdminMenu.setVisible(true);
         updateDeleteClientPanel.setVisible(true);
+    }
+
+    /*Admin Providers*/
+    public void onAdminProviderButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(false);
+        providersAdminMenu.setVisible(true);
+        createProvidersPanel.setVisible((true));
+    }
+
+    public void onBackAdminProviderButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(true);
+        providersAdminMenu.setVisible(false);
+        createProvidersPanel.setVisible(false);
+        updateDeleteProviderPanel.setVisible(false);
+    }
+
+    public void onCreateAdminProviderButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(false);
+        providersAdminMenu.setVisible(true);
+        createProvidersPanel.setVisible(true);
+        updateDeleteProviderPanel.setVisible(false);
+    }
+
+    public void onUpdateDeleteAdminProviderButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(false);
+        createProvidersPanel.setVisible(false);
+        providersAdminMenu.setVisible(true);
+        updateDeleteProviderPanel.setVisible(true);
+    }
+
+    /*Admin Products*/
+    public void onAdminProductButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(false);
+        productsAdminMenu.setVisible(true);
+        createProductsPanel.setVisible((true));
+    }
+
+    public void onBackAdminProductButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(true);
+        productsAdminMenu.setVisible(false);
+        createProductsPanel.setVisible(false);
+        updateDeleteProductsPanel.setVisible(false);
+    }
+
+    public void onCreateAdminProductButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(false);
+        productsAdminMenu.setVisible(true);
+        createProductsPanel.setVisible(true);
+        updateDeleteProductsPanel.setVisible(false);
+    }
+
+    public void onUpdateDeleteAdminProductButtonClicked(MouseEvent mouseEvent){
+        menuAdminPanel.setVisible(false);
+        createProductsPanel.setVisible(false);
+        productsAdminMenu.setVisible(true);
+        updateDeleteProductsPanel.setVisible(true);
     }
 }
