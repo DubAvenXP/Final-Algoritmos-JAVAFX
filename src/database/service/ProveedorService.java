@@ -25,11 +25,11 @@ public class ProveedorService {
         ProveedorDao.createProviderDB(proveedor);
     }
 
-    public static void viewProviderDB(){
+    public static void listProvider(){
         ProveedorDao.viewProviderDB();
     }
 
-    public static void viewProviderByID(){
+    public static void listProviderByID(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Escribe el id del proveedor que quieres ver");
         int idProveedor = sc.nextInt();

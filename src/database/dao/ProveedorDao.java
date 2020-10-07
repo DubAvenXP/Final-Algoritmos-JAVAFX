@@ -4,6 +4,8 @@ import database.Connect;
 import database.models.Proveedor;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProveedorDao {
 
@@ -32,32 +34,41 @@ public class ProveedorDao {
         connect.closeConnection();
     }
 
-    public static void viewProviderDB() {
+    public static List viewProviderDB() {
+
         Connect connect = new Connect();
         PreparedStatement ps = null;
         ResultSet rs = null;
+        List<Proveedor> proveedores = new ArrayList<>();
+        Proveedor proveedor = new Proveedor();
+
         try (Connection connection = connect.getConnection()) {
             String sql = "SELECT * FROM public.proveedor";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("idProveedor"));
-                System.out.println("NOMBRE: " + rs.getString("nombre"));
-                System.out.println("DESCRIPCION: " + rs.getString("descripcion"));
-                System.out.println("");
+                proveedor.setIdProveedor(rs.getInt(1));
+                proveedor.setNombre(rs.getString(2));
+                proveedor.setDescripcion(rs.getString(3));
+
+                System.out.println(proveedor.getNombre());
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los proveedores\n" + e);
         }
         connect.closeConnection();
+        return proveedores;
     }
 
-    public static void listProviderByID(int idProveedor) {
+    public static List listProviderByID(int idProveedor) {
         Connect connect = new Connect();
 
         PreparedStatement ps = null;
         ResultSet rs = null;
+        List<Proveedor> proveedores = new ArrayList<>();
+        Proveedor proveedor = new Proveedor();
+
         try (Connection connection = connect.getConnection()) {
             String sql = "SELECT * FROM public.proveedor WHERE \"idProveedor\"=?";
             ps = connection.prepareStatement(sql);
@@ -65,15 +76,19 @@ public class ProveedorDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("idProveedor"));
-                System.out.println("NOMBRE: " + rs.getString("nombre"));
-                System.out.println("DESCRIPCION: " + rs.getString("descripcion"));
-                System.out.println("");
+                proveedor.setIdProveedor(rs.getInt(1));
+                proveedor.setNombre(rs.getString(2));
+                proveedor.setDescripcion(rs.getString(3));
+
+                System.out.println(proveedor.getIdProveedor());
+                System.out.println(proveedor.getNombre());
+                System.out.println(proveedor.getDescripcion());
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los proveedores\n" + e);
         }
         connect.closeConnection();
+        return proveedores;
     }
 
     public static void deleteProvider(int idProveedor)  {

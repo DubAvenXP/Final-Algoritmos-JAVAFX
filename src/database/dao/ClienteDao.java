@@ -4,6 +4,8 @@ import database.Connect;
 import database.models.Cliente;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //Esta clase es la que nos permite hacer las comunicaciones con la db
 public class ClienteDao {
@@ -15,7 +17,7 @@ public class ClienteDao {
         try (Connection connection = connect.getConnection()) {
             PreparedStatement ps;
             try {
-                String sql = "INSERT INTO public.cliente(\"idCliente\", nombre, apellido, direccion, telefono, nit)" +
+                String sql = "INSERT INTO public.cliente(\"idCliente\", nit, nombre, apellido, direccion, telefono)" +
                         "VALUES (?, ?, ?, ?, ?, ?)";
                 ps = connection.prepareStatement(sql);
                 ps.setInt(1, cliente.getIdCliente());
@@ -36,68 +38,76 @@ public class ClienteDao {
         connect.closeConnection();
     }
 
-    public static void viewClientDB() {
+    public static List viewClientDB() {
         Connect connect = new Connect();
 
         PreparedStatement ps = null;
         ResultSet rs = null;
+        List<Cliente> clientes = new ArrayList<>();
+        Cliente client = new Cliente();
+
         try (Connection connection = connect.getConnection()) {
             String sql = "SELECT * FROM public.cliente";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("idCliente"));
-                System.out.println("NOMBRE: " + rs.getString("nombre"));
-                System.out.println("APELLIDO: " + rs.getString("apellido"));
-                System.out.println("DIRECCION: " + rs.getString("direccion"));
-                System.out.println("TELEFONO: " + rs.getString("telefono"));
-                System.out.println("NIT: " + rs.getString("nit"));
-                System.out.println("");
+                client.setIdCliente(rs.getInt(1));
+                client.setNit(rs.getString(2));
+                client.setNombre(rs.getString(3));
+                client.setApellido(rs.getString(4));
+                client.setDireccion(rs.getString(5));
+                client.setTelefono(rs.getString(6));
+                clientes.add(client);
             }
         } catch (SQLException e) {
-            System.out.println("No se pudieron traer los mensajes\n" + e);
+            System.out.println("No se pudieron traer los clientes\n" + e);
         }
         connect.closeConnection();
+        return clientes;
     }
 
-    public static void viewClientById(int idCliente) {
+    public static List viewClientById(String nit) {
         Connect connect = new Connect();
         PreparedStatement ps = null;
         ResultSet rs = null;
+        List<Cliente> clientes = new ArrayList<>();
+        Cliente client = new Cliente();
         try (Connection connection = connect.getConnection()) {
-            String sql = "SELECT \"idCliente\", nombre, apellido, direccion, telefono, nit\n" +
-                    "\tFROM public.cliente where \"idCliente\"=?";
+            String sql = "SELECT \"idCliente\", nit, nombre, apellido, direccion, telefono\n" +
+                    "\tFROM public.cliente where nit = ?";
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, idCliente);
+            ps.setString(1, nit);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("idCliente"));
-                System.out.println("NOMBRE: " + rs.getString("nombre"));
-                System.out.println("APELLIDO: " + rs.getString("apellido"));
-                System.out.println("DIRECCION: " + rs.getString("direccion"));
-                System.out.println("TELEFONO: " + rs.getString("telefono"));
-                System.out.println("NIT: " + rs.getString("nit"));
-                System.out.println("");
+                client.setIdCliente(rs.getInt(1));
+                client.setNit(rs.getString(2));
+                client.setNombre(rs.getString(3));
+                client.setApellido(rs.getString(4));
+                client.setDireccion(rs.getString(5));
+                client.setTelefono(rs.getString(6));
+                clientes.add(client);
             }
         } catch (SQLException e) {
             System.out.println("No se pudo traer el cliente\n" + e);
         }
         connect.closeConnection();
+        return clientes;
     }
 
-    public static void deleteClientDB(int idCliente) {
+    public static void deleteClientDB(String nit) {
         Connect connect = new Connect();
 
         PreparedStatement ps = null;
         try (Connection connection = connect.getConnection()) {
-            String sql = "delete from \"cliente\" where \"cliente\".\"idCliente\" = ?";
+            String sql = "delete from public.cliente where nit = ?";
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, idCliente);
+            ps.setString(1, nit);
             ps.executeUpdate();
+            System.out.println("Cliente borrado");
         } catch (SQLException e) {
-            System.out.println("No se pudo traer el cliente\n" + e);
+            System.out.println("No se pudo borrar el cliente\n" + e);
         }
         connect.closeConnection();
     }
