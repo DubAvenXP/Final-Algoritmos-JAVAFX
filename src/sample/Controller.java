@@ -8,6 +8,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.util.List;
+
+import static database.service.ClienteService.listClientId;
+
 
 public class Controller {
 
@@ -51,7 +55,14 @@ public class Controller {
     @FXML private AnchorPane createProductsPanel;
     @FXML private AnchorPane updateDeleteProductsPanel;
 
-
+    /*Admin client update - delete*/
+    @FXML private TextField nitSearchUpdateDeleteClient;
+    @FXML private TextField idUpdateDeleteClient;
+    @FXML private TextField nameUpdateDeleteClient;
+    @FXML private TextField lastNameUpdateDeleteClient;
+    @FXML private TextField directionUpdateDeleteClient;
+    @FXML private TextField phoneUpdateDeleteClient;
+    @FXML private TextField nitUpdateDeleteClient;
 
     public void onFacturationButtonClicked(MouseEvent mouseEvent){
         showPanel(1);
@@ -173,6 +184,15 @@ public class Controller {
         cliente.setDireccion(directionCCInput.getText());
         cliente.setTelefono(phoneCCInput.getText());
         database.service.ClienteService.createClient(cliente);
+    }
+
+    public void onClickedButtonSearchUpdate(MouseEvent mouseEvent){
+        List<Cliente> clientData = listClientId(nitSearchUpdateDeleteClient.getText());
+        System.out.println(clientData.get(1));
+    }
+
+    public void updateClient(){
+
     }
 
     /*Admin CLIENT*/

@@ -3,8 +3,8 @@ J
 java:S1604""(Make this anonymous inner class a lambda(–öò²şÿÿÿÿ8Õ·ØÖÏ.
 M
 java:S1128"0Remove this unused import 'java.sql.Connection'.(¥ËôÖ8Õ·ØÖÏ.
-X	java:S1255"<This block of commented-out lines of code should be removed.(›‘¤È8ˆĞğÖÏ.
-E
-java:S1604"(Make this anonymous inner class a lambda(ÂÂ¹É8Õ·ØÖÏ.
 J
 java:S1128"-Remove this unused import 'database.Connect'.(¶ªÇ8Õ·ØÖÏ.
+E
+java:S1604"(Make this anonymous inner class a lambda(ÂÂ¹É8Õ·ØÖÏ.
+X	java:S1255"<This block of commented-out lines of code should be removed.(›‘¤È8ˆĞğÖÏ.
