@@ -1,6 +1,7 @@
 package sample;
 
 import database.models.Cliente;
+import database.service.ClienteService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -187,8 +188,14 @@ public class Controller {
     }
 
     public void onClickedButtonSearchUpdate(MouseEvent mouseEvent){
-        List<Cliente> clientData = listClientId(nitSearchUpdateDeleteClient.getText());
-        System.out.println(clientData.get(1));
+        String nit = nitSearchUpdateDeleteClient.getText();
+        Cliente cliente = listClientId(nit);
+        idUpdateDeleteClient.setText(String.valueOf(cliente.getIdCliente()));
+        nameUpdateDeleteClient.setText(cliente.getNombre());
+        lastNameUpdateDeleteClient.setText(cliente.getApellido());
+        directionUpdateDeleteClient.setText(cliente.getDireccion());
+        phoneUpdateDeleteClient.setText(cliente.getTelefono());
+        nitUpdateDeleteClient.setText(cliente.getNit());
     }
 
     public void updateClient(){

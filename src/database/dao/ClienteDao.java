@@ -67,11 +67,10 @@ public class ClienteDao {
         return clientes;
     }
 
-    public static List viewClientById(String nit) {
+    public static Cliente viewClientById(String nit) {
         Connect connect = new Connect();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<Cliente> clientes = new ArrayList<>();
         Cliente client = new Cliente();
         try (Connection connection = connect.getConnection()) {
             String sql = "SELECT \"idCliente\", nit, nombre, apellido, direccion, telefono\n" +
@@ -87,13 +86,12 @@ public class ClienteDao {
                 client.setApellido(rs.getString(4));
                 client.setDireccion(rs.getString(5));
                 client.setTelefono(rs.getString(6));
-                clientes.add(client);
             }
         } catch (SQLException e) {
             System.out.println("No se pudo traer el cliente\n" + e);
         }
         connect.closeConnection();
-        return clientes;
+        return client;
     }
 
     public static void deleteClientDB(String nit) {

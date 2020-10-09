@@ -252,7 +252,7 @@
                </font>
             </Label>
             <Separator layoutX="191.0" layoutY="30.0" opacity="0.55" prefHeight="3.0" prefWidth="507.0" />
-            <AnchorPane fx:id="menuAdminPanel" layoutX="25.0" layoutY="49.0" prefHeight="476.0" prefWidth="868.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="menuAdminPanel" layoutX="25.0" layoutY="49.0" prefHeight="476.0" prefWidth="868.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox layoutX="58.0" layoutY="123.0" prefHeight="153.0" prefWidth="752.0">
                      <children>

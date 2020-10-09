@@ -17,7 +17,7 @@ public class ClienteService {
         ClienteDao.viewClientDB();
     }
 
-    public static List<Cliente> listClientId(String nit){
+    public static Cliente listClientId(String nit){
         return ClienteDao.viewClientById(nit);
     }
 
