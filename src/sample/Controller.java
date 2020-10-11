@@ -65,6 +65,7 @@ public class Controller {
     @FXML private TextField phoneUpdateDeleteClient;
     @FXML private TextField nitUpdateDeleteClient;
 
+    // Menu
     public void onFacturationButtonClicked(MouseEvent mouseEvent){
         showPanel(1);
     }
@@ -80,7 +81,6 @@ public class Controller {
     public void onAdminButtonClicked(MouseEvent mouseEvent){
         showPanel(5);
     }
-
     public void onExitButtonClicked(MouseEvent mouseEvent){
         Platform.exit();
         System.exit(0);
@@ -176,31 +176,6 @@ public class Controller {
         }
     }
 
-    public void crearClientePrueba(MouseEvent event){
-        Cliente cliente = new Cliente();
-        cliente.setIdCliente(Integer.parseInt(idCCInput.getText()));
-        cliente.setNit(nitCCInput.getText());
-        cliente.setNombre(nameCCInput.getText());
-        cliente.setApellido(lastNameCCInput.getText());
-        cliente.setDireccion(directionCCInput.getText());
-        cliente.setTelefono(phoneCCInput.getText());
-        database.service.ClienteService.createClient(cliente);
-    }
-
-    public void onClickedButtonSearchUpdate(MouseEvent mouseEvent){
-        String nit = nitSearchUpdateDeleteClient.getText();
-        Cliente cliente = listClientId(nit);
-        idUpdateDeleteClient.setText(String.valueOf(cliente.getIdCliente()));
-        nameUpdateDeleteClient.setText(cliente.getNombre());
-        lastNameUpdateDeleteClient.setText(cliente.getApellido());
-        directionUpdateDeleteClient.setText(cliente.getDireccion());
-        phoneUpdateDeleteClient.setText(cliente.getTelefono());
-        nitUpdateDeleteClient.setText(cliente.getNit());
-    }
-
-    public void updateClient(){
-
-    }
 
     /*Admin CLIENT*/
     public void onAdminClientButtonClicked(MouseEvent mouseEvent){
@@ -229,6 +204,45 @@ public class Controller {
         clientAdminMenu.setVisible(true);
         updateDeleteClientPanel.setVisible(true);
     }
+
+    public void crearClientePrueba(MouseEvent mouseEvent){
+        Cliente cliente = new Cliente();
+        cliente.setIdCliente(Integer.parseInt(idCCInput.getText()));
+        cliente.setNit(nitCCInput.getText());
+        cliente.setNombre(nameCCInput.getText());
+        cliente.setApellido(lastNameCCInput.getText());
+        cliente.setDireccion(directionCCInput.getText());
+        cliente.setTelefono(phoneCCInput.getText());
+        database.service.ClienteService.createClient(cliente);
+    }
+
+    public void onClickedButtonSearchUpdate(MouseEvent mouseEvent){
+        String nit = nitSearchUpdateDeleteClient.getText();
+        Cliente cliente = listClientId(nit);
+        idUpdateDeleteClient.setText(String.valueOf(cliente.getIdCliente()));
+        nameUpdateDeleteClient.setText(cliente.getNombre());
+        lastNameUpdateDeleteClient.setText(cliente.getApellido());
+        directionUpdateDeleteClient.setText(cliente.getDireccion());
+        phoneUpdateDeleteClient.setText(cliente.getTelefono());
+        nitUpdateDeleteClient.setText(cliente.getNit());
+    }
+
+    public void updateClient(){
+        Cliente cliente = new Cliente();
+        cliente.setIdCliente(Integer.parseInt(idUpdateDeleteClient.getText()));
+        cliente.setNit(nitUpdateDeleteClient.getText());
+        cliente.setNombre(nameUpdateDeleteClient.getText());
+        cliente.setApellido(lastNameUpdateDeleteClient.getText());
+        cliente.setDireccion(directionUpdateDeleteClient.getText());
+        cliente.setTelefono(phoneUpdateDeleteClient.getText());
+        database.service.ClienteService.updateClient(cliente);
+    }
+
+    public void deleteClient(MouseEvent mouseEvent){
+        String nit = nitUpdateDeleteClient.getText();
+        database.service.ClienteService.deleteClient(nit);
+    }
+
 
     /*Admin Providers*/
     public void onAdminProviderButtonClicked(MouseEvent mouseEvent){

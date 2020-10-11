@@ -17,3 +17,7 @@ P
  src/database/dao/ClienteDao.java,5\5\5557c3836f9dbe1c0db555041385d811a29ae50d
 P
  src/database/models/Cliente.java,4\9\4975074c558c73238a8e3b65b06cae1f96985055
+K
+src/sample/utils/Admin.java,1\f\1fb75da0629024fa4af64047a4c71c28150c1685
+J
+src/sample/utils/Menu.java,c\6\c68173b9098539cf21b8be4ff9c03bee1bfc2a4a

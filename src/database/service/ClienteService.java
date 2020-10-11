@@ -21,10 +21,7 @@ public class ClienteService {
         return ClienteDao.viewClientById(nit);
     }
 
-    public static void deleteClient(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Escribe el nit del cliente que quieres borrar");
-        String nit = sc.next();
+    public static void deleteClient(String nit){
         ClienteDao.deleteClientDB(nit);
     }
 
