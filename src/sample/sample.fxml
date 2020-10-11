@@ -397,9 +397,9 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" text="Actualizar" />
+                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#updateClient" prefHeight="35.0" prefWidth="98.0" text="Actualizar" />
                         <Button layoutX="276.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" text="Omitir" />
-                        <Button layoutX="166.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" text="Eliminar" />
+                        <Button layoutX="166.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#deleteClient" prefHeight="35.0" prefWidth="98.0" text="Eliminar" />
                      </children>
                   </AnchorPane>
                   <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="26.0" layoutY="10.0" onMouseClicked="#onBackAdminClientButtonClicked" pickOnBounds="true" preserveRatio="true">
