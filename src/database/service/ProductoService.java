@@ -16,18 +16,12 @@ public class ProductoService {
         ProductoDao.listProductDB();
     }
 
-    public static void listProductByID(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Escribe el id");
-        int idProducto = sc.nextInt();
-        ProductoDao.listProductDBByID(idProducto);
+    public static Producto listProductByID(int id){
+        return ProductoDao.listProductDBByID(id);
     }
 
-    public static void deleteProduct(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Escribe el id que quieres borrar");
-        int idProducto = sc.nextInt();
-        ProductoDao.deleteProductDB(idProducto);
+    public static void deleteProduct(int id){
+        ProductoDao.deleteProductDB(id);
     }
 
     public static void updateProduct(Producto producto) {
