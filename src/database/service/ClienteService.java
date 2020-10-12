@@ -3,8 +3,6 @@ package database.service;
 import database.dao.ClienteDao;
 import database.models.Cliente;
 
-import java.util.List;
-import java.util.Scanner;
 
 //Esta clase es la intermedia entre la capa dao y el modelo
 public class ClienteService {
@@ -26,7 +24,7 @@ public class ClienteService {
     }
 
     public static void updateClient(Cliente cliente){
-        ClienteDao.createClientDB(cliente);
+        ClienteDao.updateClientDB(cliente);
     }
 
 }

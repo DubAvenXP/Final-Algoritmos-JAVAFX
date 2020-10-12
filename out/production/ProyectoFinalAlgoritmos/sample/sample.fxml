@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
@@ -343,7 +344,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#crearClientePrueba" prefHeight="35.0" prefWidth="154.0" text="Crear cliente" />
+                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#createClient" prefHeight="35.0" prefWidth="154.0" text="Crear cliente" />
                         <Button layoutX="266.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="154.0" text="Reiniciar" />
                      </children>
                   </AnchorPane>
@@ -355,7 +356,7 @@
                            </font>
                         </Label>
                         <TextField fx:id="nitSearchUpdateDeleteClient" layoutX="156.0" layoutY="56.0" prefHeight="26.0" prefWidth="278.0" promptText="Buscar cliente por NIT" />
-                        <Button layoutX="474.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#onClickedButtonSearchUpdate" prefHeight="26.0" prefWidth="224.0" text="Buscar" />
+                        <Button layoutX="474.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#searchClient" prefHeight="26.0" prefWidth="224.0" text="Buscar" />
                         <Label layoutY="83.0" text="Acualizar o eliminar cliente" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB" size="33.0" />
@@ -397,9 +398,9 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" text="Actualizar" />
+                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#updateClient" prefHeight="35.0" prefWidth="98.0" text="Actualizar" />
                         <Button layoutX="276.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" text="Omitir" />
-                        <Button layoutX="166.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" text="Eliminar" />
+                        <Button layoutX="166.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#deleteClient" prefHeight="35.0" prefWidth="98.0" text="Eliminar" />
                      </children>
                   </AnchorPane>
                   <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="26.0" layoutY="10.0" onMouseClicked="#onBackAdminClientButtonClicked" pickOnBounds="true" preserveRatio="true">
@@ -420,13 +421,13 @@
                               <Font name="Berlin Sans FB" size="33.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="156.0" layoutY="133.0" prefHeight="26.0" prefWidth="83.0" promptText="Ingrese su ID" />
+                        <TextField fx:id="idCPInput" layoutX="156.0" layoutY="133.0" prefHeight="26.0" prefWidth="83.0" promptText="Ingrese su ID" />
                         <Label layoutX="129.0" layoutY="133.0" prefHeight="26.0" prefWidth="26.0" text="ID:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="156.0" layoutY="175.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese nombre del proveedor" />
+                        <TextField fx:id="nameCPInput" layoutX="156.0" layoutY="175.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese nombre del proveedor" />
                         <Label layoutX="84.0" layoutY="175.0" prefHeight="26.0" prefWidth="62.0" text="NOMBRE:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -437,63 +438,46 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#crearClientePrueba" prefHeight="35.0" prefWidth="154.0" text="Crear proveedor" />
+                        <TextArea fx:id="descriptionCPInput" layoutX="156.0" layoutY="219.0" prefHeight="146.0" prefWidth="278.0" promptText="Ingrese la descripcion del proveedor" />
+                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#createProvider" prefHeight="35.0" prefWidth="154.0" text="Crear proveedor" />
                         <Button layoutX="266.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="154.0" text="Reiniciar" />
-                        <TextField layoutX="155.0" layoutY="219.0" prefHeight="95.0" prefWidth="278.0" promptText="Ingrese una descripcion de los proveedores" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="updateDeleteProviderPanel" layoutX="50.0" prefHeight="496.0" prefWidth="868.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutY="83.0" text="Actualizar o eliminar proveedor" textFill="WHITE">
-                           <font>
-                              <Font name="Berlin Sans FB" size="33.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="133.0" prefHeight="26.0" prefWidth="83.0" promptText="Ingrese su ID" />
-                        <Label layoutX="129.0" layoutY="133.0" prefHeight="26.0" prefWidth="26.0" text="ID:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="175.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese nombres" />
-                        <Label layoutX="78.0" layoutY="175.0" prefHeight="26.0" prefWidth="71.0" text="NOMBRES:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="219.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese apellidos" />
-                        <Label layoutX="72.0" layoutY="219.0" prefHeight="26.0" prefWidth="83.0" text="APELLIDOS:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="262.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese su direccion" />
-                        <Label layoutX="72.0" layoutY="262.0" prefHeight="26.0" prefWidth="84.0" text="DIRECCION:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="304.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese su telefono" />
-                        <Label layoutX="72.0" layoutY="304.0" prefHeight="26.0" prefWidth="71.0" text="TELEFONO:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="347.0" prefHeight="26.0" prefWidth="277.0" promptText="CF / NIT" />
-                        <Label layoutX="115.0" layoutY="347.0" prefHeight="26.0" prefWidth="26.0" text="NIT:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#crearClientePrueba" prefHeight="35.0" prefWidth="98.0" text="Actualizar" />
-                        <TextField layoutX="156.0" layoutY="56.0" prefHeight="26.0" prefWidth="438.0" promptText="Buscar cliente por ID" />
                         <Label layoutX="129.0" layoutY="56.0" prefHeight="26.0" prefWidth="26.0" text="ID:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="276.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#crearClientePrueba" prefHeight="35.0" prefWidth="98.0" text="Omitir" />
-                        <Button layoutX="166.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#crearClientePrueba" prefHeight="35.0" prefWidth="98.0" text="Eliminar" />
+                        <TextField fx:id="udProviderSearch" layoutX="156.0" layoutY="56.0" prefHeight="26.0" prefWidth="278.0" promptText="Buscar cliente por ID" />
+                        <Button layoutX="449.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#searchProvider" prefHeight="26.0" prefWidth="98.0" text="Buscar" />
+                        <Label layoutY="83.0" text="Actualizar o eliminar proveedor" textFill="WHITE">
+                           <font>
+                              <Font name="Berlin Sans FB" size="33.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="idUDProviderInput" layoutX="156.0" layoutY="133.0" prefHeight="26.0" prefWidth="83.0" promptText="Ingrese su ID" />
+                        <Label layoutX="129.0" layoutY="133.0" prefHeight="26.0" prefWidth="26.0" text="ID:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nameUDProviderInput" layoutX="156.0" layoutY="175.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese nombre" />
+                        <Label layoutX="78.0" layoutY="175.0" prefHeight="26.0" prefWidth="71.0" text="NOMBRE:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="51.0" layoutY="224.0" prefHeight="26.0" prefWidth="92.0" text="DESCRIPCION:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#updateProvider" prefHeight="35.0" prefWidth="98.0" text="Actualizar" />
+                        <Button layoutX="276.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#createClient" prefHeight="35.0" prefWidth="98.0" text="Omitir" />
+                        <Button layoutX="166.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#deleteProvider" prefHeight="35.0" prefWidth="98.0" text="Eliminar" />
+                        <TextArea fx:id="descriptionUDProviderInput" layoutX="149.0" layoutY="224.0" prefHeight="146.0" prefWidth="286.0" />
                      </children>
                   </AnchorPane>
                   <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="26.0" layoutY="10.0" onMouseClicked="#onBackAdminProviderButtonClicked" pickOnBounds="true" preserveRatio="true">
@@ -514,98 +498,99 @@
                               <Font name="Berlin Sans FB" size="33.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="156.0" layoutY="133.0" prefHeight="26.0" prefWidth="83.0" promptText="Ingrese su ID" />
-                        <Label layoutX="129.0" layoutY="133.0" prefHeight="26.0" prefWidth="26.0" text="ID:" textFill="WHITE">
+                        <TextField fx:id="idCProdInput" layoutX="156.0" layoutY="133.0" prefHeight="26.0" prefWidth="83.0" promptText="Producto ID" />
+                        <Label layoutX="57.0" layoutY="133.0" prefHeight="26.0" prefWidth="98.0" text="PRODUCTO ID:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="156.0" layoutY="175.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese nombres" />
+                        <TextField fx:id="nameCProdInput" layoutX="156.0" layoutY="175.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese nombre" />
                         <Label layoutX="90.0" layoutY="175.0" prefHeight="26.0" prefWidth="62.0" text="NOMBRE:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="156.0" layoutY="219.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese apellidos" />
+                        <TextField fx:id="priceCProdInput" layoutX="156.0" layoutY="219.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese precio" />
                         <Label layoutX="102.0" layoutY="219.0" prefHeight="26.0" prefWidth="54.0" text="PRECIO:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="156.0" layoutY="262.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese su direccion" />
+                        <TextField fx:id="stockCProdInput" layoutX="156.0" layoutY="262.0" prefHeight="26.0" prefWidth="277.0" promptText="Cantidad de productos en bodega" />
                         <Label layoutX="104.0" layoutY="262.0" prefHeight="26.0" prefWidth="54.0" text="STOCK:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="156.0" layoutY="304.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese su telefono" />
                         <Label layoutX="61.0" layoutY="304.0" prefHeight="26.0" prefWidth="92.0" text="DESCRIPCION:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="156.0" layoutY="347.0" prefHeight="26.0" prefWidth="277.0" promptText="CF / NIT" />
-                        <Label layoutX="72.0" layoutY="347.0" prefHeight="26.0" prefWidth="84.0" text="PROVEEDOR:" textFill="WHITE">
+                        <TextArea fx:id="descriptionCProdInput" layoutX="155.0" layoutY="304.0" prefHeight="84.0" prefWidth="278.0" promptText="Ingrese una descripcion para el producto" />
+                        <Label layoutX="448.0" layoutY="120.0" prefHeight="26.0" prefWidth="105.0" text="PROVEEDOR ID:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#crearClientePrueba" prefHeight="35.0" prefWidth="154.0" text="Crear cliente" />
+                        <TextField fx:id="providerIdCProdInput" layoutX="553.0" layoutY="120.0" prefHeight="26.0" prefWidth="106.0" promptText="Proveedor ID" />
+                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#createProduct" prefHeight="35.0" prefWidth="154.0" text="Crear cliente" />
                         <Button layoutX="266.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="154.0" text="Reiniciar" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="updateDeleteProductsPanel" prefHeight="496.0" prefWidth="868.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0">
                      <children>
+                        <Label layoutX="129.0" layoutY="56.0" prefHeight="26.0" prefWidth="26.0" text="ID:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="udProdSearchInput" layoutX="156.0" layoutY="56.0" prefHeight="26.0" prefWidth="278.0" promptText="Buscar producto por ID" />
+                        <Button layoutX="445.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#searchProduct" prefHeight="26.0" prefWidth="92.0" text="Buscar" />
+                        <TextField fx:id="idUDProdInput" layoutX="117.0" layoutY="139.0" prefHeight="26.0" prefWidth="277.0" promptText="Producto ID" />
+                        <Label layoutX="18.0" layoutY="140.0" prefHeight="26.0" prefWidth="98.0" text="PRODUCTO ID:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nameUDProdInput" layoutX="117.0" layoutY="173.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese nombre" />
+                        <Label layoutX="52.0" layoutY="173.0" prefHeight="26.0" prefWidth="62.0" text="NOMBRE:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="priceUDProdInput" layoutX="117.0" layoutY="211.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese precio" />
+                        <Label layoutX="60.0" layoutY="211.0" prefHeight="26.0" prefWidth="54.0" text="PRECIO:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="stockUDProdInput" layoutX="117.0" layoutY="243.0" prefHeight="26.0" prefWidth="277.0" promptText="Cantidad de productos en bodega" />
+                        <Label layoutX="67.0" layoutY="243.0" prefHeight="26.0" prefWidth="54.0" text="STOCK:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="285.0" prefHeight="26.0" prefWidth="92.0" text="DESCRIPCION:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="descriptionUDProdInput" layoutX="116.0" layoutY="285.0" prefHeight="84.0" prefWidth="278.0" promptText="Ingrese una descripcion para el producto" />
+                        <Label layoutX="408.0" layoutY="140.0" prefHeight="26.0" prefWidth="105.0" text="PROVEEDOR ID:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="providerIdUDProdInput" layoutX="514.0" layoutY="140.0" prefHeight="26.0" prefWidth="106.0" promptText="Proveedor ID" />
                         <Label layoutY="83.0" text="Acualizar o eliminar productos" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB" size="33.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="156.0" layoutY="133.0" prefHeight="26.0" prefWidth="83.0" promptText="Ingrese su ID" />
-                        <Label layoutX="129.0" layoutY="133.0" prefHeight="26.0" prefWidth="26.0" text="ID:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="175.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese nombres" />
-                        <Label layoutX="78.0" layoutY="175.0" prefHeight="26.0" prefWidth="71.0" text="NOMBRES:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="219.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese apellidos" />
-                        <Label layoutX="72.0" layoutY="219.0" prefHeight="26.0" prefWidth="83.0" text="APELLIDOS:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="262.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese su direccion" />
-                        <Label layoutX="72.0" layoutY="262.0" prefHeight="26.0" prefWidth="84.0" text="DIRECCION:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="304.0" prefHeight="26.0" prefWidth="277.0" promptText="Ingrese su telefono" />
-                        <Label layoutX="72.0" layoutY="304.0" prefHeight="26.0" prefWidth="71.0" text="TELEFONO:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="156.0" layoutY="347.0" prefHeight="26.0" prefWidth="277.0" promptText="CF / NIT" />
-                        <Label layoutX="115.0" layoutY="347.0" prefHeight="26.0" prefWidth="26.0" text="NIT:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#crearClientePrueba" prefHeight="35.0" prefWidth="98.0" text="Actualizar" />
-                        <TextField layoutX="156.0" layoutY="56.0" prefHeight="26.0" prefWidth="438.0" promptText="Buscar cliente por NIT" />
-                        <Label layoutX="129.0" layoutY="56.0" prefHeight="26.0" prefWidth="26.0" text="NIT:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="276.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#crearClientePrueba" prefHeight="35.0" prefWidth="98.0" text="Omitir" />
-                        <Button layoutX="166.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#crearClientePrueba" prefHeight="35.0" prefWidth="98.0" text="Eliminar" />
+                        <Button layoutX="58.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#updateProduct" prefHeight="35.0" prefWidth="98.0" text="Actualizar" />
+                        <Button layoutX="276.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#createClient" prefHeight="35.0" prefWidth="98.0" text="Omitir" />
+                        <Button layoutX="166.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#deleteProduct" prefHeight="35.0" prefWidth="98.0" text="Eliminar" />
                      </children>
                   </AnchorPane>
                   <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="26.0" layoutY="10.0" onMouseClicked="#onBackAdminProductButtonClicked" pickOnBounds="true" preserveRatio="true">

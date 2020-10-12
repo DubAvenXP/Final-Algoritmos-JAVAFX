@@ -63,11 +63,10 @@ public class ProductoDao {
         return productos;
     }
 
-    public static List listProductDBByID(int idProducto){
+    public static Producto listProductDBByID(int idProducto){
         Connect connect = new Connect();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<Producto> productos = new ArrayList<>();
         Producto producto = new Producto();
 
         try(Connection connection = connect.getConnection()){
@@ -84,14 +83,12 @@ public class ProductoDao {
                 producto.setStock(rs.getInt(4));
                 producto.setDescripcion(rs.getString(5));
                 producto.setIdProveedor(rs.getInt(6));
-                productos.add(producto);
             }
         } catch (SQLException e) {
             System.out.println("No se pudo traer el producto" + e);
         }
         connect.closeConnection();
-        return productos;
-
+        return producto;
     }
 
     public static void deleteProductDB(int idProducto){

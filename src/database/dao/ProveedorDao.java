@@ -61,12 +61,11 @@ public class ProveedorDao {
         return proveedores;
     }
 
-    public static List listProviderByID(int idProveedor) {
+    public static Proveedor viewProviderByID(int idProveedor) {
         Connect connect = new Connect();
 
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<Proveedor> proveedores = new ArrayList<>();
         Proveedor proveedor = new Proveedor();
 
         try (Connection connection = connect.getConnection()) {
@@ -88,7 +87,7 @@ public class ProveedorDao {
             System.out.println("No se pudieron traer los proveedores\n" + e);
         }
         connect.closeConnection();
-        return proveedores;
+        return proveedor;
     }
 
     public static void deleteProvider(int idProveedor)  {

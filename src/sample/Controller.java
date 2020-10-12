@@ -1,9 +1,12 @@
 package sample;
 
 import database.models.Cliente;
+import database.models.Producto;
+import database.models.Proveedor;
 import database.service.ClienteService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -46,16 +49,6 @@ public class Controller {
     @FXML private TextField directionCCInput;
     @FXML private TextField phoneCCInput;
 
-    /*Admin Providers Panels*/
-    @FXML private AnchorPane providersAdminMenu;
-    @FXML private AnchorPane createProvidersPanel;
-    @FXML private AnchorPane updateDeleteProviderPanel;
-
-    /*Admin Products Panels*/
-    @FXML private AnchorPane productsAdminMenu;
-    @FXML private AnchorPane createProductsPanel;
-    @FXML private AnchorPane updateDeleteProductsPanel;
-
     /*Admin client update - delete*/
     @FXML private TextField nitSearchUpdateDeleteClient;
     @FXML private TextField idUpdateDeleteClient;
@@ -65,7 +58,45 @@ public class Controller {
     @FXML private TextField phoneUpdateDeleteClient;
     @FXML private TextField nitUpdateDeleteClient;
 
-    // Menu
+    /*Admin Providers Panels*/
+    @FXML private AnchorPane providersAdminMenu;
+    @FXML private AnchorPane createProvidersPanel;
+    @FXML private AnchorPane updateDeleteProviderPanel;
+
+    /*Admin create Providers*/
+    @FXML private TextField idCPInput;
+    @FXML private TextField nameCPInput;
+    @FXML private TextArea descriptionCPInput;
+
+    /*Admin update - delete Providers*/
+    @FXML private TextField udProviderSearch;
+    @FXML private TextField idUDProviderInput;
+    @FXML private TextField nameUDProviderInput;
+    @FXML private TextArea descriptionUDProviderInput;
+
+    /*Admin Products Panels*/
+    @FXML private AnchorPane productsAdminMenu;
+    @FXML private AnchorPane createProductsPanel;
+    @FXML private AnchorPane updateDeleteProductsPanel;
+
+    /*Admin create Products */
+    @FXML private TextField idCProdInput;
+    @FXML private TextField nameCProdInput;
+    @FXML private TextField priceCProdInput;
+    @FXML private TextField stockCProdInput;
+    @FXML private TextArea descriptionCProdInput;
+    @FXML private TextField providerIdCProdInput;
+
+    /*Admin update - delete Products*/
+    @FXML private TextField idUDProdInput;
+    @FXML private TextField nameUDProdInput;
+    @FXML private TextField priceUDProdInput;
+    @FXML private TextField stockUDProdInput;
+    @FXML private TextArea descriptionUDProdInput;
+    @FXML private TextField providerIdUDProdInput;
+    @FXML private TextField udProdSearchInput;
+
+    /*Menu*/
     public void onFacturationButtonClicked(MouseEvent mouseEvent){
         showPanel(1);
     }
@@ -177,7 +208,7 @@ public class Controller {
     }
 
 
-    /*Admin CLIENT*/
+    /*Admin Clients*/
     public void onAdminClientButtonClicked(MouseEvent mouseEvent){
         menuAdminPanel.setVisible(false);
         clientAdminMenu.setVisible(true);
@@ -205,7 +236,7 @@ public class Controller {
         updateDeleteClientPanel.setVisible(true);
     }
 
-    public void crearClientePrueba(MouseEvent mouseEvent){
+    public void createClient(MouseEvent mouseEvent){
         Cliente cliente = new Cliente();
         cliente.setIdCliente(Integer.parseInt(idCCInput.getText()));
         cliente.setNit(nitCCInput.getText());
@@ -216,7 +247,7 @@ public class Controller {
         database.service.ClienteService.createClient(cliente);
     }
 
-    public void onClickedButtonSearchUpdate(MouseEvent mouseEvent){
+    public void searchClient(MouseEvent mouseEvent){
         String nit = nitSearchUpdateDeleteClient.getText();
         Cliente cliente = listClientId(nit);
         idUpdateDeleteClient.setText(String.valueOf(cliente.getIdCliente()));
@@ -272,6 +303,35 @@ public class Controller {
         updateDeleteProviderPanel.setVisible(true);
     }
 
+    public void createProvider(MouseEvent mouseEvent){
+        Proveedor proveedor = new Proveedor();
+        proveedor.setIdProveedor(Integer.parseInt(idCPInput.getText()));
+        proveedor.setNombre(nameCPInput.getText());
+        proveedor.setDescripcion(descriptionCPInput.getText());
+        database.service.ProveedorService.createProvider(proveedor);
+    }
+
+    public void searchProvider(MouseEvent mouseEvent){
+        int id = Integer.parseInt(udProviderSearch.getText());
+        Proveedor proveedor = database.service.ProveedorService.listProviderByID(id);
+        idUDProviderInput.setText(String.valueOf(proveedor.getIdProveedor()));
+        nameUDProviderInput.setText(proveedor.getNombre());
+        descriptionUDProviderInput.setText(proveedor.getDescripcion());
+    }
+
+    public void updateProvider(MouseEvent mouseEvent){
+        Proveedor proveedor = new Proveedor();
+        proveedor.setIdProveedor(Integer.parseInt(idUDProviderInput.getText()));
+        proveedor.setNombre(nameUDProviderInput.getText());
+        proveedor.setDescripcion(descriptionUDProviderInput.getText());
+        database.service.ProveedorService.updateProvider(proveedor);
+    }
+
+    public void deleteProvider(MouseEvent mouseEvent){
+        int id = Integer.parseInt(idCPInput.getText());
+        database.service.ProveedorService.deleteProvider(id);
+    }
+
     /*Admin Products*/
     public void onAdminProductButtonClicked(MouseEvent mouseEvent){
         menuAdminPanel.setVisible(false);
@@ -298,5 +358,43 @@ public class Controller {
         createProductsPanel.setVisible(false);
         productsAdminMenu.setVisible(true);
         updateDeleteProductsPanel.setVisible(true);
+    }
+
+    public void createProduct(MouseEvent mouseEvent){
+        Producto producto = new Producto();
+        producto.setIdProducto(Integer.parseInt(idCProdInput.getText()));
+        producto.setNombre(nameCProdInput.getText());
+        producto.setPrecio(Double.parseDouble(priceCProdInput.getText()));
+        producto.setStock(Integer.parseInt(stockCProdInput.getText()));
+        producto.setDescripcion(descriptionCProdInput.getText());
+        producto.setIdProveedor(Integer.parseInt(descriptionCProdInput.getText()));
+        database.service.ProductoService.createProduct(producto);
+    }
+
+    public void searchProduct(MouseEvent mouseEvent){
+        int id = Integer.parseInt(udProdSearchInput.getText());
+        Producto producto = database.service.ProductoService.listProductByID(id);
+        idUDProdInput.setText(String.valueOf(producto.getIdProducto()));
+        nameUDProdInput.setText(producto.getNombre());
+        priceUDProdInput.setText(String.valueOf(producto.getPrecio()));
+        stockUDProdInput.setText(String.valueOf(producto.getStock()));
+        descriptionUDProdInput.setText(producto.getDescripcion());
+        providerIdCProdInput.setText(String.valueOf(producto.getIdProveedor()));
+    }
+
+    public void updateProduct(MouseEvent mouseEvent){
+        Producto producto = new Producto();
+        producto.setIdProducto(Integer.parseInt(idUDProdInput.getText()));
+        producto.setNombre(nameUDProdInput.getText());
+        producto.setPrecio(Double.parseDouble(priceUDProdInput.getText()));
+        producto.setStock(Integer.parseInt(stockUDProdInput.getText()));
+        producto.setDescripcion(descriptionUDProdInput.getText());
+        producto.setIdProveedor(Integer.parseInt(descriptionUDProdInput.getText()));
+        database.service.ProductoService.updateProduct(producto);
+    }
+
+    public void deleteProduct(MouseEvent mouseEvent){
+        int id = Integer.parseInt(idUDProdInput.getText());
+        database.service.ProductoService.deleteProduct(id);
     }
 }
