@@ -4,45 +4,32 @@ import database.Connect;
 import database.models.Proveedor;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProveedorDao {
 
     public static void createProviderDB(Proveedor proveedor) {
-        Connect connect = new Connect();
-
-        try (Connection connection = connect.getConnection()) {
-            PreparedStatement ps;
-            try {
-                String sql = "INSERT INTO public.proveedor(\"idProveedor\", nombre, descripcion)" +
-                        "VALUES (?, ?, ?)";
-                ps = connection.prepareStatement(sql);
-                ps.setInt(1, proveedor.getIdProveedor());
-                ps.setString(2, proveedor.getNombre());
-                ps.setString(3, proveedor.getDescripcion());
-                ps.executeUpdate();
-                System.out.println("Proveedor creado");
-            } catch (SQLDataException e) {
-                System.out.println(e + "\nEl proveedor no se pudo crear");
-
-            }
+        PreparedStatement ps;
+        try (Connection connection = Connect.getConnection()){
+            String sql = "INSERT INTO public.proveedor(\"idProveedor\", nombre, description)" +
+                    "VALUES (?, ?, ?)";
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, autoIdProvide(proveedor.getIdProveedor()));
+            ps.setString(2, proveedor.getNombre());
+            ps.setString(3, proveedor.getDescripcion());
+            ps.executeUpdate();
+            System.out.println("Proveedor creado");
         } catch (SQLException e) {
-            System.out.println(e + "\nEl proveedor no se pudo crear");
+            System.out.println("El proveedor no se pudo crear" + e);
         }
-
-        connect.closeConnection();
+        Connect.closeConnection();
     }
 
-    public static List viewProviderDB() {
-
-        Connect connect = new Connect();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        List<Proveedor> proveedores = new ArrayList<>();
+    public static Proveedor viewProviderDB() {
         Proveedor proveedor = new Proveedor();
+        PreparedStatement ps;
+        ResultSet rs;
 
-        try (Connection connection = connect.getConnection()) {
+        try (Connection connection = Connect.getConnection()) {
             String sql = "SELECT * FROM public.proveedor";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -51,25 +38,21 @@ public class ProveedorDao {
                 proveedor.setIdProveedor(rs.getInt(1));
                 proveedor.setNombre(rs.getString(2));
                 proveedor.setDescripcion(rs.getString(3));
-
-                System.out.println(proveedor.getNombre());
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los proveedores\n" + e);
         }
-        connect.closeConnection();
-        return proveedores;
+        Connect.closeConnection();
+        return proveedor;
     }
 
     public static Proveedor viewProviderByID(int idProveedor) {
-        Connect connect = new Connect();
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
         Proveedor proveedor = new Proveedor();
+        PreparedStatement ps;
+        ResultSet rs;
 
-        try (Connection connection = connect.getConnection()) {
-            String sql = "SELECT * FROM public.proveedor WHERE \"idProveedor\"=?";
+        try (Connection connection = Connect.getConnection()) {
+            String sql = "SELECT * FROM public.proveedor WHERE \"idProveedor\" = ?";
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idProveedor);
             rs = ps.executeQuery();
@@ -78,41 +61,37 @@ public class ProveedorDao {
                 proveedor.setIdProveedor(rs.getInt(1));
                 proveedor.setNombre(rs.getString(2));
                 proveedor.setDescripcion(rs.getString(3));
-
-                System.out.println(proveedor.getIdProveedor());
-                System.out.println(proveedor.getNombre());
-                System.out.println(proveedor.getDescripcion());
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los proveedores\n" + e);
         }
-        connect.closeConnection();
+        Connect.closeConnection();
         return proveedor;
     }
 
     public static void deleteProvider(int idProveedor)  {
-        Connect connect = new Connect();
+        PreparedStatement ps;
+        ResultSet rs;
 
-        PreparedStatement ps = null;
-        try (Connection connection = connect.getConnection()) {
+        try (Connection connection = Connect.getConnection()) {
             String sql = "delete from \"proveedor\" where \"proveedor\".\"idProveedor\" = ?";
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idProveedor);
             ps.executeUpdate();
+            System.out.println("Proveedor eliminado");
         } catch (SQLException e) {
             System.out.println("No se borrar pudo el proveedor\n" + e);
 
         }
-        connect.closeConnection();
+        Connect.closeConnection();
     }
 
     public static void updateProviderDB(Proveedor proveedor) {
-        Connect connect = new Connect();
+        PreparedStatement ps;
 
-        try (Connection connection = connect.getConnection()) {
-            PreparedStatement ps;
+        try (Connection connection = Connect.getConnection()) {
             try {
-                String sql = "update \"proveedor\" set \"nombre\"=?, \"descripcion\"=? where \"idProveedor\"=?;";
+                String sql = "update \"proveedor\" set \"nombre\"=?, \"description\"=? where \"idProveedor\"=?;";
                 ps = connection.prepareStatement(sql);
                 ps.setString(1, proveedor.getNombre());
                 ps.setString(2, proveedor.getDescripcion());
@@ -125,6 +104,22 @@ public class ProveedorDao {
         } catch (SQLException e) {
             System.out.println(e + "\nEl cliente no se pudo actualizar");
         }
-        connect.closeConnection();
+        Connect.closeConnection();
+    }
+
+    public static Integer autoIdProvide(Integer id){
+        PreparedStatement ps;
+        ResultSet rs;
+        try (Connection connection = Connect.getConnection()){
+            String sql = "select max(\"idProveedor\") from public.proveedor";
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                id = rs.getInt(1) + 1;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return id;
     }
 }

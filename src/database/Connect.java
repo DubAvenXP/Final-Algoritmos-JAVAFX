@@ -9,22 +9,22 @@ import java.sql.SQLException;
  */
 public class Connect {
 
-    public Connection getConnection(){
+    public static Connection getConnection(){
         Connection connection = null;
         try {
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/algoritmos",
                     "postgres","password");
-            if (connection != null) System.out.println("Connection established");
+            if (connection != null) System.out.println("Connection established\n <---------------------------------->");
         } catch (SQLException e) {
             System.out.println(e);
         }
         return connection;
     }
 
-    public void closeConnection(){
+    public static void closeConnection(){
         try {
             getConnection().close();
-            System.out.println("Connection to DB closed");
+            System.out.println("Connection to DB closedn\n <---------------------------------->");
         } catch (SQLException e) {
             System.out.println("Connection to the DB could not be closed" + e);
         }

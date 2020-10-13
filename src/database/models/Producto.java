@@ -1,25 +1,26 @@
 package database.models;
 
-public class Producto {
+public class Producto{
 
+    Proveedor proveedor = new Proveedor();
     private Integer idProducto;
     private String nombre;
     private Double precio;
     private String descripcion;
     private Integer stock;
-    private Integer idProveedor;
+    private Integer idProvider = proveedor.getIdProveedor();
 
     public Producto() {
+
     }
 
-    public Producto(Integer idProducto, Integer idProveedor, String nombre, Double precio,
-                    String descripcion, Integer stock) {
+    public Producto(Integer idProducto, String nombre, Double precio, String descripcion, Integer stock, Integer idProvider) {
         this.idProducto = idProducto;
-        this.idProveedor = idProveedor;
         this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
         this.stock = stock;
+        this.idProvider = idProvider;
     }
 
     public Integer getIdProducto() {
@@ -62,11 +63,12 @@ public class Producto {
         this.stock = stock;
     }
 
-    public Integer getIdProveedor() {
-        return idProveedor;
+    public Integer getIdProvider() {
+        return idProvider;
     }
 
-    public void setIdProveedor(Integer idProveedor) {
-        this.idProveedor = idProveedor;
+    public void setIdProvider(Integer idProvider) {
+        this.idProvider = idProvider;
     }
 }
+

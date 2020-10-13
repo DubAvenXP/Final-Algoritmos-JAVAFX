@@ -3,7 +3,6 @@ package sample;
 import database.models.Cliente;
 import database.models.Producto;
 import database.models.Proveedor;
-import database.service.ClienteService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -11,8 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-
-import java.util.List;
 
 import static database.service.ClienteService.listClientId;
 
@@ -238,7 +235,6 @@ public class Controller {
 
     public void createClient(MouseEvent mouseEvent){
         Cliente cliente = new Cliente();
-        cliente.setIdCliente(Integer.parseInt(idCCInput.getText()));
         cliente.setNit(nitCCInput.getText());
         cliente.setNombre(nameCCInput.getText());
         cliente.setApellido(lastNameCCInput.getText());
@@ -305,7 +301,6 @@ public class Controller {
 
     public void createProvider(MouseEvent mouseEvent){
         Proveedor proveedor = new Proveedor();
-        proveedor.setIdProveedor(Integer.parseInt(idCPInput.getText()));
         proveedor.setNombre(nameCPInput.getText());
         proveedor.setDescripcion(descriptionCPInput.getText());
         database.service.ProveedorService.createProvider(proveedor);
@@ -328,7 +323,7 @@ public class Controller {
     }
 
     public void deleteProvider(MouseEvent mouseEvent){
-        int id = Integer.parseInt(idCPInput.getText());
+        int id = Integer.parseInt(idUDProviderInput.getText());
         database.service.ProveedorService.deleteProvider(id);
     }
 
@@ -362,12 +357,11 @@ public class Controller {
 
     public void createProduct(MouseEvent mouseEvent){
         Producto producto = new Producto();
-        producto.setIdProducto(Integer.parseInt(idCProdInput.getText()));
         producto.setNombre(nameCProdInput.getText());
         producto.setPrecio(Double.parseDouble(priceCProdInput.getText()));
         producto.setStock(Integer.parseInt(stockCProdInput.getText()));
         producto.setDescripcion(descriptionCProdInput.getText());
-        producto.setIdProveedor(Integer.parseInt(descriptionCProdInput.getText()));
+        producto.setIdProvider(Integer.parseInt(providerIdCProdInput.getText()));
         database.service.ProductoService.createProduct(producto);
     }
 
@@ -379,7 +373,9 @@ public class Controller {
         priceUDProdInput.setText(String.valueOf(producto.getPrecio()));
         stockUDProdInput.setText(String.valueOf(producto.getStock()));
         descriptionUDProdInput.setText(producto.getDescripcion());
-        providerIdCProdInput.setText(String.valueOf(producto.getIdProveedor()));
+        providerIdUDProdInput.setText(String.valueOf(producto.getIdProvider()));
+
+        System.out.println(producto.getIdProvider());
     }
 
     public void updateProduct(MouseEvent mouseEvent){
@@ -389,7 +385,7 @@ public class Controller {
         producto.setPrecio(Double.parseDouble(priceUDProdInput.getText()));
         producto.setStock(Integer.parseInt(stockUDProdInput.getText()));
         producto.setDescripcion(descriptionUDProdInput.getText());
-        producto.setIdProveedor(Integer.parseInt(descriptionUDProdInput.getText()));
+        producto.setIdProvider(Integer.parseInt(providerIdCProdInput.getText()));
         database.service.ProductoService.updateProduct(producto);
     }
 
