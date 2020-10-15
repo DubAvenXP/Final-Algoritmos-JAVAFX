@@ -1,4 +1,4 @@
-package sample.controllers;
+package UI.controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -10,7 +10,7 @@ public class FxmlLoader {
 
     public Pane getPage(String fileName) {
         try {
-            URL fileUrl = sample.Main.class.getResource("/sample/scenes/"
+            URL fileUrl = UI.Main.class.getResource("/UI/scenes/"
                     + fileName + ".fxml");
             if (fileUrl == null) {
                 throw new java.io.FileNotFoundException("FXML file cant be found");

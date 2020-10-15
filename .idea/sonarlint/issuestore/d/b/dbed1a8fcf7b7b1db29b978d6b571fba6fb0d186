@@ -1,0 +1,14 @@
+
+M
+java:S1068"+Remove this unused "yOffset" private field.(¿ Âµûÿÿÿÿ8ç¾éÓÒ.
+P
+java:S1128"4Remove this unused import 'javafx.stage.StageStyle'.(¶©28ì¼âÓÒ.
+\
+java:S1128":Remove this unused import 'javafx.scene.input.MouseEvent'.(˜¬‹æÿÿÿÿÿ8ç¾éÓÒ.
+M
+java:S1068"+Remove this unused "xOffset" private field.( è‰ùøÿÿÿÿ8ç¾éÓÒ.
+S
+java:S1128"6Remove this unused import 'javafx.event.EventHandler'.(º»û˜8ç¾éÓÒ.
+X	java:S125"<This block of commented-out lines of code should be removed.(›‘¤È8ˆĞğÖÏ.
+R
+java:S1128"5Remove this unused import 'javafx.scene.paint.Color'.(Ïî£à8º€ãÓÒ.

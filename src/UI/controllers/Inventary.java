@@ -1,4 +1,4 @@
-package sample.controllers;
+package UI.controllers;
 
 public class Inventary {
 }

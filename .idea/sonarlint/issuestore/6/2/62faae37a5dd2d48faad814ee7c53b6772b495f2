@@ -1,7 +1,3 @@
 
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(¸ƒãûúÿÿÿÿ8çÔ×Ğ.
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ùîôŸÑ.
 W
-java:S1118
-":Add a private constructor to hide the implicit public one.(Ø­Ïÿ8Âçæ×Ğ.
+java:S1118":Add a private constructor to hide the implicit public one.(Ø­Ïÿ8Âçæ×Ğ.

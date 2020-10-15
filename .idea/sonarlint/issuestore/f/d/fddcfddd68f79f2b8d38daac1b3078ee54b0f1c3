@@ -1,7 +1,7 @@
 
 U
 java:S1118	":Add a private constructor to hide the implicit public one.(½ÙÎœÿÿÿÿÿ
-P
-java:S1128".Remove this unused import 'java.util.Scanner'.(ÒÜÅ¸úÿÿÿÿ8Š©©ÔÑ.
 O
 java:S1128"4Remove this unused import 'database.dao.ClienteDao'.(Ÿ ¨†ùÿÿÿÿ
+P
+java:S1128".Remove this unused import 'java.util.Scanner'.(ÒÜÅ¸úÿÿÿÿ8Š©©ÔÑ.
