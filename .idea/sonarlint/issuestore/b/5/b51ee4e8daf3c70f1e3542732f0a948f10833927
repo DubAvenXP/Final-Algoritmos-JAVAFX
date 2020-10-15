@@ -1,0 +1,33 @@
+
+j
+java:S2095I"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+S	java:S106g"9Replace this use of System.out or System.err by a logger.(™¢ºœúÿÿÿÿ
+S	java:S106~"9Replace this use of System.out or System.err by a logger.(˜®Âşÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ªçìçøÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(­ïŞşùÿÿÿÿ
+j
+java:S2095t"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+S	java:S106:"9Replace this use of System.out or System.err by a logger.(µİï­ûÿÿÿÿ
+S	java:S106S"9Replace this use of System.out or System.err by a logger.(²×ÑŠıÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(­ïŞşùÿÿÿÿ
+N	java:S106{"9Replace this use of System.out or System.err by a logger.(±à¦Ã
+P
+java:S1141r"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+S	java:S106R"9Replace this use of System.out or System.err by a logger.(Ñ¬…ìøÿÿÿÿ
+S	java:S106W"9Replace this use of System.out or System.err by a logger.(µİï­ûÿÿÿÿ
+j
+java:S2095/"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+S	java:S1067"9Replace this use of System.out or System.err by a logger.(²×ÑŠıÿÿÿÿ
+E
+java:S3740%"/Provide the parametrized type for this generic.(æ‚Ñ¢
+P
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+U
+java:S1118
+":Add a private constructor to hide the implicit public one.(¦¶èøÿÿÿÿ
+N	java:S106y"9Replace this use of System.out or System.err by a logger.(§½‹¼
+S	java:S106T"9Replace this use of System.out or System.err by a logger.(Ù‘±üÿÿÿÿ
+j
+java:S2095c"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
