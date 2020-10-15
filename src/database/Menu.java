@@ -1,5 +1,6 @@
 package database;
 
+import database.models.Cliente;
 import database.models.Proveedor;
 import database.service.ClienteService;
 import database.service.ProductoService;
@@ -27,28 +28,33 @@ public class Menu {
 
             switch (option) {
                 case 1:
-//                    ClienteService.createClient();
-//                    ProductoService.createProduct();
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("Ingresa el nombre");
+                    String name = scanner.nextLine();
+                    System.out.println("Ingresa el apellido");
+                    String apellido = scanner.nextLine();
+                    System.out.println("Ingresa el nit");
+                    String nit = scanner.nextLine();
+                    System.out.println("Ingresa la direccion");
+                    String direccion = scanner.nextLine();
+                    System.out.println("Ingresa el telefono");
+                    String telefono = scanner.nextLine();
+
+                    Cliente cliente = new Cliente();
+                    cliente.setNombre(name);
+                    cliente.setApellido(apellido);
+                    cliente.setNit(nit);
+                    cliente.setDireccion(direccion);
+                    cliente.setTelefono(telefono);
+                    ClienteService.createClient(cliente);
                     break;
                 case 2:
-//                    ClienteService.listClient();
-//                    ProveedorService.listProvider();
-//                    ProductoService.listProduct();
                     break;
                 case 3:
-//                    ClienteService.listClientId();
-//                    ProveedorService.listProviderByID();
-//                    ProductoService.listProductByID();
                     break;
                 case 4:
-//                    ClienteService.updateClient();
-//                    ProveedorService.updateProvider();
-//                    ProductoService.updateProduct();
                     break;
                 case 5:
-//                    ClienteService.deleteClient();
-//                    ProveedorService.deleteProvider();
-//                    ProductoService.deleteProduct();
                     break;
                 default:
                     break;
