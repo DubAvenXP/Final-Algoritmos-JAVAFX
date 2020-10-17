@@ -11,19 +11,53 @@ public class Home {
     @FXML
     BorderPane mainPane;
 
-    @FXML
     public void facturationScreen(MouseEvent mouseEvent){
         FxmlLoader loader = new FxmlLoader();
         Pane view = loader.getPage("facturation");
         mainPane.setCenter(view);
     }
 
-    @FXML
-    public void inventaryScreen(MouseEvent mouseEvent){
+    public void reportsScreen(MouseEvent mouseEvent){
         FxmlLoader loader = new FxmlLoader();
-        Pane view = loader.getPage("inventary");
+        Pane view = loader.getPage("reports");
         mainPane.setCenter(view);
     }
 
+    public void stadisticsScreen(MouseEvent mouseEvent){
+        FxmlLoader loader = new FxmlLoader();
+        Pane view = loader.getPage("stadistics");
+        mainPane.setCenter(view);
+    }
+
+
+    public void productsScreen(MouseEvent mouseEvent){
+        FxmlLoader loader = new FxmlLoader();
+        Pane view = loader.getPage("products");
+        mainPane.setCenter(view);
+    }
+
+    public void clientsScreen(MouseEvent mouseEvent){
+        FxmlLoader loader = new FxmlLoader();
+        Pane view = loader.getPage("clients");
+        mainPane.setCenter(view);
+    }
+
+    public void providersScreen(MouseEvent mouseEvent){
+        FxmlLoader loader = new FxmlLoader();
+        Pane view = loader.getPage("providers");
+        mainPane.setCenter(view);
+    }
+
+    public void adminScreen(MouseEvent mouseEvent){
+        FxmlLoader loader = new FxmlLoader();
+        Pane view = loader.getPage("admin");
+        mainPane.setCenter(view);
+    }
+
+    public void developerScreen(MouseEvent mouseEvent){
+        FxmlLoader loader = new FxmlLoader();
+        Pane view = loader.getPage("developer");
+        mainPane.setCenter(view);
+    }
 
 }

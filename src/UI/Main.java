@@ -10,12 +10,9 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-    private double xOffset;
-    private double yOffset;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("scenes/login.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -23,7 +20,9 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-//        launch(args);
-//        Menu.showMenu();
+        launch(args);
+        //Menu.showMenu();
+        //database.Connect.getConnection();
+        //database.Connect.closeConnection();
     }
 }
