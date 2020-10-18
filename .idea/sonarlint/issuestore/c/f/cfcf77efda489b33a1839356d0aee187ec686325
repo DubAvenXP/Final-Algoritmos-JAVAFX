@@ -1,12 +1,12 @@
 
-S	java:S106"9Replace this use of System.out or System.err by a logger.(ÇÁïÃùÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(«‚·İ
-n
-java:S2259"LA "NullPointerException" could be thrown; "getConnection()" can return null.(åğ„¶şÿÿÿÿ8«èÎíÒ.
-T
-java:S2589"7Remove this expression which always evaluates to "true"(«‚·İ8«èÎíÒ.
 \
 java:S1118
 ":Add a private constructor to hide the implicit public one.(Õ“ùÿÿÿÿ8«èÎíÒ.
 Z	java:S106"9Replace this use of System.out or System.err by a logger.(¨¶ÑÍşÿÿÿÿ8«èÎíÒ.
+N	java:S106"9Replace this use of System.out or System.err by a logger.(«‚·İ
+T
+java:S2589"7Remove this expression which always evaluates to "true"(«‚·İ8«èÎíÒ.
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ÇÁïÃùÿÿÿÿ
+n
+java:S2259"LA "NullPointerException" could be thrown; "getConnection()" can return null.(åğ„¶şÿÿÿÿ8«èÎíÒ.
 T	java:S106"9Replace this use of System.out or System.err by a logger.(±ÎâM8«èÎíÒ.

@@ -17,12 +17,6 @@ M
 src/UI/controllers/Admin.java,8\2\82b9cccf54f050fbf435581413001de55442436e
 S
 #src/UI/controllers/Facturation.java,1\0\100ba6114991f4132e9c1ea117452ed141e5385a
-Q
-!src/UI/controllers/Inventary.java,7\b\7b1891651684a55fab70807a5c917868e629270e
-O
-src/UI/controllers/Reports.java,b\7\b7b3f95bb5022899c11fdcbc379537a1edaad081
-R
-"src/UI/controllers/Stadistics.java,1\8\189e239416ff9bca5295911bf972e9e0f85696fd
 M
 src/UI/scenes/stadistics.fxml,7\e\7ef081a4bd1a12ce6533b604458b9f3d177dbe40
 J
@@ -31,8 +25,6 @@ H
 src/UI/scenes/admin.fxml,9\b\9be70630ed55c8873600960eff65ad7a79e6a965
 N
 src/UI/scenes/facturation.fxml,9\8\98020d25ee2650e875c15ef9eb10c50b664ab415
-L
-src/UI/scenes/inventary.fxml,7\7\77a37eba91e603000b308b52d63b18133374c480
 @
 src/UI/Main.java,d\b\dbed1a8fcf7b7b1db29b978d6b571fba6fb0d186
 G
@@ -41,3 +33,23 @@ L
 src/UI/controllers/Home.java,8\7\87d6ffc046e0711bc4eec9c2f6a33e8b252e286f
 R
 "src/UI/controllers/FxmlLoader.java,0\8\0863a022ad29ff6c80d173c4180d6e56b1146b51
+P
+ src/UI/controllers/Provider.java,8\f\8f7ce4f1fc05631f70880fa9197fa7da91f0c203
+N
+src/UI/controllers/Client.java,0\e\0e78a81cc23fbf4945bcab5a0b8c90a5f7b48d39
+O
+src/UI/controllers/Product.java,7\c\7cad17bc9b78d117f767945ea84b2334a5c06303
+K
+src/UI/scenes/products.fxml,e\8\e84225c8f9b4bf10ee69141535f5747de175353c
+J
+src/UI/scenes/clients.fxml,2\d\2dfd56b803d482af77de45b791a281e359eb0ec3
+L
+src/UI/scenes/providers.fxml,e\7\e79aa144795baeaa66bf69911bb08bc90262b6c6
+Q
+!src/UI/controllers/Developer.java,2\c\2cc91d57d78a42e45756ac995896a4787878ed3d
+L
+src/UI/scenes/developer.fxml,1\8\183e666822b781012f148d42aff721f1b1cf149f
+N
+src/UI/controllers/Layout.java,1\7\1750394961c40bfde2b14a76bafd8842bb6a4414
+I
+src/UI/scenes/layout.fxml,f\0\f0c02a408e25e0ed6dc46854d641a74957616448

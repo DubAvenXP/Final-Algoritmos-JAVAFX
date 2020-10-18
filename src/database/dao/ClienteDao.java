@@ -36,16 +36,16 @@ public class ClienteDao {
         Connect.closeConnection();
     }
 
-    public static Cliente viewClientDB() {
+    public static List<Cliente> viewClientDB() {
         Cliente client = new Cliente();
         PreparedStatement ps;
         ResultSet rs;
+        List<Cliente> clienteArrayList = new ArrayList<>();
 
         try (Connection connection = Connect.getConnection()) {
             String sql = "SELECT * FROM public.cliente";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 client.setIdCliente(rs.getInt(1));
                 client.setNit(rs.getString(2));
@@ -53,15 +53,16 @@ public class ClienteDao {
                 client.setApellido(rs.getString(4));
                 client.setDireccion(rs.getString(5));
                 client.setTelefono(rs.getString(6));
+                clienteArrayList.add(client);
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los clientes\n" + e);
         }
         Connect.closeConnection();
-        return client;
+        return clienteArrayList;
     }
 
-    public static Cliente viewClientById(String nit) {
+    public static Cliente viewClientByNit(String nit) {
         Cliente client = new Cliente();
         PreparedStatement ps;
         ResultSet rs;

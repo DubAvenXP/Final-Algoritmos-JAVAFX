@@ -3,6 +3,8 @@ package database.service;
 import database.dao.ClienteDao;
 import database.models.Cliente;
 
+import java.util.List;
+
 
 //Esta clase es la intermedia entre la capa dao y el modelo
 public class ClienteService {
@@ -11,12 +13,12 @@ public class ClienteService {
         ClienteDao.createClientDB(cliente);
     }
 
-    public static void listClient(){
-        ClienteDao.viewClientDB();
+    public static List<Cliente> listClient(){
+        return ClienteDao.viewClientDB();
     }
 
     public static Cliente listClientId(String nit){
-        return ClienteDao.viewClientById(nit);
+        return ClienteDao.viewClientByNit(nit);
     }
 
     public static void deleteClient(String nit){
