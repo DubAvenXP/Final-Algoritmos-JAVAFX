@@ -1,19 +1,7 @@
 
 O
 java:S1128"4Remove this unused import 'database.dao.ClienteDao'.(Ÿ ¨†ùÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Û‘éÁ
 P
 java:S1118	":Add a private constructor to hide the implicit public one.(Âƒí
-N	java:S106"9Replace this use of System.out or System.err by a logger.(Ô†æî
-S	java:S106"9Replace this use of System.out or System.err by a logger.(‰ˆ—ûÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(Ô×Š
-S	java:S106"9Replace this use of System.out or System.err by a logger.(É´ÒÄúÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(³ÿ¶ì
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ÿ¹İ‡
-S	java:S106*"9Replace this use of System.out or System.err by a logger.(€äŠ‘ùÿÿÿÿ
-M	java:S1061"9Replace this use of System.out or System.err by a logger.(Àà#
-N	java:S1068"9Replace this use of System.out or System.err by a logger.(Ô†æî
-S	java:S106:"9Replace this use of System.out or System.err by a logger.(‰ˆ—ûÿÿÿÿ
-N	java:S106<"9Replace this use of System.out or System.err by a logger.(Ô×Š
-S	java:S106>"9Replace this use of System.out or System.err by a logger.(É´ÒÄúÿÿÿÿ
-N	java:S106@"9Replace this use of System.out or System.err by a logger.(³ÿ¶ì
-N	java:S106B"9Replace this use of System.out or System.err by a logger.(ÿ¹İ‡
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ØÏ¤8Ş ³éÓ.

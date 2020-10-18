@@ -53,3 +53,9 @@ N
 src/UI/controllers/Layout.java,1\7\1750394961c40bfde2b14a76bafd8842bb6a4414
 I
 src/UI/scenes/layout.fxml,f\0\f0c02a408e25e0ed6dc46854d641a74957616448
+Q
+!src/database/models/Producto.java,7\7\776c8042d7678d06f3281617f2a9c83b917c8ff0
+R
+"src/database/models/Proveedor.java,b\b\bb1e2342d6ab00a934aa97766b4c2a0be58dada5
+Q
+!src/database/dao/VendedorDao.java,6\c\6c6c2d7f14518ae54c25369f6318dca8fc1727b9

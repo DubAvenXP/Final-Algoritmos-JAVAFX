@@ -1,4 +1,14 @@
 
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(„ãþ´ÿÿÿÿÿ
-X
-java:S2094"BRemove this empty class, write its code or make it an "interface".(ñ·ÍŸ
+v
+java:S2293H"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯‰›Ã8§•ƒéÓ.
+u
+java:S2293J"YReplace the type specification in this constructor call with the diamond operator ("<>").(ßÓ‘78§•ƒéÓ.
+v
+java:S2293K"YReplace the type specification in this constructor call with the diamond operator ("<>").(îÀö¿8§•ƒéÓ.
+{
+java:S2293G"YReplace the type specification in this constructor call with the diamond operator ("<>").(°„õÇýÿÿÿÿ8§•ƒéÓ.
+v
+java:S2293F"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨‹úü8§•ƒéÓ.
+v
+java:S2293I"YReplace the type specification in this constructor call with the diamond operator ("<>").(âÓžÚ8§•ƒéÓ.

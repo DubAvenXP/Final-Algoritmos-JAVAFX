@@ -1,0 +1,57 @@
+
+j
+java:S2095v"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+j
+java:S2095M"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+j
+java:S20950"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+j
+java:S2095f"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+E
+java:S3740&"/Provide the parametrized type for this generic.(ÁÚ•á
+E
+java:S3740C"/Provide the parametrized type for this generic.(¢ã£Ã
+U
+java:S1118":Add a private constructor to hide the implicit public one.(‹½ŠÈüÿÿÿÿ
+<
+java:S2440"'Remove this instantiation of "Connect".(û´î
+K
+java:S2209"5Change this instance-reference to a static reference.(€ °˜
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ñÖ¼²ûÿÿÿÿ
+N	java:S106 "9Replace this use of System.out or System.err by a logger.(¥³®ÿ
+K
+java:S2209""5Change this instance-reference to a static reference.(ÙºÎ¥
+<
+java:S2440'"'Remove this instantiation of "Connect".(û´î
+K
+java:S2209."5Change this instance-reference to a static reference.(€ °˜
+S	java:S106="9Replace this use of System.out or System.err by a logger.(Äö¼´þÿÿÿÿ
+K
+java:S2209?"5Change this instance-reference to a static reference.(ÙºÎ¥
+<
+java:S2440D"'Remove this instantiation of "Connect".(û´î
+K
+java:S2209J"5Change this instance-reference to a static reference.(€ °˜
+N	java:S106["9Replace this use of System.out or System.err by a logger.(¢«ÒÛ
+K
+java:S2209]"5Change this instance-reference to a static reference.(ÙºÎ¥
+<
+java:S2440b"'Remove this instantiation of "Connect".(û´î
+K
+java:S2209d"5Change this instance-reference to a static reference.(€ °˜
+S	java:S106i"9Replace this use of System.out or System.err by a logger.(•êŽÎøÿÿÿÿ
+N	java:S106k"9Replace this use of System.out or System.err by a logger.(º²âõ
+K
+java:S2209m"5Change this instance-reference to a static reference.(ÙºÎ¥
+<
+java:S2440q"'Remove this instantiation of "Connect".(û´î
+K
+java:S2209s"5Change this instance-reference to a static reference.(€ °˜
+N	java:S106~"9Replace this use of System.out or System.err by a logger.(÷Ý´Ÿ
+T	java:S106€"9Replace this use of System.out or System.err by a logger.(º­¢Ýþÿÿÿÿ
+L
+java:S2209‚"5Change this instance-reference to a static reference.(ÙºÎ¥
+C
+java:S1481+"-Remove this unused "producto" local variable.(ï†¹Ç

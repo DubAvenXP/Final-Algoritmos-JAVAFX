@@ -1,33 +1,42 @@
 
-L
-java:S3740)"/Provide the parametrized type for this generic.(¿òà¹8¬‰Ü×Ğ.
-U	java:S106["9Replace this use of System.out or System.err by a logger.(‚òØÂ8çïôŸÑ.
-Z	java:S106l"9Replace this use of System.out or System.err by a logger.(·¤§ˆıÿÿÿÿ8¬‰Ü×Ğ.
-O	java:S106ƒ"9Replace this use of System.out or System.err by a logger.(“±º˜
-b
-java:S20954"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ĞÂé ûÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(®í¸¤
-q
-java:S2095N"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ8çïôŸÑ.
-U	java:S106@"9Replace this use of System.out or System.err by a logger.(Øøç‘8¬‰Ü×Ğ.
-P
-java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+S
+java:S2209„"5Change this instance-reference to a static reference.(ÙºÎ¥8Í´ÿçÓ.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(®í¸¤8Í´ÿçÓ.
 j
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
-N	java:S106 "9Replace this use of System.out or System.err by a logger.(ñ¾ş²
-U	java:S106$"9Replace this use of System.out or System.err by a logger.(ñ¾ş²8¬‰Ü×Ğ.
-O	java:S106"9Replace this use of System.out or System.err by a logger.(ûÏĞÏ
-T	java:S106‡"9Replace this use of System.out or System.err by a logger.(˜®Âşÿÿÿÿ
-P
-java:S1141v"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
-U	java:S106j"9Replace this use of System.out or System.err by a logger.(®ñ’š8¬‰Ü×Ğ.
+java:S2095t"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+R
+java:S2209i"5Change this instance-reference to a static reference.(ÙºÎ¥8Í´ÿçÓ.
+N	java:S106~"9Replace this use of System.out or System.err by a logger.(“±º˜
 U
 java:S1118":Add a private constructor to hide the implicit public one.(¬ÏÇèûÿÿÿÿ
-i
-java:S2095P"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ĞÂé ûÿÿÿÿ8çïôŸÑ.
 j
-java:S2095y"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+java:S2095/"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+[	java:S106’"9Replace this use of System.out or System.err by a logger.(¨¶ÑÍşÿÿÿÿ8Í´ÿçÓ.
+P
+java:S1141q"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+U	java:S106;"9Replace this use of System.out or System.err by a logger.(Øøç‘8¬‰Ü×Ğ.
 j
-java:S20953"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+java:S2095I"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+r
+java:S2095Œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ8çïôŸÑ.
+U	java:S106V"9Replace this use of System.out or System.err by a logger.(‚òØÂ8çïôŸÑ.
+C
+java:S2440m"'Remove this instantiation of "Connect".(û´î8Í´ÿçÓ.
+Z	java:S106g"9Replace this use of System.out or System.err by a logger.(·¤§ˆıÿÿÿÿ8¬‰Ü×Ğ.
+U	java:S106e"9Replace this use of System.out or System.err by a logger.(®ñ’š8¬‰Ü×Ğ.
+T	java:S106‚"9Replace this use of System.out or System.err by a logger.(˜®Âşÿÿÿÿ
+R
+java:S2209`"5Change this instance-reference to a static reference.(€ °˜8Í´ÿçÓ.
+N	java:S106""9Replace this use of System.out or System.err by a logger.(ñ¾ş²
+U	java:S106|"9Replace this use of System.out or System.err by a logger.(ûÏĞÏ8Í´ÿçÓ.
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ8Í´ÿçÓ.
+C
+java:S2440]"'Remove this instantiation of "Connect".(û´î8Í´ÿçÓ.
+R
+java:S2209o"5Change this instance-reference to a static reference.(€ °˜8Í´ÿçÓ.
+P
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
 j
-java:S2095g"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+java:S2095b"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ñ¾ş²

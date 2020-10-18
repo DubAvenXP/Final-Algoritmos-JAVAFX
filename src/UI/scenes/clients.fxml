@@ -20,7 +20,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="tableClients" layoutX="14.0" layoutY="49.0" prefHeight="476.0" prefWidth="971.0">
+      <TableView fx:id="tableClients" layoutX="14.0" layoutY="49.0" onMouseClicked="#rowSelected" prefHeight="476.0" prefWidth="971.0">
          <columns>
             <TableColumn fx:id="id" prefWidth="59.19999122619629" text="ID" />
             <TableColumn fx:id="name" prefWidth="226.40001678466797" text="Nombre" />
@@ -38,7 +38,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <TextField fx:id="idInput" prefHeight="30.0" prefWidth="235.0">
+                  <TextField fx:id="idInput" disable="true" prefHeight="30.0" prefWidth="235.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -115,25 +115,33 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="166.0" prefWidth="175.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="150.0" text="Crear">
+                  <Button fx:id="newButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#newClient" prefHeight="75.0" prefWidth="150.0" text="Nuevo">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="150.0" text="Modificar">
+                  <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#createClient" prefHeight="75.0" prefWidth="150.0" text="Crear">
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="150.0" text="Eliminar">
+                  <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#updateClient" prefHeight="75.0" prefWidth="150.0" text="Modificar">
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#deleteClient" prefHeight="75.0" prefWidth="150.0" text="Eliminar">
+                     <VBox.margin>
+                        <Insets top="10.0" />
                      </VBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
