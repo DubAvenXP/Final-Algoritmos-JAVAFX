@@ -41,7 +41,7 @@ public class ProductoDao {
         List<Producto> productos = new ArrayList<>();
 
         try(Connection connection = Connect.getConnection()){
-            String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, (SELECT (\"nombre\") " +
+            String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, \"idProveedor\",  (SELECT (\"nombre\") " +
                     "FROM \"proveedor\" WHERE \"proveedor\".\"idProveedor\" = \"producto\".\"idProveedor\") " +
                     "AS \"Proveedor\" FROM \"producto\"";
             ps = connection.prepareStatement(sql);
@@ -54,7 +54,8 @@ public class ProductoDao {
                 producto.setPrecio(rs.getDouble(3));
                 producto.setStock(rs.getInt(4));
                 producto.setDescripcion(rs.getString(5));
-                producto.setProvider(rs.getString(6));
+                producto.setIdProvider(rs.getInt(6));
+                producto.setProvider(rs.getString(7));
                 productos.add(producto);
             }
         } catch (SQLException e) {
@@ -70,7 +71,7 @@ public class ProductoDao {
         Producto producto = new Producto();
 
         try(Connection connection = Connect.getConnection()){
-            String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, (SELECT (\"nombre\") " +
+            String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, \"idProveedor\",  (SELECT (\"nombre\") " +
                     "FROM \"proveedor\" WHERE \"proveedor\".\"idProveedor\" = \"producto\".\"idProveedor\") " +
                     "AS \"Proveedor\" FROM \"producto\" where \"idProducto\" = ?";
             ps = connection.prepareStatement(sql);
@@ -83,11 +84,8 @@ public class ProductoDao {
                 producto.setPrecio(rs.getDouble(3));
                 producto.setStock(rs.getInt(4));
                 producto.setDescripcion(rs.getString(5));
-                producto.setProvider(rs.getString(6));
-
-                System.out.println(producto.getProvider());
-                System.out.println(producto.getIdProducto());
-                System.out.println(producto.getNombre());
+                producto.setIdProvider(rs.getInt(6));
+                producto.setProvider(rs.getString(7));
             }
         } catch (SQLException e) {
             System.out.println("No se pudo traer el producto" + e);
