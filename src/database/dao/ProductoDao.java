@@ -11,16 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoDao {
+    public static Integer idProducto;
 
     public static void createProductDB(Producto producto){
-
+        idProducto = autoIdProduct(producto.getIdProducto());
         PreparedStatement ps;
 
         try(Connection connection = Connect.getConnection()){
             String sql = "INSERT INTO public.producto(\"idProducto\", nombre, precio, stock, descripcion, \"idProveedor\")\n" +
                     "\tVALUES (?, ?, ?, ?, ?, ?)";
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, autoIdProduct(producto.getIdProducto()));
+            ps.setInt(1, idProducto);
             ps.setString(2, producto.getNombre());
             ps.setDouble(3, producto.getPrecio());
             ps.setInt(4, producto.getStock());

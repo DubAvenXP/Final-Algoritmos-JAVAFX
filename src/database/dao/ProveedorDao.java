@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProveedorDao {
+    public static Integer idProveedor;
 
     public static void createProviderDB(Proveedor proveedor) {
         PreparedStatement ps;
+        idProveedor = autoIdProvide(proveedor.getIdProveedor());
         try (Connection connection = Connect.getConnection()){
-            String sql = "INSERT INTO public.proveedor(\"idProveedor\", nombre, description)" +
+            String sql = "INSERT INTO public.proveedor(\"idProveedor\", nombre, descripcion)" +
                     "VALUES (?, ?, ?)";
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, autoIdProvide(proveedor.getIdProveedor()));
+            ps.setInt(1, idProveedor);
             ps.setString(2, proveedor.getNombre());
             ps.setString(3, proveedor.getDescripcion());
             ps.executeUpdate();

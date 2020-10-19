@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
 
-public class Layout {
+public class LayoutController {
 
     @FXML
     private BorderPane mainPane;
