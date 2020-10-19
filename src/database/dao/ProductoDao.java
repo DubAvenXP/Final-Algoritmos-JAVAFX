@@ -113,15 +113,15 @@ public class ProductoDao {
         PreparedStatement ps;
 
         try(Connection connection = Connect.getConnection()){
-            String sql = "UPDATE public.producto SET \"idProducto\"=?, nombre=?, precio=?, stock=?, descripcion=?, \"idProveedor\"=?\n" +
-                    "WHERE \"idProducto\"=?";
+            String sql = "UPDATE public.producto SET nombre=?, precio=?, stock=?, descripcion=?, " +
+                    "\"idProveedor\"=? WHERE \"idProducto\"=?";
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, producto.getIdProducto());
-            ps.setString(2, producto.getNombre());
-            ps.setDouble(3, producto.getPrecio());
-            ps.setInt(4, producto.getStock());
-            ps.setString(5, producto.getDescripcion());
-            ps.setString(6, producto.getProvider());
+            ps.setString(1, producto.getNombre());
+            ps.setDouble(2, producto.getPrecio());
+            ps.setInt(3, producto.getStock());
+            ps.setString(4, producto.getDescripcion());
+            ps.setInt(5, producto.getIdProvider());
+            ps.setInt(6, producto.getIdProducto());
             ps.executeUpdate();
             System.out.println("Producto actualizado");
         } catch (SQLException e) {
