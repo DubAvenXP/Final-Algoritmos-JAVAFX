@@ -60,14 +60,6 @@ public class ProductoDao {
         } catch (SQLException e) {
             System.out.println("No se pudo traer el producto" + e);
         }
-        for (Producto producto: productos) {
-            System.out.println(producto.getIdProducto());
-            System.out.println(producto.getNombre());
-            System.out.println(producto.getPrecio());
-            System.out.println(producto.getStock());
-            System.out.println(producto.getDescripcion());
-            System.out.println(producto.getProvider());
-        }
         Connect.closeConnection();
         return productos;
     }
