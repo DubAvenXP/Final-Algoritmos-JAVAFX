@@ -105,7 +105,7 @@ public class ProductController implements Initializable {
             producto.setPrecio(Double.parseDouble(priceInput.getText()));
             producto.setDescripcion(descriptionInput.getText());
             producto.setStock(Integer.parseInt(stockInput.getText()));
-            producto.setProvider(providerInput.getText());
+            producto.setIdProvider(Integer.parseInt(providerInput.getText()));
         }catch (NumberFormatException error){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
