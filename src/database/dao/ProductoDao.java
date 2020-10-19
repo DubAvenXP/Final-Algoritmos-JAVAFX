@@ -34,18 +34,18 @@ public class ProductoDao {
         Connect.closeConnection();
     }
 
-    public static List listProductDB(){
+    public static List<Producto> listProductDB(){
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<Producto> productos = new ArrayList<>();
-        Producto producto = new Producto();
 
         try(Connection connection = Connect.getConnection()){
             String sql = "SELECT * FROM public.producto";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-            
+
             while (rs.next()){
+                Producto producto = new Producto();
                 producto.setIdProducto(rs.getInt(1));
                 producto.setNombre(rs.getString(2));
                 producto.setPrecio(rs.getDouble(3));

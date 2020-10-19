@@ -69,7 +69,7 @@ public class Client implements Initializable {
 
 
     public void addClientsToObservableList(){
-        for (int i = 0; i < clienteList.size()-1; i++) {
+        for (int i = 0; i < clienteList.size(); i++) {
 //            FXCollections.observableArrayList(clienteList.get(i));
             observableClientList.add(clienteList.get(i));
         }
@@ -77,6 +77,7 @@ public class Client implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        idInput.setDisable(true);
         addClientsToObservableList();
         this.id.setCellValueFactory(new PropertyValueFactory<Cliente, Integer>("idCliente"));
         this.nit.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nit"));
@@ -106,7 +107,7 @@ public class Client implements Initializable {
     public Cliente getClientInfo() {
         Cliente cliente = new Cliente();
         try {
-            cliente.setIdCliente(Integer.parseInt(idInput.getText()));
+            cliente.getIdCliente();
             cliente.setNit(nitInput.getText());
             cliente.setNombre(nameInput.getText());
             cliente.setApellido(lastNameInput.getText());

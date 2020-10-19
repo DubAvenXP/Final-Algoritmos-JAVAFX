@@ -4,6 +4,8 @@ import database.Connect;
 import database.models.Proveedor;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProveedorDao {
 
@@ -24,10 +26,10 @@ public class ProveedorDao {
         Connect.closeConnection();
     }
 
-    public static Proveedor viewProviderDB() {
-        Proveedor proveedor = new Proveedor();
+    public static List<Proveedor> viewProviderDB() {
         PreparedStatement ps;
         ResultSet rs;
+        List<Proveedor> proveedorList = new ArrayList<>();
 
         try (Connection connection = Connect.getConnection()) {
             String sql = "SELECT * FROM public.proveedor";
@@ -35,15 +37,17 @@ public class ProveedorDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                Proveedor proveedor = new Proveedor();
                 proveedor.setIdProveedor(rs.getInt(1));
                 proveedor.setNombre(rs.getString(2));
                 proveedor.setDescripcion(rs.getString(3));
+                proveedorList.add(proveedor);
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los proveedores\n" + e);
         }
         Connect.closeConnection();
-        return proveedor;
+        return proveedorList;
     }
 
     public static Proveedor viewProviderByID(int idProveedor) {

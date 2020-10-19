@@ -37,7 +37,6 @@ public class ClienteDao {
     }
 
     public static List<Cliente> viewClientDB() {
-        Cliente client = new Cliente();
         PreparedStatement ps;
         ResultSet rs;
         List<Cliente> clienteArrayList = new ArrayList<>();
@@ -47,6 +46,7 @@ public class ClienteDao {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
+                Cliente client = new Cliente();
                 client.setIdCliente(rs.getInt(1));
                 client.setNit(rs.getString(2));
                 client.setNombre(rs.getString(3));
@@ -57,6 +57,9 @@ public class ClienteDao {
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los clientes\n" + e);
+        }
+        for (Cliente cliente: clienteArrayList) {
+            System.out.println(cliente.getNombre());
         }
         Connect.closeConnection();
         return clienteArrayList;

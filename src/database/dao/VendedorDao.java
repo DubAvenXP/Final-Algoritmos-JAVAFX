@@ -20,7 +20,7 @@ public class VendedorDao {
             String sql = "INSERT INTO public.vendedor(\"idVendedor\", nombre, apellido, dpi, direccion, telefono)\n" +
                     "\tVALUES (?, ?, ?, ?, ?, ?)";
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, vendedor.getIdVendedor());
+            ps.setInt(1, autoIdSeller(vendedor.getIdVendedor()));
             ps.setString(2, vendedor.getNombre());
             ps.setString(3, vendedor.getApellido());
             ps.setString(4, vendedor.getDpi());
@@ -40,8 +40,6 @@ public class VendedorDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<Vendedor> vendedores = new ArrayList<>();
-        Producto producto = new Producto();
-        Vendedor vendedor = new Vendedor();
 
         try(Connection connection = connect.getConnection()){
             String sql = "SELECT * FROM public.vendedor";
@@ -49,6 +47,7 @@ public class VendedorDao {
             rs = ps.executeQuery();
 
             while (rs.next()){
+                Vendedor vendedor = new Vendedor();
                 vendedor.setIdVendedor(rs.getInt(1));
                 vendedor.setNombre(rs.getString(2));
                 vendedor.setApellido(rs.getString(3));
@@ -128,6 +127,22 @@ public class VendedorDao {
             System.out.println("El vendedor no se pudo actualizar" + e);
         }
         connect.closeConnection();
+    }
+
+    public static Integer autoIdSeller(Integer id){
+        PreparedStatement ps;
+        ResultSet rs;
+        try (Connection connection = Connect.getConnection()){
+            String sql = "select max(\"idVendedor\") from public.vendedor";
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                id = rs.getInt(1) + 1;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return id;
     }
 
 }
