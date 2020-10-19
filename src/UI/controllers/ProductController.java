@@ -79,7 +79,7 @@ public class ProductController implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precio"));
         description.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcion"));
         stock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("stock"));
-        provider.setCellValueFactory(new PropertyValueFactory<Producto, String>("provider"));
+        provider.setCellValueFactory(new PropertyValueFactory<Producto, String>("Proveedores"));
         productTable.setItems(productoObservableList);
     }
 
