@@ -79,7 +79,7 @@ public class ProductController implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precio"));
         description.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcion"));
         stock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("stock"));
-        provider.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("idProvider"));
+        provider.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("idProveedor"));
         productTable.setItems(productoObservableList);
     }
 
@@ -93,7 +93,7 @@ public class ProductController implements Initializable {
             priceInput.setText(Double.toString(producto.getPrecio()));
             descriptionInput.setText(producto.getDescripcion());
             stockInput.setText(Integer.toString(producto.getStock()));
-            providerInput.setText(Integer.toString(producto.getIdProvider()));
+            providerInput.setText(producto.getProvider());
         }
     }
 
@@ -105,7 +105,7 @@ public class ProductController implements Initializable {
             producto.setPrecio(Double.parseDouble(priceInput.getText()));
             producto.setDescripcion(descriptionInput.getText());
             producto.setStock(Integer.parseInt(stockInput.getText()));
-            producto.setIdProvider(Integer.parseInt(providerInput.getText()));
+            producto.setProvider(providerInput.getText());
         }catch (NumberFormatException error){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -150,7 +150,7 @@ public class ProductController implements Initializable {
                 producto.setPrecio(productoAux.getPrecio());
                 producto.setDescripcion(productoAux.getDescripcion());
                 producto.setStock(productoAux.getStock());
-                producto.setIdProvider(productoAux.getIdProvider());
+                producto.setProvider(productoAux.getProvider());
 
                 ProductoService.updateProduct(producto);
                 productTable.refresh();

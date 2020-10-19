@@ -13,14 +13,16 @@ import java.util.List;
 
 public class VendedorDao {
 
+    public static Integer idSeller;
+
     public static void createSellerDB(Vendedor vendedor) {
-        Connect connect = new Connect();
         PreparedStatement ps = null;
-        try (Connection connection = connect.getConnection()) {
+        idSeller = autoIdSeller(vendedor.getIdVendedor());
+        try (Connection connection = Connect.getConnection()) {
             String sql = "INSERT INTO public.vendedor(\"idVendedor\", nombre, apellido, dpi, direccion, telefono)\n" +
                     "\tVALUES (?, ?, ?, ?, ?, ?)";
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, autoIdSeller(vendedor.getIdVendedor()));
+            ps.setInt(1, idSeller);
             ps.setString(2, vendedor.getNombre());
             ps.setString(3, vendedor.getApellido());
             ps.setString(4, vendedor.getDpi());
@@ -31,17 +33,16 @@ public class VendedorDao {
         } catch (SQLException e) {
             System.out.println("El vendedor no se pudo crear\n" + e);
         }
-        connect.closeConnection();
+        Connect.closeConnection();
 
     }
 
     public static List viewSellerDB() {
-        Connect connect = new Connect();
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<Vendedor> vendedores = new ArrayList<>();
 
-        try(Connection connection = connect.getConnection()){
+        try(Connection connection = Connect.getConnection()){
             String sql = "SELECT * FROM public.vendedor";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -59,18 +60,17 @@ public class VendedorDao {
         } catch (SQLException e) {
             System.out.println("No se traer el vendedor" + e);
         }
-        connect.closeConnection();
+        Connect.closeConnection();
         return vendedores ;
     }
 
     public static List viewSellerByID(String dpi) {
-        Connect connect = new Connect();
         PreparedStatement ps;
         ResultSet rs = null;
         List<Vendedor> vendedores = new ArrayList<>();
         Vendedor vendedor = new Vendedor();
 
-        try (Connection connection = connect.getConnection()) {
+        try (Connection connection = Connect.getConnection()) {
             String sql = "SELECT \"idVendedor\", nombre, apellido, dpi, direccion, telefono\n" +
                     "\tFROM public.vendedor where dpi=?;";
             ps = connection.prepareStatement(sql);
@@ -89,14 +89,13 @@ public class VendedorDao {
         } catch (SQLException e) {
             System.out.println("No se pudo traer al vendedor\n" + e);
         }
-        connect.closeConnection();
+        Connect.closeConnection();
         return vendedores;
     }
 
     public static void deleteSellerDB(String dpi) {
-        Connect connect = new Connect();
         PreparedStatement ps;
-        try (Connection connection = connect.getConnection()) {
+        try (Connection connection = Connect.getConnection()) {
             String sql = "delete from \"vendedor\" where dpi = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(1, dpi);
@@ -105,13 +104,12 @@ public class VendedorDao {
         } catch (SQLException e) {
             System.out.println("El vendedor no se pudo borrar" + e);
         }
-        connect.closeConnection();
+        Connect.closeConnection();
     }
 
     public static void updateSeller(Vendedor vendedor) {
-        Connect connect = new Connect();
         PreparedStatement ps;
-        try (Connection connection = connect.getConnection()) {
+        try (Connection connection = Connect.getConnection()) {
             String sql = "update \"vendedor\" set \"nombre\"=?, \"apellido\"=?, \"direccion\"=?, \"telefono\"=?, \"dpi\"=?" +
                     "where \"idVendedor\"=?;";
             ps = connection.prepareStatement(sql);
@@ -126,7 +124,7 @@ public class VendedorDao {
         } catch (SQLException e) {
             System.out.println("El vendedor no se pudo actualizar" + e);
         }
-        connect.closeConnection();
+        Connect.closeConnection();
     }
 
     public static Integer autoIdSeller(Integer id){
