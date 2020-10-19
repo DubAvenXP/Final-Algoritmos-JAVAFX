@@ -73,10 +73,7 @@ public class ClientController implements Initializable {
 
 
     public void addClientsToObservableList(){
-        for (int i = 0; i < clienteList.size(); i++) {
-//            FXCollections.observableArrayList(clienteList.get(i));
-            observableClientList.add(clienteList.get(i));
-        }
+        observableClientList.addAll(clienteList);
     }
 
     @Override

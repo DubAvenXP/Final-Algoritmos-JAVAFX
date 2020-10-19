@@ -3,6 +3,7 @@ package database.service;
 import database.dao.ProveedorDao;
 import database.models.Proveedor;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ProveedorService {
@@ -11,8 +12,8 @@ public class ProveedorService {
         ProveedorDao.createProviderDB(proveedor);
     }
 
-    public static void listProvider(){
-        ProveedorDao.viewProviderDB();
+    public static List<Proveedor> listProvider(){
+        return ProveedorDao.viewProviderDB();
     }
 
     public static Proveedor listProviderByID(int id){
