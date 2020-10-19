@@ -1,10 +1,7 @@
 package UI.controllers;
 
-import database.dao.ClienteDao;
 import database.dao.ProveedorDao;
-import database.models.Cliente;
 import database.models.Proveedor;
-import database.service.ClienteService;
 import database.service.ProveedorService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 

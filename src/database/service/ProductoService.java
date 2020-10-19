@@ -1,9 +1,9 @@
 package database.service;
 
-import database.dao.ClienteDao;
 import database.dao.ProductoDao;
 import database.models.Producto;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductoService {
@@ -12,8 +12,8 @@ public class ProductoService {
         ProductoDao.createProductDB(producto);
     }
 
-    public static void listProduct(){
-        ProductoDao.listProductDB();
+    public static List<Producto> listProduct(){
+        return ProductoDao.listProductDB();
     }
 
     public static Producto listProductByID(int id){
