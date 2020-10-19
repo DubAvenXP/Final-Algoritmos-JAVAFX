@@ -1,4 +1,4 @@
 package UI.controllers;
 
-public class Facturation {
+public class FacturationController {
 }
