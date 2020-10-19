@@ -9,16 +9,18 @@ import java.util.List;
 
 //Esta clase es la que nos permite hacer las comunicaciones con la db
 public class ClienteDao {
+    public static Integer idClient;
 
     public static void createClientDB(Cliente cliente) {
         PreparedStatement ps;
+        idClient = autoIdClient(cliente.getIdCliente());
 
         try (Connection connection = Connect.getConnection()) {
             try {
                 String sql = "INSERT INTO public.cliente(\"idCliente\", nit, nombre, apellido, direccion, telefono)" +
                         "VALUES (?, ?, ?, ?, ?, ?)";
                 ps = connection.prepareStatement(sql);
-                ps.setInt(1, autoIdClient(cliente.getIdCliente()));
+                ps.setInt(1, idClient);
                 ps.setString(2, cliente.getNit());
                 ps.setString(3, cliente.getNombre());
                 ps.setString(4, cliente.getApellido());
@@ -57,9 +59,6 @@ public class ClienteDao {
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los clientes\n" + e);
-        }
-        for (Cliente cliente: clienteArrayList) {
-            System.out.println(cliente.getNombre());
         }
         Connect.closeConnection();
         return clienteArrayList;

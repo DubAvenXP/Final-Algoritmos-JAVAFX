@@ -13,8 +13,6 @@ P
  src/database/models/Cliente.java,4\9\4975074c558c73238a8e3b65b06cae1f96985055
 Y
 )src/database/service/ProductoService.java,f\d\fddcfddd68f79f2b8d38daac1b3078ee54b0f1c3
-M
-src/UI/controllers/Admin.java,8\2\82b9cccf54f050fbf435581413001de55442436e
 S
 #src/UI/controllers/Facturation.java,1\0\100ba6114991f4132e9c1ea117452ed141e5385a
 M
@@ -33,12 +31,6 @@ L
 src/UI/controllers/Home.java,8\7\87d6ffc046e0711bc4eec9c2f6a33e8b252e286f
 R
 "src/UI/controllers/FxmlLoader.java,0\8\0863a022ad29ff6c80d173c4180d6e56b1146b51
-P
- src/UI/controllers/Provider.java,8\f\8f7ce4f1fc05631f70880fa9197fa7da91f0c203
-N
-src/UI/controllers/Client.java,0\e\0e78a81cc23fbf4945bcab5a0b8c90a5f7b48d39
-O
-src/UI/controllers/Product.java,7\c\7cad17bc9b78d117f767945ea84b2334a5c06303
 K
 src/UI/scenes/products.fxml,e\8\e84225c8f9b4bf10ee69141535f5747de175353c
 J
@@ -59,3 +51,5 @@ R
 "src/database/models/Proveedor.java,b\b\bb1e2342d6ab00a934aa97766b4c2a0be58dada5
 Q
 !src/database/dao/VendedorDao.java,6\c\6c6c2d7f14518ae54c25369f6318dca8fc1727b9
+X
+(src/UI/controllers/ClientController.java,2\1\21acb90693fa2ea6d96b126fd0773746aaa557a5

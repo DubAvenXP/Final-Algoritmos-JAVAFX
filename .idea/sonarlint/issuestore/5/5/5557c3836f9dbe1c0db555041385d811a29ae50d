@@ -1,42 +1,46 @@
 
+J
+java:S1444".Make this "public static idClient" field final(­ª¤,8ÿ·úöÓ.
+p
+java:S1104"TMake idClient a static final constant or non-public and provide accessors if needed.(­ª¤,8ÿ·úöÓ.
+Z	java:S106i"9Replace this use of System.out or System.err by a logger.(·¤§ˆıÿÿÿÿ8¬‰Ü×Ğ.
 R
-java:S2209`"5Change this instance-reference to a static reference.(€ °˜8Í´ÿçÓ.
-r
-java:S2095Œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ8çïôŸÑ.
-P
-java:S1141q"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
-j
-java:S2095t"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
-C
-java:S2440]"'Remove this instantiation of "Connect".(û´î8Í´ÿçÓ.
-U	java:S106V"9Replace this use of System.out or System.err by a logger.(‚òØÂ8çïôŸÑ.
-q
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ8Í´ÿçÓ.
-j
-java:S2095/"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
-U	java:S106;"9Replace this use of System.out or System.err by a logger.(Øøç‘8¬‰Ü×Ğ.
-Z	java:S106g"9Replace this use of System.out or System.err by a logger.(·¤§ˆıÿÿÿÿ8¬‰Ü×Ğ.
-[	java:S106’"9Replace this use of System.out or System.err by a logger.(¨¶ÑÍşÿÿÿÿ8Í´ÿçÓ.
-N	java:S106""9Replace this use of System.out or System.err by a logger.(ñ¾ş²
-S
-java:S2209„"5Change this instance-reference to a static reference.(ÙºÎ¥8Í´ÿçÓ.
-R
-java:S2209i"5Change this instance-reference to a static reference.(ÙºÎ¥8Í´ÿçÓ.
-j
-java:S2095I"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
-C
-java:S2440m"'Remove this instantiation of "Connect".(û´î8Í´ÿçÓ.
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ñ¾ş²
-R
-java:S2209o"5Change this instance-reference to a static reference.(€ °˜8Í´ÿçÓ.
-U	java:S106|"9Replace this use of System.out or System.err by a logger.(ûÏĞÏ8Í´ÿçÓ.
-P
-java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
-T	java:S106‚"9Replace this use of System.out or System.err by a logger.(˜®Âşÿÿÿÿ
-j
-java:S2095b"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+java:S2209q"5Change this instance-reference to a static reference.(€ °˜8Í´ÿçÓ.
 U
 java:S1118":Add a private constructor to hide the implicit public one.(¬ÏÇèûÿÿÿÿ
-U	java:S106"9Replace this use of System.out or System.err by a logger.(®í¸¤8Í´ÿçÓ.
-U	java:S106e"9Replace this use of System.out or System.err by a logger.(®ñ’š8¬‰Ü×Ğ.
-N	java:S106~"9Replace this use of System.out or System.err by a logger.(“±º˜
+C
+java:S2440o"'Remove this instantiation of "Connect".(û´î8Í´ÿçÓ.
+T	java:S106„"9Replace this use of System.out or System.err by a logger.(˜®Âşÿÿÿÿ
+j
+java:S2095d"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+C
+java:S2440_"'Remove this instantiation of "Connect".(û´î8Í´ÿçÓ.
+r
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ8çïôŸÑ.
+N	java:S106 "9Replace this use of System.out or System.err by a logger.(ñ¾ş²
+P
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+U	java:S106g"9Replace this use of System.out or System.err by a logger.(®ñ’š8¬‰Ü×Ğ.
+U	java:S106~"9Replace this use of System.out or System.err by a logger.(ûÏĞÏ8Í´ÿçÓ.
+N	java:S106$"9Replace this use of System.out or System.err by a logger.(ñ¾ş²
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ8Í´ÿçÓ.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(®í¸¤8Í´ÿçÓ.
+U	java:S106X"9Replace this use of System.out or System.err by a logger.(‚òØÂ8çïôŸÑ.
+j
+java:S2095K"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+R
+java:S2209k"5Change this instance-reference to a static reference.(ÙºÎ¥8Í´ÿçÓ.
+[	java:S106”"9Replace this use of System.out or System.err by a logger.(¨¶ÑÍşÿÿÿÿ8Í´ÿçÓ.
+O	java:S106€"9Replace this use of System.out or System.err by a logger.(“±º˜
+R
+java:S2209b"5Change this instance-reference to a static reference.(€ °˜8Í´ÿçÓ.
+P
+java:S1141s"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+j
+java:S2095v"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ
+q
+java:S20950"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´âîæùÿÿÿÿ8€ÇõÓ.
+S
+java:S2209†"5Change this instance-reference to a static reference.(ÙºÎ¥8Í´ÿçÓ.
+U	java:S106="9Replace this use of System.out or System.err by a logger.(Øøç‘8€ÇõÓ.

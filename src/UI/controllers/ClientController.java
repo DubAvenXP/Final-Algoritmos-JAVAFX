@@ -1,5 +1,6 @@
 package UI.controllers;
 
+import database.dao.ClienteDao;
 import database.models.Cliente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +14,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Client implements Initializable {
+public class ClientController implements Initializable {
     @FXML
     private TableView<Cliente> tableClients;
 
@@ -56,6 +57,9 @@ public class Client implements Initializable {
     @FXML
     private Button newButton;
 
+    @FXML
+    private Button createButton;
+
 //    ObservableList<Cliente> observableClientList = FXCollections.observableArrayList(
 //            new Cliente(1, "1254895-5", "pepe", "perez", "ciudad", "2154-8540"),
 //            new Cliente(2, "1254895-0", "pedro", "pelaez", "ciudad", "2154-8247"),
@@ -78,6 +82,8 @@ public class Client implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         idInput.setDisable(true);
+        newButton.setDisable(true);
+        createButton.setDisable(false);
         addClientsToObservableList();
         this.id.setCellValueFactory(new PropertyValueFactory<Cliente, Integer>("idCliente"));
         this.nit.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nit"));
@@ -87,12 +93,12 @@ public class Client implements Initializable {
         this.phone.setCellValueFactory(new PropertyValueFactory<Cliente, String>("telefono"));
 
         tableClients.setItems(observableClientList);
-        newButton.setDisable(false);
     }
 
 
     public void rowSelected(MouseEvent mouseEvent) {
         newButton.setDisable(false);
+        createButton.setDisable(true);
         Cliente cliente = tableClients.getSelectionModel().getSelectedItem();
         if (cliente != null) {
             idInput.setText(Integer.toString(cliente.getIdCliente()));
@@ -107,7 +113,7 @@ public class Client implements Initializable {
     public Cliente getClientInfo() {
         Cliente cliente = new Cliente();
         try {
-            cliente.getIdCliente();
+            cliente.setIdCliente(0);
             cliente.setNit(nitInput.getText());
             cliente.setNombre(nameInput.getText());
             cliente.setApellido(lastNameInput.getText());
@@ -128,9 +134,10 @@ public class Client implements Initializable {
         Cliente cliente = getClientInfo();
         if (cliente != null) {
             database.service.ClienteService.createClient(cliente);
-            System.out.println(cliente.getIdCliente());
+            cliente.setIdCliente(ClienteDao.idClient);
             observableClientList.add(cliente);
             tableClients.setItems(observableClientList);
+            newClient();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Informacion");
@@ -149,13 +156,8 @@ public class Client implements Initializable {
             alert.showAndWait();
         } else {
             Cliente clienteAux = getClientInfo();
-            if (observableClientList.contains(clienteAux)) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Error");
-                alert.setContentText("La persona seleccionada no ha sido modificada");
-                alert.showAndWait();
-            } else {
+            clienteAux.setIdCliente(Integer.parseInt(idInput.getText()));
+            if (!observableClientList.contains(clienteAux)) {
                 cliente.setIdCliente(clienteAux.getIdCliente());
                 cliente.setNombre(clienteAux.getNombre());
                 cliente.setApellido(clienteAux.getApellido());
@@ -165,11 +167,18 @@ public class Client implements Initializable {
 
                 database.service.ClienteService.updateClient(cliente);
                 tableClients.refresh();
-
+                newClient();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("Informacion");
-                alert.setContentText("Persona modificada correctamente");
+                alert.setContentText("Persona modificada correctamente" +
+                        "\nId modificado: " + cliente.getIdCliente());
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Error");
+                alert.setContentText("La persona seleccionada no ha sido modificada");
                 alert.showAndWait();
             }
         }
@@ -196,8 +205,8 @@ public class Client implements Initializable {
         }
     }
 
-    public void newClient(MouseEvent mouseEvent) {
-        idInput.setDisable(false);
+    public void newClient() {
+        createButton.setDisable(false);
         newButton.setDisable(true);
         idInput.setText("");
         nameInput.setText("");
