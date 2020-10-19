@@ -65,11 +65,13 @@ public class Client implements Initializable {
 //    );
 
     List<Cliente> clienteList = database.service.ClienteService.listClient();
-    ObservableList<Cliente> observableClientList;
+    ObservableList<Cliente> observableClientList = FXCollections.observableArrayList();
+
 
     public void addClientsToObservableList(){
         for (int i = 0; i < clienteList.size()-1; i++) {
-            FXCollections.observableArrayList(clienteList.get(i));
+//            FXCollections.observableArrayList(clienteList.get(i));
+            observableClientList.add(clienteList.get(i));
         }
     }
 

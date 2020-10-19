@@ -1,14 +1,29 @@
 
+v
+java:S2293Q"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯‰›Ã8ßµÚëÓ.
+v
+java:S2293R"YReplace the type specification in this constructor call with the diamond operator ("<>").(âÓÚ8ßµÚëÓ.
+S
+java:S1172["1Remove this unused method parameter "mouseEvent".(‚¿Å»úÿÿÿÿ8¿šİìÓ.
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(„ãş´ÿÿÿÿÿ
+]	java:S125A"<This block of commented-out lines of code should be removed.(¼è÷ïøÿÿÿÿ8ñ®îïÓ.
 v
-java:S2293H"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯‰›Ã8§•ƒéÓ.
-u
-java:S2293J"YReplace the type specification in this constructor call with the diamond operator ("<>").(ßÓ‘78§•ƒéÓ.
-v
-java:S2293K"YReplace the type specification in this constructor call with the diamond operator ("<>").(îÀö¿8§•ƒéÓ.
+java:S2293T"YReplace the type specification in this constructor call with the diamond operator ("<>").(îÀö¿8ßµÚëÓ.
+j
+java:S1192„"LDefine a constant instead of duplicating this literal "Informacion" 3 times.(¢×ó÷8è„ÚïÓ.
+N
+java:S1172|"1Remove this unused method parameter "mouseEvent".(“ì8ğ¯šìÓ.
+O
+java:S1172Ã"1Remove this unused method parameter "mouseEvent".(”‰¬€8‡³¸ïÓ.
 {
-java:S2293G"YReplace the type specification in this constructor call with the diamond operator ("<>").(°„õÇıÿÿÿÿ8§•ƒéÓ.
+java:S2293P"YReplace the type specification in this constructor call with the diamond operator ("<>").(°„õÇıÿÿÿÿ8ßµÚëÓ.
+u
+java:S2293S"YReplace the type specification in this constructor call with the diamond operator ("<>").(ßÓ‘78ßµÚëÓ.
+c
+java:S1192t"FDefine a constant instead of duplicating this literal "Error" 4 times.(µûø–8’şÇîÓ.
+T
+java:S1172®"1Remove this unused method parameter "mouseEvent".(İ”Îãùÿÿÿÿ8ıîÓ.
+O
+java:S1172Š"1Remove this unused method parameter "mouseEvent".(ëŞ±Ğ8ô£÷ìÓ.
 v
-java:S2293F"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨‹úü8§•ƒéÓ.
-v
-java:S2293I"YReplace the type specification in this constructor call with the diamond operator ("<>").(âÓÚ8§•ƒéÓ.
+java:S2293O"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨‹úü8ßµÚëÓ.
