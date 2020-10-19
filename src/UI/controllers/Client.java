@@ -128,6 +128,7 @@ public class Client implements Initializable {
         Cliente cliente = getClientInfo();
         if (cliente != null) {
             database.service.ClienteService.createClient(cliente);
+            System.out.println(cliente.getIdCliente());
             observableClientList.add(cliente);
             tableClients.setItems(observableClientList);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
