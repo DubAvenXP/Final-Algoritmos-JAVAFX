@@ -1,7 +1,0 @@
-
-O
-java:S1128"4Remove this unused import 'database.dao.ClienteDao'.(Ÿ ¨†ùÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(Û‘éÁ
-U	java:S106"9Replace this use of System.out or System.err by a logger.(ØÏ¤8Ş ³éÓ.
-P
-java:S1118	":Add a private constructor to hide the implicit public one.(Âƒí
