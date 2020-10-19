@@ -26,7 +26,7 @@ public class ProductoDao {
             ps.setDouble(3, producto.getPrecio());
             ps.setInt(4, producto.getStock());
             ps.setString(5, producto.getDescripcion());
-            ps.setString(6, producto.getProvider());
+            ps.setInt(6, producto.getIdProvider());
             ps.executeUpdate();
             System.out.println("Producto creado");
         } catch (SQLException e) {

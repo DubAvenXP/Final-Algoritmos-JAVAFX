@@ -35,7 +35,7 @@ public class ProductController implements Initializable {
     private TableColumn<Producto, String> description;
 
     @FXML
-    private TableColumn<Producto, Integer> provider;
+    private TableColumn<Producto, String> provider;
 
     @FXML
     private TextField idInput;
@@ -79,7 +79,7 @@ public class ProductController implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precio"));
         description.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcion"));
         stock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("stock"));
-        provider.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("idProveedor"));
+        provider.setCellValueFactory(new PropertyValueFactory<Producto, String>("Proveedores"));
         productTable.setItems(productoObservableList);
     }
 
