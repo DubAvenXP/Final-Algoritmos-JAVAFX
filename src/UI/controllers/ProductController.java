@@ -35,7 +35,10 @@ public class ProductController implements Initializable {
     private TableColumn<Producto, String> description;
 
     @FXML
-    private TableColumn<Producto, String> provider;
+    private TableColumn<Producto, Integer> idProvider;
+
+    @FXML
+    private TableColumn<Producto, String> nameProvider;
 
     @FXML
     private TextField idInput;
@@ -53,7 +56,10 @@ public class ProductController implements Initializable {
     private TextArea descriptionInput;
 
     @FXML
-    private TextField providerInput;
+    private TextField idProviderInput;
+
+    @FXML
+    private  TextField nameProviderInput;
 
     @FXML
     private Button newButton;
@@ -79,7 +85,8 @@ public class ProductController implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precio"));
         description.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcion"));
         stock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("stock"));
-        provider.setCellValueFactory(new PropertyValueFactory<Producto, String>("provider"));
+        idProvider.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("idProvider"));
+        nameProvider.setCellValueFactory(new PropertyValueFactory<Producto, String>("provider"));
         productTable.setItems(productoObservableList);
     }
 
@@ -93,7 +100,8 @@ public class ProductController implements Initializable {
             priceInput.setText(Double.toString(producto.getPrecio()));
             descriptionInput.setText(producto.getDescripcion());
             stockInput.setText(Integer.toString(producto.getStock()));
-            providerInput.setText(producto.getProvider());
+            idProviderInput.setText(Integer.toString(producto.getIdProvider()));
+            nameProviderInput.setText(producto.getProvider());
         }
     }
 
@@ -105,7 +113,8 @@ public class ProductController implements Initializable {
             producto.setPrecio(Double.parseDouble(priceInput.getText()));
             producto.setDescripcion(descriptionInput.getText());
             producto.setStock(Integer.parseInt(stockInput.getText()));
-            producto.setIdProvider(Integer.parseInt(providerInput.getText()));
+            producto.setIdProvider(Integer.parseInt(idProviderInput.getText()));
+            producto.setProvider(nameProvider.getText());
         }catch (NumberFormatException error){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -150,7 +159,7 @@ public class ProductController implements Initializable {
                 producto.setPrecio(productoAux.getPrecio());
                 producto.setDescripcion(productoAux.getDescripcion());
                 producto.setStock(productoAux.getStock());
-                producto.setProvider(productoAux.getProvider());
+                producto.setIdProvider(productoAux.getIdProvider());
 
                 ProductoService.updateProduct(producto);
                 productTable.refresh();
@@ -200,7 +209,8 @@ public class ProductController implements Initializable {
         priceInput.setText("");
         descriptionInput.setText("");
         stockInput.setText("");
-        providerInput.setText("");
+        idProviderInput.setText("");
+        nameProviderInput.setText("");
     }
 
 }

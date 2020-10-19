@@ -22,12 +22,13 @@
       </Label>
       <TableView fx:id="productTable" layoutX="14.0" layoutY="49.0" onMouseClicked="#rowSelected" prefHeight="476.0" prefWidth="971.0">
         <columns>
-          <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="name" prefWidth="248.7999725341797" text="Nombre" />
-            <TableColumn fx:id="price" prefWidth="64.79998779296875" text="Precio" />
-            <TableColumn fx:id="stock" prefWidth="53.60003662109375" text="Stock" />
-            <TableColumn fx:id="description" prefWidth="413.60003662109375" text="Descripcion" />
-            <TableColumn fx:id="provider" prefWidth="114.4000244140625" text="Proveedor" />
+          <TableColumn fx:id="id" prefWidth="42.13330268859863" text="ID" />
+          <TableColumn fx:id="name" prefWidth="241.8667106628418" text="Nombre" />
+            <TableColumn fx:id="price" prefWidth="113.33331298828125" text="Precio" />
+            <TableColumn fx:id="stock" prefWidth="71.46661376953125" text="Stock" />
+            <TableColumn fx:id="description" prefWidth="242.13330078125" text="Descripcion" />
+            <TableColumn fx:id="idProvider" prefWidth="83.199951171875" text="Proveedor ID" />
+            <TableColumn fx:id="nameProvider" prefWidth="179.2000732421875" text="Proveedor" />
         </columns>
       </TableView>
       <HBox layoutX="14.0" layoutY="543.0" prefHeight="160.0" prefWidth="971.0" spacing="15.0">
@@ -84,8 +85,17 @@
             </VBox>
             <VBox prefHeight="166.0" prefWidth="250.0">
                <children>
+                  <Label prefHeight="18.0" prefWidth="78.0" text="Proveedor ID:" />
+                  <TextField fx:id="idProviderInput">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
                   <Label prefHeight="18.0" prefWidth="62.0" text="Proveedor:" />
-                  <TextField fx:id="providerInput">
+                  <TextField fx:id="nameProviderInput">
                      <font>
                         <Font size="14.0" />
                      </font>
