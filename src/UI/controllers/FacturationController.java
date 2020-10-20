@@ -84,17 +84,26 @@ public class FacturationController {
 
     }
 
+    /*Douglas (podemos usar el clientService el de obtener cliente por nit)
+    Buscar clientes, debe retornar nombre nit y nombre*/
     public void searchClientOnClic(MouseEvent mouseEvent){
 
     }
 
+    /*Douglas (Podemos usar el product service)
+     Buscar producto, debe retornar id, nombre, precio unitario y stock del producto, */
     public void searchProductOnClic(MouseEvent mouseEvent){
 
     }
 
+    /*Douglas el modelo de factura es el que ira en la tabla (mira la tabla de la UI)
+    el modelo lleva indice, ID, nombreProducto, cantidad, precio... total
+    cada linea es un objeto
+     */
     public void addProductToInvoice(MouseEvent mouseEvent){
 
     }
+
 
     public void deleteProduct(MouseEvent mouseEvent){
 
