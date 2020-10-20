@@ -1,6 +1,8 @@
 package UI;
 
+import database.service.ClienteService;
 import database.service.ProductoService;
+import database.service.VentaService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,9 +22,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+//        launch(args);
         //Menu.showMenu();
         //database.Connect.getConnection();
         //database.Connect.closeConnection();
+        VentaService.productAvailable();
     }
 }

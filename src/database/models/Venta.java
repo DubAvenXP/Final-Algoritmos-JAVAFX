@@ -9,7 +9,7 @@ public class Venta {
     Cliente cliente = new Cliente();
     private Integer idVenta;
     private Integer idSeller = vendedor.getIdVendedor();
-    private Integer idClient = cliente.getIdCliente();
+    private String nitClient = cliente.getNit();
     private String numeroVenta;
     private Date fecha;
     private Double monto;
@@ -17,10 +17,10 @@ public class Venta {
     public Venta() {
     }
 
-    public Venta(Integer idVenta, Integer idSeller, Integer idClient, String numeroVenta, Date fecha, Double monto) {
+    public Venta(Integer idVenta, Integer idSeller, String nitClient, String numeroVenta, Date fecha, Double monto) {
         this.idVenta = idVenta;
         this.idSeller = idSeller;
-        this.idClient = idClient;
+        this.nitClient = nitClient;
         this.numeroVenta = numeroVenta;
         this.fecha = fecha;
         this.monto = monto;
@@ -34,12 +34,12 @@ public class Venta {
         this.idSeller = idSeller;
     }
 
-    public Integer getIdClient() {
-        return idClient;
+    public String getNitClient() {
+        return nitClient;
     }
 
-    public void setIdClient(Integer idClient) {
-        this.idClient = idClient;
+    public void setNitClient(String nitClient) {
+        this.nitClient = nitClient;
     }
 
     public String getNumeroVenta() {

@@ -16,7 +16,7 @@ public class Connect {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, user, pass);
-            if (connection != null) System.out.println("Connection established\n <---------------------------------->");
+            if (connection != null) System.out.println("Connection established\n ----------------------------------");
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -26,7 +26,7 @@ public class Connect {
     public static void closeConnection(){
         try {
             getConnection().close();
-            System.out.println("Connection to DB closedn\n <---------------------------------->");
+            System.out.println("Connection to DB closed\n ----------------------------------");
         } catch (SQLException e) {
             System.out.println("Connection to the DB could not be closed" + e);
         }
