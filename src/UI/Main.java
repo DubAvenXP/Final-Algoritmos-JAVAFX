@@ -22,10 +22,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-//        launch(args);
+        launch(args);
         //Menu.showMenu();
         //database.Connect.getConnection();
         //database.Connect.closeConnection();
-        VentaService.productAvailable();
+        //VentaService.productAvailable();
     }
 }

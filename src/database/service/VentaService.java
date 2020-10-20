@@ -2,27 +2,26 @@ package database.service;
 
 import database.dao.VentaDao;
 
-import java.util.Scanner;
 
 public class VentaService {
 
-    public static void totalSale(){
+    //    Retorna el total de la venta de 1 producto
+    public static Double totalSale(Integer id, Integer quantity) {
         int contador = 0;
-        Integer id = 1;
-        Integer quantity = 2;
+        Double totalVenta;
         do {
-            System.out.println("El id del producto es: " + id);
+            //System.out.println("El id del producto es: " + id);
             id++;
-            System.out.println("La cantidad de productos es: " + quantity);
-            VentaDao.totalSaleDB(id, quantity);
+            //System.out.println("La cantidad de productos es: " + quantity);
+            totalVenta = VentaDao.totalSaleDB(id, quantity);
             contador++;
-        }while (contador <= 1);
+        } while (contador <= 1);
+        return totalVenta;
     }
 
-    public static void productAvailable(){
-        Integer id = 1;
-        Integer quantity = 10;
-        VentaDao.productAvailableDB(id, quantity);
+    //    Retorna la cantidad de productos en stock luego de restarle los que se van a comprar
+    public static Integer productAvailable(Integer id, Integer quantity) {
+        return VentaDao.productAvailableDB(id, quantity);
     }
 
 }
