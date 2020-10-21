@@ -23,7 +23,7 @@ public class ProductoDao {
      *                 al producto en la base de datos
      */
     public static void createProductDB(Producto producto){
-        idProducto = autoIdProduct(producto.getIdProducto());
+        idProducto = autoIdProduct();
         PreparedStatement ps;
 
         try(Connection connection = Connect.getConnection()){
@@ -160,12 +160,12 @@ public class ProductoDao {
 
     /**
      * Metodo para hace el id del producto auto-incrementable al momento de crear un nuevo producto
-     * @param id id perteneciente al producto
      * @return retorna un Integer que es el que se le asignara al nuevo producto al momento de crearse
      */
-    public static Integer autoIdProduct(Integer id){
+    public static Integer autoIdProduct(){
         PreparedStatement ps;
         ResultSet rs;
+        Integer id = 0;
         try (Connection connection = Connect.getConnection()){
             String sql = "select max(\"idProducto\") from public.producto";
             ps = connection.prepareStatement(sql);

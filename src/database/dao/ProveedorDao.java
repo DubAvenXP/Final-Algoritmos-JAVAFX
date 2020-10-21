@@ -21,7 +21,7 @@ public class ProveedorDao {
      */
     public static void createProviderDB(Proveedor proveedor) {
         PreparedStatement ps;
-        idProveedor = autoIdProvide(proveedor.getIdProveedor());
+        idProveedor = autoIdProvide();
         try (Connection connection = Connect.getConnection()){
             String sql = "INSERT INTO public.proveedor(\"idProveedor\", nombre, descripcion)" +
                     "VALUES (?, ?, ?)";
@@ -142,19 +142,17 @@ public class ProveedorDao {
 
     /**
      * Metodo para hace el id del proveedor auto-incrementable al momento de crear un nuevo proveedor
-     * @param id id perteneciente al proveedor
      * @return retorna un Integer que es el que se le asignara al nuevo Proveedor al momento de crearse
      */
-    public static Integer autoIdProvide(Integer id){
+    public static Integer autoIdProvide(){
         PreparedStatement ps;
         ResultSet rs;
+        Integer id = 0;
         try (Connection connection = Connect.getConnection()){
             String sql = "select max(\"idProveedor\") from public.proveedor";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
-            while (rs.next()){
-                id = rs.getInt(1) + 1;
-            }
+            while (rs.next()) id = rs.getInt(1) + 1;
         } catch (SQLException e) {
             System.out.println(e);
         }

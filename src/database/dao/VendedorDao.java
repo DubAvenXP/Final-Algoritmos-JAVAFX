@@ -26,7 +26,7 @@ public class VendedorDao {
      */
     public static void createSellerDB(Vendedor vendedor) {
         PreparedStatement ps = null;
-        idSeller = autoIdSeller(vendedor.getIdVendedor());
+        idSeller = autoIdSeller();
         try (Connection connection = Connect.getConnection()) {
             String sql = "INSERT INTO public.vendedor(\"idVendedor\", nombre, apellido, dpi, direccion, telefono)\n" +
                     "\tVALUES (?, ?, ?, ?, ?, ?)";
@@ -154,12 +154,12 @@ public class VendedorDao {
 
     /**
      * Metodo para hace el id del vendedor auto-incrementable al momento de crear un nuevo vendedor
-     * @param id id perteneciente al vendedor
      * @return retorna un Integer que es el que se le asignara al nuevo Vendedor al momento de crearse
      */
-    public static Integer autoIdSeller(Integer id){
+    public static Integer autoIdSeller(){
         PreparedStatement ps;
         ResultSet rs;
+        Integer id = 0;
         try (Connection connection = Connect.getConnection()){
             String sql = "select max(\"idVendedor\") from public.vendedor";
             ps = connection.prepareStatement(sql);

@@ -14,9 +14,14 @@ import java.util.List;
 public class ClienteDao {
     public static Integer idClient;
 
+    /**
+     * Metodo para crear un cliente en la base de datos
+     * @param cliente objeto de tipo Cliente que recibe como parametro para insertar los datos del cliente en la
+     *                base de datos
+     */
     public static void createClientDB(Cliente cliente) {
         PreparedStatement ps;
-        idClient = autoIdClient(cliente.getIdCliente());
+        idClient = autoIdClient();
 
         try (Connection connection = Connect.getConnection()) {
             try {
@@ -41,6 +46,10 @@ public class ClienteDao {
         Connect.closeConnection();
     }
 
+    /**
+     * Metodo para ver todos la informacion de todos los clientes existentes en la base de datos
+     * @return retorna un List con todos los clientes existentes en la base de datos
+     */
     public static List<Cliente> viewClientDB() {
         PreparedStatement ps;
         ResultSet rs;
@@ -67,6 +76,11 @@ public class ClienteDao {
         return clienteArrayList;
     }
 
+    /**
+     * Metodo para traer la informacion de un unico cliente
+     * @param nit perteneciente al cliente del cual se quiere treaer la informacion
+     * @return retorna un String con la informacion del cliente
+     */
     public static String viewClientByNit(String nit) {
         PreparedStatement ps;
         ResultSet rs;
@@ -88,6 +102,10 @@ public class ClienteDao {
         return clientName;
     }
 
+    /**
+     * Metodo para eliminar un cliente en la base de datos
+     * @param nit perteneciente al cliente que se quiera eliminar
+     */
     public static void deleteClientDB(String nit) {
         Connect connect = new Connect();
         PreparedStatement ps;
@@ -104,6 +122,11 @@ public class ClienteDao {
         connect.closeConnection();
     }
 
+    /**
+     * Metodo para actualizar la informacion de un cliente en la base de datos
+     * @param cliente objeto de tipo Cliente que recibe como parametro para insertar los nuevos datos del cliente en la
+     *                base de datos
+     */
     public static void updateClientDB(Cliente cliente) {
         Connect connect = new Connect();
 
@@ -131,9 +154,14 @@ public class ClienteDao {
         connect.closeConnection();
     }
 
-    public static Integer autoIdClient(Integer id) {
+    /**
+     * Metodo que genera un id para un cliente cada vez que se crea un cliente
+     * @return retorna un Integer con el id correspondiente al cliente nuevo
+     */
+    public static Integer autoIdClient() {
         PreparedStatement ps;
         ResultSet rs;
+        Integer id = 0;
         try (Connection connection = Connect.getConnection()) {
             String sql = "select max(\"idCliente\") from public.cliente";
             ps = connection.prepareStatement(sql);
