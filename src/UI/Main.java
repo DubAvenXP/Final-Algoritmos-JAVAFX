@@ -1,5 +1,6 @@
 package UI;
 
+import database.dao.VentaDao;
 import database.service.ClienteService;
 import database.service.ProductoService;
 import database.service.VentaService;
@@ -23,9 +24,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        //Menu.showMenu();
-        //database.Connect.getConnection();
-        //database.Connect.closeConnection();
-        //VentaService.productAvailable();
     }
 }

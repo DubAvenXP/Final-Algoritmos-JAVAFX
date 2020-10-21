@@ -7,7 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//Esta clase es la que nos permite hacer las comunicaciones con la db
+/**
+ * @author glasd
+ * Esta clase es la encargada de hacer los CRUD de la tabla cliente en la base de datos
+ */
 public class ClienteDao {
     public static Integer idClient;
 
@@ -64,31 +67,25 @@ public class ClienteDao {
         return clienteArrayList;
     }
 
-    public static Cliente viewClientByNit(String nit) {
-        Cliente client = new Cliente();
+    public static String viewClientByNit(String nit) {
         PreparedStatement ps;
         ResultSet rs;
-
+        String clientName = new String();
         try (Connection connection = Connect.getConnection()) {
-            String sql = "SELECT \"idCliente\", nit, nombre, apellido, direccion, telefono\n" +
-                    "\tFROM public.cliente where nit = ?";
+            String sql = "SELECT nombre, apellido FROM public.cliente WHERE nit = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(1, nit);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                client.setIdCliente(rs.getInt(1));
-                client.setNit(rs.getString(2));
-                client.setNombre(rs.getString(3));
-                client.setApellido(rs.getString(4));
-                client.setDireccion(rs.getString(5));
-                client.setTelefono(rs.getString(6));
+                clientName = rs.getString(1) + " " + rs.getString(2);
             }
         } catch (SQLException e) {
             System.out.println("No se pudo traer el cliente\n" + e);
         }
+        System.out.println(clientName);
         Connect.closeConnection();
-        return client;
+        return clientName;
     }
 
     public static void deleteClientDB(String nit) {

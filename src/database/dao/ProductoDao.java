@@ -10,9 +10,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author glasd
+ * Esta clase es la encargada de hacer los CRUD de la tabla producto en la base de datos
+ */
 public class ProductoDao {
     public static Integer idProducto;
 
+    /**
+     * Metodo para crear un producto en la base de datos
+     * @param producto objeto de tipo Producto que recibe como parametro para insertar los datos pertenecientes
+     *                 al producto en la base de datos
+     */
     public static void createProductDB(Producto producto){
         idProducto = autoIdProduct(producto.getIdProducto());
         PreparedStatement ps;
@@ -35,6 +44,10 @@ public class ProductoDao {
         Connect.closeConnection();
     }
 
+    /**
+     * Metodo para ver todos los producto creados en la base de datos
+     * @return retorna un List de Productos que existen en la base de datos con todos sus datos
+     */
     public static List<Producto> listProductDB(){
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -65,6 +78,11 @@ public class ProductoDao {
         return productos;
     }
 
+    /**
+     * Metodo para ver un unico producto la busqueda se hace por medio del id del producto en la base de datos
+     * @param idProducto id perteneciente al producto que se quiere ver
+     * @return retorna un Objeto de tipo Producto
+     */
     public static Producto listProductDBByID(int idProducto){
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -94,6 +112,10 @@ public class ProductoDao {
         return producto;
     }
 
+    /**
+     * Metodo oara eliminar un producto en la base de datos por medio de su id
+     * @param idProducto id perteneciente al producto que se quiera eliminar
+     */
     public static void deleteProductDB(int idProducto){
         PreparedStatement ps = null;
 
@@ -109,6 +131,11 @@ public class ProductoDao {
         Connect.closeConnection();
     }
 
+    /**
+     * Metodo para actualizar un producto en la base de datos
+     * @param producto objeto de tipo Producto que recibe como parametro para insertar los nuevos datos en la
+     *                 base de datos
+     */
     public static void updateProductDB(Producto producto){
         PreparedStatement ps;
 
@@ -131,6 +158,11 @@ public class ProductoDao {
 
     }
 
+    /**
+     * Metodo para hace el id del producto auto-incrementable al momento de crear un nuevo producto
+     * @param id id perteneciente al producto
+     * @return retorna un Integer que es el que se le asignara al nuevo producto al momento de crearse
+     */
     public static Integer autoIdProduct(Integer id){
         PreparedStatement ps;
         ResultSet rs;

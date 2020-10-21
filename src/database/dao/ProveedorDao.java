@@ -7,9 +7,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author glasd
+ * Esta clase es la encargada de hacer los CRUD de la tabla proveedor en la base de datos
+ */
 public class ProveedorDao {
     public static Integer idProveedor;
 
+    /**
+     * Metodo para crear un nuevo vendedor en la base de datos
+     * @param proveedor objeto de tipo Proveedor que recibe como parametro para insertar los datos pertenecientes
+     *                al proveedor en la base de datos
+     */
     public static void createProviderDB(Proveedor proveedor) {
         PreparedStatement ps;
         idProveedor = autoIdProvide(proveedor.getIdProveedor());
@@ -28,6 +37,10 @@ public class ProveedorDao {
         Connect.closeConnection();
     }
 
+    /**
+     *Metodo para ver todos los proveedores existentes en la base de datos
+     * @return retorna un List de Proveedor con los datos extraidos de la base de datos
+     */
     public static List<Proveedor> viewProviderDB() {
         PreparedStatement ps;
         ResultSet rs;
@@ -52,6 +65,11 @@ public class ProveedorDao {
         return proveedorList;
     }
 
+    /**
+     * Metodo para ver un unico proveedor
+     * @param idProveedor perteneciente al proveedor que se quiere ver
+     * @return devuelce un objeto de tipo Proveedor
+     */
     public static Proveedor viewProviderByID(int idProveedor) {
         Proveedor proveedor = new Proveedor();
         PreparedStatement ps;
@@ -75,6 +93,10 @@ public class ProveedorDao {
         return proveedor;
     }
 
+    /**
+     * Metodo para eliminar un proveedor en la base de datos
+     * @param idProveedor perteneciente al proveedor que se quiera eliminar
+     */
     public static void deleteProvider(int idProveedor)  {
         PreparedStatement ps;
         ResultSet rs;
@@ -92,6 +114,11 @@ public class ProveedorDao {
         Connect.closeConnection();
     }
 
+    /**
+     * Metodo para actualizar un provedor
+     * @param proveedor objeto de tipo Proveedor que recibe como parametro para insertar los nuevos datos en la
+     *                 base de datos
+     */
     public static void updateProviderDB(Proveedor proveedor) {
         PreparedStatement ps;
 
@@ -108,11 +135,16 @@ public class ProveedorDao {
                 System.out.println(e + "\nEl proveedor no se pudo acrualizar");
             }
         } catch (SQLException e) {
-            System.out.println(e + "\nEl cliente no se pudo actualizar");
+            System.out.println(e + "\nEl provedor no se pudo actualizar");
         }
         Connect.closeConnection();
     }
 
+    /**
+     * Metodo para hace el id del proveedor auto-incrementable al momento de crear un nuevo proveedor
+     * @param id id perteneciente al proveedor
+     * @return retorna un Integer que es el que se le asignara al nuevo Proveedor al momento de crearse
+     */
     public static Integer autoIdProvide(Integer id){
         PreparedStatement ps;
         ResultSet rs;

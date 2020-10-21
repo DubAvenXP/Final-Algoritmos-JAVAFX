@@ -1,5 +1,9 @@
 package database.models;
 
+/**
+ * @author glasd
+ * Esta clase es el mapeado de la tabla proveedor
+ */
 public class Proveedor {
 
     private Integer idProveedor;

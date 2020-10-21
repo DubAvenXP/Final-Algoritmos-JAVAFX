@@ -1,21 +1,24 @@
 package database.dao;
 
 import database.Connect;
-import database.models.Cliente;
 import database.models.Producto;
-import database.models.Vendedor;
 import database.models.Venta;
 
 import java.sql.*;
-import java.util.List;
 
-import static database.dao.ClienteDao.idClient;
-import static database.dao.VendedorDao.idSeller;
-
+/**
+ * @author glasd
+ * Esta clase es la encargada de hacer los CRUD de la tabla venta en la base de datos
+ */
 public class VentaDao {
 
     public static Integer idSale;
 
+    /**
+     * Metodo encargado de generar la venta
+     * @param venta es el objeto de tipo Venta que recibe como parametro para generar una nueva venta e insertarla
+     *              en la tabla venta de la base de datos
+     */
     public static void createSale(Venta venta){
         idSale = autoIdSale(venta.getIdVenta());
         PreparedStatement ps;
@@ -36,10 +39,11 @@ public class VentaDao {
         }
     }
 
-//    public static List<Venta> viewSaleDB(){
-//
-//    }
-
+    /**
+     * Metodo que hace auto-incrementable el id al generar una nueva venta en la base de datos
+     * @param id es el parametro que recibe para hacer el query a la base de datos para traer el precio del productoperteneciente al id
+     * @return devuelve un Integer que es el que se le asigna al id de la tabla al generarse una nueva venta
+     */
     public static Integer autoIdSale(Integer id){
         PreparedStatement ps;
         ResultSet rs;
@@ -56,62 +60,77 @@ public class VentaDao {
         return id;
     }
 
-    public static Double totalSaleDB(Integer id, Integer quantity){
-        Double total = 0.0;
+    /**
+     * Metodo para precio asignado de la tabla producto en la base de datos
+     * @param id es el parametro que recibe para hacer el query a la base de datos para traer el precio del producto\
+     *           perteneciente al id
+     * @return devuelve un Double con el precio que esta asignado al producto al que pertenece el id que se pasa como
+     * parametro
+     */
+    public static Double viewPriceProduct(Integer id){
+        Double price = 0.0;
         try(Connection connection = Connect.getConnection()){
             PreparedStatement ps;
-            PreparedStatement ps1;
-            PreparedStatement ps2;
-            ResultSet rs;
-            ResultSet rs1;
+            ResultSet rs = null;
             String priceDB = "SELECT precio FROM public.producto WHERE \"idProducto\" = ?";
             ps = connection.prepareStatement(priceDB);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Venta venta = new Venta();
-                System.out.println("El precio unitario es: " + rs.getInt(1));
-                total = rs.getDouble(1) * quantity;
-                venta.setMonto(total);
-                System.out.println("El total es: " + total);
+            while (rs.next()){
+                price = rs.getDouble(1);
             }
-
         } catch (SQLException e) {
-            System.out.println("No se pudo realizar la suma" + e);
+            System.out.println("No se pudo traer el precio del producto" + e);
         }
         Connect.closeConnection();
-        return total;
+        return price;
     }
 
-    public static Integer productAvailableDB(Integer id, Integer quantity){
-        Integer restante = 0;
-        try (Connection connection = Connect.getConnection()){
+    /**
+     * Metodo para traer el stock disponible de la tabla producto en la base de datos
+     * @param id es el parametro que recibe para hacer el query a la base de datos para traer el precio del producto
+     *           perteneciente al id
+     * @return devuelve un Integer con el stock disponible en la base de datos
+     */
+    public static Integer availableProductDB(Integer id){
+        Integer stock = 0;
+        try(Connection connection = Connect.getConnection()){
             PreparedStatement ps;
-            ResultSet rs;
-            String stockDB = "SELECT stock FROM public.producto WHERE \"idProducto\" = ?";
-            ps = connection.prepareStatement(stockDB);
+            ResultSet rs = null;
+            String stockAvailable = "SELECT stock FROM public.producto WHERE \"idProducto\" = ?";
+            ps = connection.prepareStatement(stockAvailable);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-
-            Producto producto = new Producto();
             while (rs.next()){
-                System.out.println("La cantidad de productos disponibles es: " + rs.getInt(1));
-                restante = rs.getInt(1) - quantity;
-                producto.setStock(restante);
-                System.out.println("La cantidad de productos restantes es: " + producto.getStock());
+                stock = rs.getInt(1);
             }
-
-            String update = "UPDATE public.producto SET stock=? WHERE \"idProducto\" = ?";
-            ps = connection.prepareStatement(update);
-            ps.setInt(1, producto.getStock());
-            ps.setInt(2, id);
-            ps.executeUpdate();
-            System.out.println("Stock actualizado");
         } catch (SQLException e) {
-            System.out.println("No se pudo actualizar el stock" + e);
+            System.out.println("El stock no se pudo traer." + e);
         }
-        return restante;
+        Connect.closeConnection();
+        return stock;
+    }
+
+    /**
+     * Metodo para actualizar el stock en la base de datos
+     * @param stock es el parametro que se le pasa al query para actualizar el stock en la base de datos,
+     *              tiene que ser de tipo Integer
+     * @param id es el parametro que recibe para hacer el query a la base de datos para traer el precio del producto
+     *           perteneciente al id
+     */
+    public static void updateStockDB(Integer stock, Integer id){
+        try (Connection connection = Connect.getConnection()){
+            PreparedStatement ps;
+            String updateStock = "UPDATE public.producto SET stock=? WHERE \"idProducto\" = ?";
+            ps = connection.prepareStatement(updateStock);
+            ps.setInt(1, stock);
+            ps.setInt(2,id);
+            ps.executeUpdate();
+            System.out.println("Stock actualizdo");
+        } catch (SQLException e) {
+            System.out.println("El stock no se actualizo\n" + e);
+        }
+        Connect.closeConnection();
     }
 
 }

@@ -11,10 +11,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author glasd
+ * Esta clase es la encargada de hacer los CRUD de la tabla vendedor en la base de datos
+ */
 public class VendedorDao {
 
     public static Integer idSeller;
 
+    /**
+     * Metodo para crear un nuevo vendedor en la base de datos
+     * @param vendedor objeto de tipo Producto que recibe como parametro para insertar los datos pertenecientes
+     *                al producto en la base de datos
+     */
     public static void createSellerDB(Vendedor vendedor) {
         PreparedStatement ps = null;
         idSeller = autoIdSeller(vendedor.getIdVendedor());
@@ -37,6 +46,10 @@ public class VendedorDao {
 
     }
 
+    /**
+     *Metodo para ver todos los vendedores existentes en la base de datos
+     * @return retorna un List de Vendedores con los datos extraidos de la base de datos
+     */
     public static List viewSellerDB() {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -64,17 +77,21 @@ public class VendedorDao {
         return vendedores ;
     }
 
-    public static List viewSellerByID(String dpi) {
+    /**
+     * Metodo para ver un unico vendedor
+     * @param id perteneciente al vendedor que se quiere ver
+     * @return devuelce un objeto de tipo Vendedor
+     */
+    public static Vendedor viewSellerByID(Integer id) {
         PreparedStatement ps;
         ResultSet rs = null;
-        List<Vendedor> vendedores = new ArrayList<>();
         Vendedor vendedor = new Vendedor();
 
         try (Connection connection = Connect.getConnection()) {
             String sql = "SELECT \"idVendedor\", nombre, apellido, dpi, direccion, telefono\n" +
-                    "\tFROM public.vendedor where dpi=?;";
+                    "\tFROM public.vendedor where \"idVendedor\"=?;";
             ps = connection.prepareStatement(sql);
-            ps.setString(1, dpi);
+            ps.setInt(1, id);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -84,21 +101,24 @@ public class VendedorDao {
                 vendedor.setDpi(rs.getString(4));
                 vendedor.setDireccion(rs.getString(5));
                 vendedor.setTelefono(rs.getString(6));
-                vendedores.add(vendedor);
             }
         } catch (SQLException e) {
             System.out.println("No se pudo traer al vendedor\n" + e);
         }
         Connect.closeConnection();
-        return vendedores;
+        return vendedor;
     }
 
-    public static void deleteSellerDB(String dpi) {
+    /**
+     * Metodo para eliminar un vendedor en la base de datos
+     * @param id perteneciente al vendedor que se quiera eliminar
+     */
+    public static void deleteSellerDB(Integer id) {
         PreparedStatement ps;
         try (Connection connection = Connect.getConnection()) {
-            String sql = "delete from \"vendedor\" where dpi = ?";
+            String sql = "delete from \"vendedor\" where \"idVendedor\" = ?";
             ps = connection.prepareStatement(sql);
-            ps.setString(1, dpi);
+            ps.setInt(1, id);
             ps.executeUpdate();
             System.out.println("Vendedor eliminado");
         } catch (SQLException e) {
@@ -107,6 +127,11 @@ public class VendedorDao {
         Connect.closeConnection();
     }
 
+    /**
+     * Metodo para actualizar un cliente
+     * @param vendedor objeto de tipo Vendedor que recibe como parametro para insertar los nuevos datos en la
+     *                 base de datos
+     */
     public static void updateSeller(Vendedor vendedor) {
         PreparedStatement ps;
         try (Connection connection = Connect.getConnection()) {
@@ -127,6 +152,11 @@ public class VendedorDao {
         Connect.closeConnection();
     }
 
+    /**
+     * Metodo para hace el id del vendedor auto-incrementable al momento de crear un nuevo vendedor
+     * @param id id perteneciente al vendedor
+     * @return retorna un Integer que es el que se le asignara al nuevo Vendedor al momento de crearse
+     */
     public static Integer autoIdSeller(Integer id){
         PreparedStatement ps;
         ResultSet rs;

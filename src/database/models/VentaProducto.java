@@ -1,5 +1,9 @@
 package database.models;
 
+/**
+ * @author glasd
+ * Esta clase es el mapeado de la tabla ventaProducto
+ */
 public class VentaProducto {
 
     private Integer idVenta;

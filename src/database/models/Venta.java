@@ -3,6 +3,10 @@ package database.models;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author glasd
+ * Esta clase es el mapeado de la tabla venta
+ */
 public class Venta {
 
     Vendedor vendedor = new Vendedor();

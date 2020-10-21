@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Esta clase es la encargada de hacer la conexion a la base de datos en PostgreSQL
+ * @author glasd
+ * Esta clase es la encargada de hacer la conexion a la base de datos en almacenada en un servidor de Heroku por medio
+ * del gestor de PostgreSQL llamado pgAdmin 4 version 2.0
  */
 public class Connect {
 
