@@ -146,8 +146,12 @@ public class FacturationController implements Initializable {
      */
     public void addProductToInvoice(MouseEvent mouseEvent) {
         ProductoFactura productoFactura = generateProductoFactura();
+        int cantidad = Integer.parseInt(quantityInput.getText());
+        Integer stock = Integer.parseInt(stockInput.getText()) - cantidad;
+        database.service.VentaService.updateStock(stock, productoFactura.getId());
         listadoProductosFactura.add(productoFactura);
         facturationTable.refresh();
+        emptyFields();
     }
 
 
@@ -162,6 +166,8 @@ public class FacturationController implements Initializable {
     public void generateInvoice(MouseEvent mouseEvent) {
 
     }
+
+
 
     public ProductoFactura generateProductoFactura() {
         ProductoFactura productoFactura = new ProductoFactura();
