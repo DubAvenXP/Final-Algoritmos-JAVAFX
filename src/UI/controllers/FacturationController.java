@@ -49,7 +49,7 @@ public class FacturationController implements Initializable {
     private TextField stockInput;
 
     @FXML
-    private TextField sellerId;
+    private TextField sellerUser;
 
     @FXML
     private TableView<ProductoFactura> facturationTable;
@@ -95,7 +95,6 @@ public class FacturationController implements Initializable {
 
     Double totalToPay;
 
-
     ObservableList<ProductoFactura> listadoProductosFactura = FXCollections.observableArrayList();
 
     @Override
@@ -109,11 +108,11 @@ public class FacturationController implements Initializable {
         facturationTable.setItems(listadoProductosFactura);
     }
 
-    public void rowSelected(MouseEvent mouseEvent) {
-
+    public ProductoFactura rowSelected() {
+        return facturationTable.getSelectionModel().getSelectedItem();
     }
 
-    public void searchClientOnClic(MouseEvent mouseEvent) {
+    public void searchClientClicked(MouseEvent mouseEvent) {
         String clientNit = nitClientInput.getText();
         String clientName = database.service.ClienteService.listClientNit(clientNit);
 
@@ -128,7 +127,7 @@ public class FacturationController implements Initializable {
         }
     }
 
-    public void searchProductOnClic(MouseEvent mouseEvent) {
+    public void searchProductClicked(MouseEvent mouseEvent) {
         Integer productId = Integer.parseInt(idProductInput.getText());
         Producto producto = database.service.ProductoService.listProductByID(productId);
         if (producto.getNombre() == null) {
@@ -146,6 +145,11 @@ public class FacturationController implements Initializable {
 
     }
 
+    public void onDeleteButtonClicked(MouseEvent mouseEvent){
+        ProductoFactura productoFactura = rowSelected();
+        deleteProduct(productoFactura);
+    }
+
     public void addProductToInvoice(MouseEvent mouseEvent) {
         ProductoFactura productoFactura = generateProductoFactura();
         int cantidad = Integer.parseInt(quantityInput.getText());
@@ -157,24 +161,47 @@ public class FacturationController implements Initializable {
         calculateTotalToPay();
     }
 
-
-    public void deleteProduct(MouseEvent mouseEvent) {
-
+    public void deleteProduct(ProductoFactura productoFactura) {
+        int idProduct = productoFactura.getId();
+        Integer stock = database.service.VentaService.availableProduct(idProduct);
+        int newStock = productoFactura.getCantidad() + stock;
+        database.service.VentaService.updateStock(newStock, idProduct);
+        listadoProductosFactura.remove(productoFactura);
+        facturationTable.refresh();
     }
 
     public void cancelInvoice(MouseEvent mouseEvent) {
-
+        for (ProductoFactura productoFactura : listadoProductosFactura) {
+            deleteProduct(productoFactura);
+        }
     }
 
     public void generateInvoice(MouseEvent mouseEvent) {
-        List<VentaProducto> ventaProductos = generateVentaProductoObjects();
-        for (VentaProducto ventaProducto : ventaProductos) {
-            database.service.VentaProductoService.saveBill(ventaProducto);
+        try {
+            List<VentaProducto> ventaProductos = generateVentaProductoObjects();
+            for (VentaProducto ventaProducto : ventaProductos) {
+                database.service.VentaProductoService.saveBill(ventaProducto);
+            }
+            try {
+                Venta venta = generateVenta();
+                database.service.VentaService.createSale(venta);
+            } catch (NumberFormatException exception){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Error");
+                alert.setContentText(exception + " Factura no generada" +
+                        "database.service.VentaService.createSale(venta)");
+                alert.showAndWait();
+            }
+        } catch (NumberFormatException exception){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText(exception + " Factura no generada" +
+                    "database.service.VentaProductoService.saveBill(ventaProducto)");
+            alert.showAndWait();
         }
-
-
     }
-
 
     public ProductoFactura generateProductoFactura() {
         ProductoFactura productoFactura = new ProductoFactura();
@@ -223,7 +250,10 @@ public class FacturationController implements Initializable {
 
     public Venta generateVenta() {
         Venta venta = new Venta();
-        venta.setIdVenta(0);
+        venta.setNitCliente(nitClientInput.getText());
+        venta.setUserVendedor(sellerUser.getText());
+        venta.setMonto(totalToPay);
+        venta.setMetodoPago(payMethod.getText());
         return venta;
     }
 }
