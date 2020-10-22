@@ -10,8 +10,8 @@ import java.util.Date;
 public class Venta {
 
     private Integer idVenta;
-    private String nombreCliente;
-    private String nombreVendedor;
+    private String nitCliente;
+    private String userVendedor;
     private String serieVenta;
     private String fechaVenta;
     private Double monto;
@@ -20,11 +20,11 @@ public class Venta {
     public Venta() {
     }
 
-    public Venta(Integer idVenta, String nombreCliente, String nombreVendedor, String serieVenta, String fechaVenta,
+    public Venta(Integer idVenta, String nitCliente, String userVendedor, String serieVenta, String fechaVenta,
                  Double monto, String metodoPago) {
         this.idVenta = idVenta;
-        this.nombreCliente = nombreCliente;
-        this.nombreVendedor = nombreVendedor;
+        this.nitCliente = nitCliente;
+        this.userVendedor = userVendedor;
         this.serieVenta = serieVenta;
         this.fechaVenta = fechaVenta;
         this.monto = monto;
@@ -39,20 +39,20 @@ public class Venta {
         this.idVenta = idVenta;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public String getNitCliente() {
+        return nitCliente;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
+    public void setNitCliente(String nitCliente) {
+        this.nitCliente = nitCliente;
     }
 
-    public String getNombreVendedor() {
-        return nombreVendedor;
+    public String getUserVendedor() {
+        return userVendedor;
     }
 
-    public void setNombreVendedor(String nombreVendedor) {
-        this.nombreVendedor = nombreVendedor;
+    public void setUserVendedor(String userVendedor) {
+        this.userVendedor = userVendedor;
     }
 
     public String getSerieVenta() {
