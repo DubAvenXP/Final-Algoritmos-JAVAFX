@@ -1,6 +1,7 @@
 package UI.controllers;
 
 import UI.models.ProductoFactura;
+import database.dao.VentaDao;
 import database.models.Producto;
 import database.models.Venta;
 import database.models.VentaProducto;
@@ -189,6 +190,7 @@ public class FacturationController implements Initializable {
             }
             try {
                 Venta venta = generateVenta();
+                venta.setSerieVenta(VentaDao.generateBillNumber());
                 database.service.VentaService.createSale(venta);
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);

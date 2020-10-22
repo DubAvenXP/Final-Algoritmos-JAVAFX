@@ -30,9 +30,9 @@ public class VentaDao {
                     "monto, \"metodoPago\", \"fechaVenta\") VALUES (?, ?, ?, ?, ?, ?, ?)";
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idSale);
-            ps.setString(2, venta.getNitCliente());
-            ps.setString(3, venta.getUserVendedor());
-            ps.setString(4, generateBillNumber());
+            ps.setString(2, venta.getUserVendedor());
+            ps.setString(3, venta.getNitCliente());
+            ps.setString(4, venta.getSerieVenta());
             ps.setDouble(5, venta.getMonto());
             ps.setString(6, venta.getMetodoPago());
             ps.setString(7, venta.generateDate());
@@ -191,7 +191,7 @@ public class VentaDao {
         } catch (SQLException e) {
             System.out.println("No se pudo generar el numero de serie");
         }
-        System.out.println(billNumber);
+        Connect.closeConnection();
         return billNumber;
     }
 

@@ -1,12 +1,12 @@
 package database.service;
 
-import database.models.Venta;
+import database.dao.SaldoPendienteDao;
+import database.models.SaldoPendiente;
 
 public class SaldoPendienteService {
 
-    Venta venta = new Venta();
-    private Integer idSaldoPendiente;
-    private Integer idClinte;
-    private String serialSale = venta.getSerieVenta();
+    public static void createDobter(SaldoPendiente saldoPendiente){
+        SaldoPendienteDao.createDebtorDB(saldoPendiente);
+    }
 
 }

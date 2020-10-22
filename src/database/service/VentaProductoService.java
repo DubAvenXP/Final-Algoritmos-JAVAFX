@@ -3,6 +3,8 @@ package database.service;
 import database.dao.VentaProductoDao;
 import database.models.VentaProducto;
 
+import java.util.List;
+
 /**
  * @author glasd
  * Esta clase es la capa que comunica la capa Dao y los modelos de ventaProducto con la intefaz de usuario

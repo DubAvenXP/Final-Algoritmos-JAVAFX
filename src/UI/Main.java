@@ -2,6 +2,7 @@ package UI;
 
 import database.dao.VentaDao;
 import database.models.Proveedor;
+import database.models.SaldoPendiente;
 import database.models.Venta;
 import database.models.VentaProducto;
 import database.service.*;

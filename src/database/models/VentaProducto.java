@@ -6,8 +6,9 @@ package database.models;
  */
 public class VentaProducto {
 
+    Venta vent = new Venta();
     private Integer idVentaProducto;
-    private String serieVenta;
+    private String serieVenta = vent.getSerieVenta();
     private Integer idProducto;
     private Integer cantidad;
     private Double precioVenta;

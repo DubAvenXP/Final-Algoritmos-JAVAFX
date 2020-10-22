@@ -96,7 +96,6 @@ public class ClienteDao {
         } catch (SQLException e) {
             System.out.println("No se pudo traer el cliente o este no existe\n" + e);
         }
-        System.out.println(clientName);
         Connect.closeConnection();
 
         return clientName;
