@@ -60,14 +60,6 @@ public class ClientController implements Initializable {
     @FXML
     private Button createButton;
 
-//    ObservableList<Cliente> observableClientList = FXCollections.observableArrayList(
-//            new Cliente(1, "1254895-5", "pepe", "perez", "ciudad", "2154-8540"),
-//            new Cliente(2, "1254895-0", "pedro", "pelaez", "ciudad", "2154-8247"),
-//            new Cliente(3, "1254895-2", "juan", "najera", "ciudad", "2154-1547"),
-//            new Cliente(4, "1254895-3", "alex", "garcia", "ciudad", "2154-8537"),
-//            new Cliente(5, "1254895-6", "rita", "rockefeller", "ciudad", "2154-8547")
-//    );
-
     List<Cliente> clienteList = database.service.ClienteService.listClient();
     ObservableList<Cliente> observableClientList = FXCollections.observableArrayList();
 
@@ -168,7 +160,7 @@ public class ClientController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("Informacion");
-                alert.setContentText("Persona modificada correctamente" +
+                alert.setContentText("Cliente modificada correctamente" +
                         "\nId modificado: " + cliente.getIdCliente());
                 alert.showAndWait();
             } else {

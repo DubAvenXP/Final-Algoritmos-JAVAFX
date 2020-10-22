@@ -9,8 +9,7 @@ import java.util.List;
 
 /**
  * @author glasd
- * Esta clase es la encargada de hacer los CRUD de la tabla cliente en la base de datos
- */
+ * Esta clase es la encargada de hacer los CRUD de la tabla cliente en la base de datos*/
 public class ClienteDao {
     public static Integer idClient;
 
@@ -95,10 +94,11 @@ public class ClienteDao {
                 clientName = rs.getString(1) + " " + rs.getString(2);
             }
         } catch (SQLException e) {
-            System.out.println("No se pudo traer el cliente\n" + e);
+            System.out.println("No se pudo traer el cliente o este no existe\n" + e);
         }
         System.out.println(clientName);
         Connect.closeConnection();
+
         return clientName;
     }
 

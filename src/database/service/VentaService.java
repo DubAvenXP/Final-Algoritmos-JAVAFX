@@ -27,7 +27,7 @@ public class VentaService {
     /**
      * Metodo que comunica con la capa Dao y el modelo de la tabla Venta
      * @param id parametro que recibe para hacer el query a la base de datos
-     * @return devielve un Integer con la cantidad de productos disponibles
+     * @return devuelve un Integer con la cantidad de productos disponibles
      */
     public static Integer availableProduct(Integer id) {
         return VentaDao.availableProductDB(id);

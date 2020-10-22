@@ -32,7 +32,7 @@ public class ClienteService {
      * @param nit perteneciente al cliente que se quiere ver
      * @return retorna un String con el nombre y apellido del cliente
      */
-    public static String listClientId(String nit){
+    public static String listClientNit(String nit){
         return ClienteDao.viewClientByNit(nit);
     }
 
