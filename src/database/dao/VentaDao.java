@@ -26,7 +26,7 @@ public class VentaDao {
         idSale = autoIdSale(venta.getIdVenta());
         PreparedStatement ps;
         try (Connection connection = Connect.getConnection()) {
-            String sql = "INSERT INTO public.venta(\"idVenta\", \"nombreVendedor\", \"nombreCliente\", \"serieVenta\"," +
+            String sql = "INSERT INTO public.venta(\"idVenta\", \"nombreVendedor\", \"nitCliente\", \"serieVenta\"," +
                     "monto, \"metodoPago\", \"fechaVenta\") VALUES (?, ?, ?, ?, ?, ?, ?)";
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idSale);
@@ -182,31 +182,14 @@ public class VentaDao {
                 billNumber = rs.getString(1);
             }
             if (billNumber == null){
-                billNumber = "00001";
+                billNumber = "1";
             }else{
                 Integer max = Integer.parseInt(billNumber);
                 max++;
-                billNumber = "0000" + (String.valueOf(max));
+                billNumber = String.valueOf(max);
             }
         } catch (SQLException e) {
             System.out.println("No se pudo generar el numero de serie");
-        }
-        return billNumber;
-    }
-
-    public static String viewSerialSale(Integer id){
-        String billNumber = "";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try (Connection connection = Connect.getConnection()){
-            String sql = "SELECT \"serieVenta\" FROM public.venta WHERE \"idVenta\" = ?";
-            ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            rs = ps.executeQuery();
-            while (rs.next())
-                billNumber = rs.getString(1);
-        } catch (SQLException e) {
-            System.out.println("No se puedo traer el numero de serie" + e);
         }
         System.out.println(billNumber);
         return billNumber;
