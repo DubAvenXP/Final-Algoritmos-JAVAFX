@@ -118,6 +118,8 @@ public class FacturationController implements Initializable {
 
         if (clientName.length() > 0) {
             nameClientInput.setText(clientName);
+            payMethod.setText("Efectivo");
+            sellerUser.setText("admin");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -167,13 +169,16 @@ public class FacturationController implements Initializable {
         int newStock = productoFactura.getCantidad() + stock;
         database.service.VentaService.updateStock(newStock, idProduct);
         listadoProductosFactura.remove(productoFactura);
-        facturationTable.refresh();
     }
 
     public void cancelInvoice(MouseEvent mouseEvent) {
-        for (ProductoFactura productoFactura : listadoProductosFactura) {
-            deleteProduct(productoFactura);
-        }
+//        for (ProductoFactura productoFactura : listadoProductosFactura) {
+//            int idProduct = productoFactura.getId();
+//            Integer stock = database.service.VentaService.availableProduct(idProduct);
+//            int newStock = productoFactura.getCantidad() + stock;
+//            database.service.VentaService.updateStock(newStock, idProduct);
+//            facturationTable.refresh();
+//        }
     }
 
     public void generateInvoice(MouseEvent mouseEvent) {
@@ -185,6 +190,11 @@ public class FacturationController implements Initializable {
             try {
                 Venta venta = generateVenta();
                 database.service.VentaService.createSale(venta);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Error");
+                alert.setContentText("Venta generada con exito");
+                alert.showAndWait();
             } catch (NumberFormatException exception){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
