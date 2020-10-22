@@ -2,6 +2,8 @@ package UI.controllers;
 
 import UI.models.ProductoFactura;
 import database.models.Producto;
+import database.models.Venta;
+import database.models.VentaProducto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,11 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class FacturationController implements Initializable {
     @FXML
-    private TextField idFacturationInput;
+    private TextField payMethod;
 
     @FXML
     private TextField nitClientInput;
@@ -89,6 +93,8 @@ public class FacturationController implements Initializable {
     @FXML
     private TextField totalToPayInput;
 
+    Double totalToPay;
+
 
     ObservableList<ProductoFactura> listadoProductosFactura = FXCollections.observableArrayList();
 
@@ -140,10 +146,6 @@ public class FacturationController implements Initializable {
 
     }
 
-    /*Douglas el modelo de factura es el que ira en la tabla (mira la tabla de la UI)
-    el modelo lleva indice, ID, nombreProducto, cantidad, precio... total
-    cada linea es un objeto
-     */
     public void addProductToInvoice(MouseEvent mouseEvent) {
         ProductoFactura productoFactura = generateProductoFactura();
         int cantidad = Integer.parseInt(quantityInput.getText());
@@ -152,6 +154,7 @@ public class FacturationController implements Initializable {
         listadoProductosFactura.add(productoFactura);
         facturationTable.refresh();
         emptyFields();
+        calculateTotalToPay();
     }
 
 
@@ -164,9 +167,13 @@ public class FacturationController implements Initializable {
     }
 
     public void generateInvoice(MouseEvent mouseEvent) {
+        List<VentaProducto> ventaProductos = generateVentaProductoObjects();
+        for (VentaProducto ventaProducto : ventaProductos) {
+            database.service.VentaProductoService.saveBill(ventaProducto);
+        }
+
 
     }
-
 
 
     public ProductoFactura generateProductoFactura() {
@@ -185,9 +192,38 @@ public class FacturationController implements Initializable {
         return productoFactura;
     }
 
-    public void emptyFields(){
+    public void emptyFields() {
         idProductInput.setText("");
         nameProductInput.setText("");
         quantityInput.setText("");
+        priceInput.setText("");
+        stockInput.setText("");
+    }
+
+    public void calculateTotalToPay() {
+        totalToPay = 0.0;
+        for (ProductoFactura productoFactura : listadoProductosFactura) {
+            totalToPay += productoFactura.getPrecioTotal();
+        }
+        totalToPayInput.setText("Q" + Double.toString(totalToPay));
+    }
+
+    public List<VentaProducto> generateVentaProductoObjects() {
+        List<VentaProducto> ventaProductos = new ArrayList<>();
+        for (ProductoFactura productoFactura : listadoProductosFactura) {
+            VentaProducto ventaProducto = new VentaProducto();
+            ventaProducto.setIdProducto(0);
+            ventaProducto.setSerieVenta("0");
+            ventaProducto.setIdProducto(productoFactura.getId());
+            ventaProducto.setCantidad(productoFactura.getCantidad());
+            ventaProducto.setPrecioVenta(productoFactura.getPrecioTotal());
+        }
+        return ventaProductos;
+    }
+
+    public Venta generateVenta() {
+        Venta venta = new Venta();
+        venta.setIdVenta(0);
+        return venta;
     }
 }
