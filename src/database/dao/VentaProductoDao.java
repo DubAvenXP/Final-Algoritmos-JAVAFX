@@ -31,7 +31,7 @@ public class VentaProductoDao {
                     "cantidad, \"precioVenta\") VALUES (?, ?, ?, ?, ?)";
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idProductSale);
-            ps.setString(2, ventaProducto.getSerieVenta());
+            ps.setString(2, VentaDao.viewSerialSale(ventaProducto.getIdProducto()));
             ps.setInt(3, ventaProducto.getIdProducto());
             ps.setInt(4, ventaProducto.getCantidad());
             ps.setDouble(5, ventaProducto.getPrecioVenta());

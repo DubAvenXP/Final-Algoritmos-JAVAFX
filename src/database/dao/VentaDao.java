@@ -30,9 +30,9 @@ public class VentaDao {
                     "monto, \"metodoPago\", \"fechaVenta\") VALUES (?, ?, ?, ?, ?, ?, ?)";
             ps = connection.prepareStatement(sql);
             ps.setInt(1, idSale);
-            ps.setString(2, venta.getNombreVendedor());
-            ps.setString(3, venta.getNombreCliente());
-            ps.setString(4, venta.getSerieVenta());
+            ps.setString(2, venta.getNitCliente());
+            ps.setString(3, venta.getUserVendedor());
+            ps.setString(4, generateBillNumber());
             ps.setDouble(5, venta.getMonto());
             ps.setString(6, venta.getMetodoPago());
             ps.setString(7, venta.generateDate());
@@ -158,7 +158,7 @@ public class VentaDao {
             while (rs.next()) {
                 Venta venta = new Venta();
                 venta.setSerieVenta(rs.getString(1));
-                venta.setNombreCliente(rs.getString(2));
+                venta.setNitCliente(rs.getString(2));
                 venta.setMetodoPago(rs.getString(3));
                 venta.setMonto(rs.getDouble(4));
                 venta.setFechaVenta(rs.getString(5));
@@ -170,6 +170,46 @@ public class VentaDao {
         }
         Connect.closeConnection();
         return ventaList;
+    }
+
+    public static String generateBillNumber(){
+        String billNumber = "";
+        try (Connection connection = Connect.getConnection()){
+            String sql = "SELECT MAX(\"serieVenta\") FROM public.venta";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                billNumber = rs.getString(1);
+            }
+            if (billNumber == null){
+                billNumber = "00001";
+            }else{
+                Integer max = Integer.parseInt(billNumber);
+                max++;
+                billNumber = "0000" + (String.valueOf(max));
+            }
+        } catch (SQLException e) {
+            System.out.println("No se pudo generar el numero de serie");
+        }
+        return billNumber;
+    }
+
+    public static String viewSerialSale(Integer id){
+        String billNumber = "";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try (Connection connection = Connect.getConnection()){
+            String sql = "SELECT \"serieVenta\" FROM public.venta WHERE \"idVenta\" = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next())
+                billNumber = rs.getString(1);
+        } catch (SQLException e) {
+            System.out.println("No se puedo traer el numero de serie" + e);
+        }
+        System.out.println(billNumber);
+        return billNumber;
     }
 
 }
