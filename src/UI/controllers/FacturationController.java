@@ -186,7 +186,7 @@ public class FacturationController implements Initializable {
         try {
             List<VentaProducto> ventaProductos = generateVentaProductoObjects();
             for (VentaProducto ventaProducto : ventaProductos) {
-                database.service.VentaProductoService.saveBill(ventaProducto);
+//                database.service.VentaProductoService.saveBill(ventaProducto);
             }
             try {
                 Venta venta = generateVenta();
