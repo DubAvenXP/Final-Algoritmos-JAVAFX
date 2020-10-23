@@ -78,7 +78,6 @@ public class ProductController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         idInput.setDisable(true);
         newButton.setDisable(true);
-        createButton.setDisable(false);
         addProductsToObservableList();
         id.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("idProducto"));
         name.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre"));

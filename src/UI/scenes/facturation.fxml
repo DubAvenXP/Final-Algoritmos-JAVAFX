@@ -73,7 +73,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="nitClientInput" prefHeight="35.0" prefWidth="210.0">
+                              <TextField fx:id="nitClientInput" onKeyPressed="#searchClientEnter" prefHeight="35.0" prefWidth="210.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -90,7 +90,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="idProductInput" prefHeight="35.0" prefWidth="210.0">
+                              <TextField fx:id="idProductInput" onKeyPressed="#searchProducttEnter" prefHeight="35.0" prefWidth="210.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -152,7 +152,7 @@
                         </HBox>
                         <HBox prefHeight="77.5" prefWidth="310.0">
                            <children>
-                              <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#addProductToInvoice" prefHeight="35.0" prefWidth="195.0" text="Agregar">
+                              <Button fx:id="addButton" disable="true" mnemonicParsing="false" onMouseClicked="#addProductToInvoice" prefHeight="35.0" prefWidth="195.0" text="Agregar">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

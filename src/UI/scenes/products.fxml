@@ -85,7 +85,7 @@
             </VBox>
             <VBox prefHeight="166.0" prefWidth="250.0">
                <children>
-                  <Label prefHeight="18.0" prefWidth="78.0" text="Proveedor ID:" />
+                  <Label prefHeight="18.0" prefWidth="122.0" text="Proveedor ID:" />
                   <TextField fx:id="idProviderInput">
                      <font>
                         <Font size="14.0" />
@@ -94,8 +94,8 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Label prefHeight="18.0" prefWidth="62.0" text="Proveedor:" />
-                  <TextField fx:id="nameProviderInput">
+                  <Label prefHeight="18.0" prefWidth="134.0" text="Proveedor:" />
+                  <TextField fx:id="nameProviderInput" disable="true">
                      <font>
                         <Font size="14.0" />
                      </font>
