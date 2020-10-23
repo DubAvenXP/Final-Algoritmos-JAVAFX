@@ -21,21 +21,26 @@ public class VentaProductoDao {
     /**
      * Metodo para guardar los productos de una factura ne la base de datos
      *
-     * @param ventaProducto objeto de tipo VentaProducto que recibe los parametros de la factura para ser insertados
+     * @param productoList recibe un List de tipo VentaProducto donde traer los parametros del producto para ser insertados
      *                       en la base de datos
      */
-    public static void saveBillDB(VentaProducto ventaProducto) {
+    public static void saveBillDB(List<VentaProducto> productoList) {
         try (Connection connection = Connect.getConnection()) {
             PreparedStatement ps;
             idProductSale = autoIdSaleProduct();
-            String sql = "INSERT INTO public.\"ventaProducto\"(\"idVentaProducto\", \"serieVenta\", \"idProducto\", " +
-                    "cantidad, \"precioVenta\") VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO public.\"ventaProducto\"(\"idVentaProducto\", \"serieVenta\", \"idProducto\", cantidad, \"precioVenta\")" +
+                    "VALUES" + valuesProducts(productoList);
             ps = connection.prepareStatement(sql);
-                ps.setInt(1, idProductSale);
-                ps.setString(2, ventaProducto.getSerieVenta());
-                ps.setInt(3, ventaProducto.getIdProducto());
-                ps.setInt(4, ventaProducto.getCantidad());
-                ps.setDouble(5, ventaProducto.getPrecioVenta());
+            Integer index = 1;
+            for (VentaProducto v : productoList) {
+                ps.setInt(index, idProductSale);
+                ps.setString(++index, v.getSerieVenta());
+                ps.setInt(++index, v.getIdProducto());
+                ps.setInt(++index, v.getCantidad());
+                ps.setDouble(++index, v.getPrecioVenta());
+                index++;
+                idProductSale++;
+            }
                 ps.executeUpdate();
             System.out.println("Factura guardada con exito");
         } catch (SQLException e) {
@@ -93,6 +98,28 @@ public class VentaProductoDao {
         }
         Connect.closeConnection();
         return listVentaProducto;
+    }
+
+    /**
+     * Este metodo es el que evalua la cantidad de productos que trae el List de VentaProducto
+     * @param productoList recibe un List de tipo VentaProducto donde traer los parametros del producto para ser insertados
+     *                     en la base de datos
+     * @return retorna un string con la secuencia sql correcta para hacer el query en la base de datos
+     */
+    private static String valuesProducts(List<VentaProducto> productoList){
+        String productSize = "";
+        if (productoList.size() == 5){
+            productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
+        }else if (productoList.size() == 4){
+            productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
+        }else if (productoList.size() == 3){
+            productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
+        }else if (productoList.size() == 2){
+            productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
+        }else if (productoList.size() == 1){
+            productSize = "(?, ?, ?, ?, ?)";
+        }
+        return productSize;
     }
 
 }

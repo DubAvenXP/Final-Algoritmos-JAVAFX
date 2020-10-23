@@ -1,11 +1,8 @@
 package UI;
 
-import database.dao.VentaDao;
-import database.models.Proveedor;
-import database.models.SaldoPendiente;
-import database.models.Venta;
 import database.models.VentaProducto;
-import database.service.*;
+import database.service.VentaProductoService;
+import database.service.VentaService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

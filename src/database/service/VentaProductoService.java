@@ -13,11 +13,11 @@ public class VentaProductoService {
 
     /**
      * Metodo que comunica con la capa Dao y el modelo de VentaProducto con la interfaz de usuario
-     * @param ventaProducto objeto de tipo VentaProducto que envia como parametro para guardar los datos de la
-     *                      facturacion
+     * @param productoList recibe un List de tipo VentaProducto donde traer los parametros del producto para ser insertados
+     *                     en la base de datos
      */
-    public static void saveBill(VentaProducto ventaProducto){
-        VentaProductoDao.saveBillDB(ventaProducto);
+    public static void saveBill(List<VentaProducto> productoList){
+        VentaProductoDao.saveBillDB(productoList);
     }
 
 }
