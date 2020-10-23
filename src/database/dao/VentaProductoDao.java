@@ -29,7 +29,7 @@ public class VentaProductoDao {
             PreparedStatement ps;
             idProductSale = autoIdSaleProduct();
             String sql = "INSERT INTO public.\"ventaProducto\"(\"idVentaProducto\", \"serieVenta\", \"idProducto\", cantidad, \"precioVenta\")" +
-                    "VALUES (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
+                    "VALUES" + valuesProducts(productoList);
             ps = connection.prepareStatement(sql);
             Integer index = 1;
             for (VentaProducto v : productoList) {
@@ -98,6 +98,28 @@ public class VentaProductoDao {
         }
         Connect.closeConnection();
         return listVentaProducto;
+    }
+
+    /**
+     * Este metodo es el que evalua la cantidad de productos que trae el List de VentaProducto
+     * @param productoList recibe un List de tipo VentaProducto donde traer los parametros del producto para ser insertados
+     *                     en la base de datos
+     * @return retorna un string con la secuencia sql correcta para hacer el query en la base de datos
+     */
+    private static String valuesProducts(List<VentaProducto> productoList){
+        String productSize = "";
+        if (productoList.size() == 5){
+            productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
+        }else if (productoList.size() == 4){
+            productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
+        }else if (productoList.size() == 3){
+            productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
+        }else if (productoList.size() == 2){
+            productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
+        }else if (productoList.size() == 1){
+            productSize = "(?, ?, ?, ?, ?)";
+        }
+        return productSize;
     }
 
 }
