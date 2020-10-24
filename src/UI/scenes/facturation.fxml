@@ -12,16 +12,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="715.0" prefWidth="1000.0" style="-fx-background-color: #e7e7de;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.controllers.FacturationController">
+<AnchorPane prefHeight="815.0" prefWidth="1100.0" style="-fx-background-color: #e7e7de;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.controllers.FacturationController">
    <children>
-      <VBox prefHeight="715.0" prefWidth="1000.0">
+      <VBox prefHeight="818.0" prefWidth="1100.0">
          <children>
             <HBox prefHeight="129.0" prefWidth="1000.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <VBox alignment="CENTER" prefHeight="78.0" prefWidth="980.0">
+                  <VBox alignment="CENTER" prefHeight="121.0" prefWidth="1093.0">
                      <children>
                         <Label prefHeight="51.0" prefWidth="451.0" text="Aborroteria &quot;La bendicion&quot;">
                            <font>
@@ -234,19 +234,19 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="273.0" prefWidth="930.0">
+            <HBox prefHeight="273.0" prefWidth="1035.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <TableView fx:id="facturationTable" onMouseClicked="#rowSelected" prefHeight="209.0" prefWidth="863.0">
+                  <TableView fx:id="facturationTable" onMouseClicked="#rowSelected" prefHeight="246.0" prefWidth="931.0">
                     <columns>
-                      <TableColumn fx:id="index" prefWidth="57.33328837156296" text="No." />
-                      <TableColumn fx:id="id" prefWidth="76.0" text="ID" />
-                        <TableColumn fx:id="product" prefWidth="423.0" text="Producto" />
-                        <TableColumn fx:id="quantity" minWidth="0.0" prefWidth="96.79995727539062" text="cantidad" />
-                        <TableColumn fx:id="price" prefWidth="103.73333740234375" text="precio c/u" />
-                        <TableColumn fx:id="totalPrice" prefWidth="104.8000366210938" text="Total" />
+                      <TableColumn fx:id="index" prefWidth="80.66667175292969" text="No." />
+                      <TableColumn fx:id="id" prefWidth="73.33332824707031" text="ID" />
+                        <TableColumn fx:id="product" prefWidth="490.0" text="Producto" />
+                        <TableColumn fx:id="quantity" minWidth="0.0" prefWidth="92.33331298828125" text="cantidad" />
+                        <TableColumn fx:id="price" prefWidth="97.66668701171875" text="precio c/u" />
+                        <TableColumn fx:id="totalPrice" prefWidth="97.3333740234375" text="Total" />
                     </columns>
                      <HBox.margin>
                         <Insets right="10.0" />

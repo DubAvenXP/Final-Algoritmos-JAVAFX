@@ -14,12 +14,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1150.0" style="-fx-background-color: #2d6187;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.controllers.LayoutController">
+<AnchorPane prefHeight="900.0" prefWidth="1250.0" style="-fx-background-color: #2d6187;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.controllers.LayoutController">
     <BorderPane fx:id="mainPane" prefHeight="318.0" prefWidth="642.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #e7e7de;" BorderPane.alignment="CENTER">
                 <children>
-                    <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="738.0" prefWidth="1135.0">
+                    <HBox layoutX="-12.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="840.0" prefWidth="1249.0">
                         <children>
                             <VBox alignment="CENTER" fillWidth="false" prefHeight="800.0" prefWidth="464.0" HBox.hgrow="ALWAYS">
                                 <children>
@@ -91,7 +91,7 @@
                                     <Insets />
                                 </HBox.margin>
                             </VBox>
-                            <VBox alignment="CENTER" prefHeight="738.0" prefWidth="499.0" style="-fx-background-color: #2d6187;" HBox.hgrow="ALWAYS">
+                            <VBox alignment="CENTER" prefHeight="754.0" prefWidth="578.0" style="-fx-background-color: #2d6187;" HBox.hgrow="ALWAYS">
                                 <children>
                                     <Label contentDisplay="TOP" prefHeight="138.0" prefWidth="384.0" text="Sistema de facturacion javaFX" textAlignment="CENTER" textFill="#effad3" wrapText="true">
                                         <font>
@@ -177,14 +177,14 @@
          </VBox>
       </left>
       <top>
-         <AnchorPane fx:id="header" prefHeight="29.0" prefWidth="1150.0" style="-fx-background-color: #0f3057;" visible="false" BorderPane.alignment="CENTER">
+         <AnchorPane fx:id="header" prefHeight="18.0" prefWidth="1150.0" style="-fx-background-color: #0f3057;" visible="false" BorderPane.alignment="CENTER">
             <children>
                <ImageView fitHeight="59.0" fitWidth="45.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../images/java-icon.png" />
                   </image>
                </ImageView>
-               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="846.0" layoutY="10.0" prefHeight="50.0" prefWidth="137.0" text="Admin" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="943.0" layoutY="10.0" prefHeight="50.0" prefWidth="137.0" text="Admin" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>
@@ -192,7 +192,7 @@
                      <Cursor fx:constant="HAND" />
                   </cursor>
                </Label>
-               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="961.0" layoutY="10.0" prefHeight="50.0" prefWidth="137.0" text="Desarrollador" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1058.0" layoutY="10.0" prefHeight="50.0" prefWidth="137.0" text="Desarrollador" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>
@@ -200,7 +200,7 @@
                      <Cursor fx:constant="HAND" />
                   </cursor>
                </Label>
-               <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="1105.0" layoutY="20.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="1202.0" layoutY="20.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../images/exit_32px.png" />
                   </image>
