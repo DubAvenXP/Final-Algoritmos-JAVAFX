@@ -228,6 +228,13 @@ public class FacturationController implements Initializable {
     public void generateInvoiceOnClic() {
         try {
             List<VentaProducto> ventaProductos = generateVentaProductoObjects();
+            for (VentaProducto ventaProducto : ventaProductos) {
+                System.out.println("id venta "+ventaProducto.getIdVentaProducto());
+                System.out.println("id producto " + ventaProducto.getIdProducto());
+                System.out.println("cantidad " + ventaProducto.getCantidad());
+                System.out.println("precio venta " + ventaProducto.getPrecioVenta());
+                System.out.println("serie venta " + ventaProducto.getSerieVenta());
+            }
             database.service.VentaProductoService.saveBill(ventaProductos);
             try {
                 Venta venta = generateVenta();
@@ -292,8 +299,6 @@ public class FacturationController implements Initializable {
         List<VentaProducto> ventaProductos = new ArrayList<>();
         for (ProductoFactura productoFactura : listadoProductosFactura) {
             VentaProducto ventaProducto = new VentaProducto();
-            ventaProducto.setIdProducto(0);
-            ventaProducto.setSerieVenta("0");
             ventaProducto.setIdProducto(productoFactura.getId());
             ventaProducto.setCantidad(productoFactura.getCantidad());
             ventaProducto.setPrecioVenta(productoFactura.getPrecioTotal());
