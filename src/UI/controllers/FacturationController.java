@@ -228,7 +228,7 @@ public class FacturationController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("Info");
-                alert.setContentText("Venta generada con exito");
+                alert.setContentText("Factura cancelada con exito");
                 alert.showAndWait();
             }
         } catch (NumberFormatException e) {
@@ -303,7 +303,7 @@ public class FacturationController implements Initializable {
         for (ProductoFactura productoFactura : listadoProductosFactura) {
             totalToPay += productoFactura.getPrecioTotal();
         }
-        totalToPayInput.setText("Q" + Double.toString(totalToPay));
+        totalToPayInput.setText("Q" + totalToPay);
     }
 
     public List<VentaProducto> generateVentaProductoObjects() {
