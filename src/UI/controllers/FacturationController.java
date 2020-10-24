@@ -199,7 +199,7 @@ public class FacturationController implements Initializable {
         addProductToInvoice();
     }
 
-    public void addProductToInvoiceEnter(KeyEvent keyEvent){
+    public void addProductToInvoiceEnter(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             addProductToInvoice();
         }
@@ -224,41 +224,43 @@ public class FacturationController implements Initializable {
     }
 
 
-
     public void generateInvoiceOnClic() {
         try {
-            List<VentaProducto> ventaProductos = generateVentaProductoObjects();
-            for (VentaProducto ventaProducto : ventaProductos) {
-                System.out.println("id venta "+ventaProducto.getIdVentaProducto());
-                System.out.println("id producto " + ventaProducto.getIdProducto());
-                System.out.println("cantidad " + ventaProducto.getCantidad());
-                System.out.println("precio venta " + ventaProducto.getPrecioVenta());
-                System.out.println("serie venta " + ventaProducto.getSerieVenta());
-            }
-            database.service.VentaProductoService.saveBill(ventaProductos);
+            Venta venta = generateVenta();
+            venta.setSerieVenta(VentaDao.generateBillNumber());
+            database.service.VentaService.createSale(venta);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Info");
+            alert.setContentText("Venta generada con exito");
+            alert.showAndWait();
+
             try {
-                Venta venta = generateVenta();
-                venta.setSerieVenta(VentaDao.generateBillNumber());
-                database.service.VentaService.createSale(venta);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Info");
-                alert.setContentText("Venta generada con exito");
-                alert.showAndWait();
+                List<VentaProducto> ventaProductos = generateVentaProductoObjects();
+//            for (VentaProducto ventaProducto : ventaProductos) {
+//                System.out.println("id venta "+ventaProducto.getIdVentaProducto());
+//                System.out.println("id producto " + ventaProducto.getIdProducto());
+//                System.out.println("cantidad " + ventaProducto.getCantidad());
+//                System.out.println("precio venta " + ventaProducto.getPrecioVenta());
+//                System.out.println("serie venta " + ventaProducto.getSerieVenta());
+//            }
+                database.service.VentaProductoService.saveBill(ventaProductos);
+
+
             } catch (NumberFormatException exception) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Error");
-                alert.setContentText(exception + " Factura no generada" +
-                        "database.service.VentaService.createSale(venta)");
-                alert.showAndWait();
+                Alert secondAlert = new Alert(Alert.AlertType.ERROR);
+                secondAlert.setHeaderText(null);
+                secondAlert.setTitle("Error");
+                secondAlert.setContentText(exception + " Factura no generada" +
+                        "database.service.VentaProductoService.saveBill(ventaProducto)");
+                secondAlert.showAndWait();
             }
         } catch (NumberFormatException exception) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText(exception + " Factura no generada" +
-                    "database.service.VentaProductoService.saveBill(ventaProducto)");
+                    "database.service.VentaService.createSale(venta)");
             alert.showAndWait();
         }
     }
