@@ -115,7 +115,7 @@ public class FacturationController implements Initializable {
         return facturationTable.getSelectionModel().getSelectedItem();
     }
 
-    public void searchClient(){
+    public void searchClient() {
         String clientNit = nitClientInput.getText();
         String clientName = database.service.ClienteService.listClientNit(clientNit);
 
@@ -136,13 +136,13 @@ public class FacturationController implements Initializable {
         searchClient();
     }
 
-    public void searchClientEnter(KeyEvent keyEvent){
-        if (keyEvent.getCode().equals(KeyCode.ENTER)){
+    public void searchClientEnter(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             searchClient();
         }
     }
 
-    public void searchProduct(){
+    public void searchProduct() {
         Integer productId = Integer.parseInt(idProductInput.getText());
         Producto producto = database.service.ProductoService.listProductByID(productId);
         if (producto.getNombre() == null) {
@@ -164,19 +164,19 @@ public class FacturationController implements Initializable {
         searchProduct();
     }
 
-    public void searchProducttEnter(KeyEvent keyEvent){
-        if (keyEvent.getCode().equals(KeyCode.ENTER)){
+    public void searchProducttEnter(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             searchProduct();
         }
     }
 
-    public void onDeleteButtonClicked(MouseEvent mouseEvent){
+    public void onDeleteButtonClicked(MouseEvent mouseEvent) {
         ProductoFactura productoFactura = rowSelected();
         deleteProduct(productoFactura);
     }
 
-    public void addProductToInvoice(MouseEvent mouseEvent) {
-        try{
+    public void addProductToInvoice() {
+        try {
             ProductoFactura productoFactura = generateProductoFactura();
             int cantidad = Integer.parseInt(quantityInput.getText());
             Integer stock = Integer.parseInt(stockInput.getText()) - cantidad;
@@ -185,14 +185,23 @@ public class FacturationController implements Initializable {
             facturationTable.refresh();
             emptyFields();
             calculateTotalToPay();
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText(e + " Verifique la cantidad de " +
                     "productos agregados a la factura");
             alert.showAndWait();
+        }
+    }
+
+    public void addProductToInvoiceClic(MouseEvent mouseEvent) {
+        addProductToInvoice();
+    }
+
+    public void addProductToInvoiceEnter(KeyEvent keyEvent){
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            addProductToInvoice();
         }
     }
 
@@ -214,12 +223,12 @@ public class FacturationController implements Initializable {
 //        }
     }
 
-    public void generateInvoice(MouseEvent mouseEvent) {
+
+
+    public void generateInvoiceOnClic() {
         try {
             List<VentaProducto> ventaProductos = generateVentaProductoObjects();
-            for (VentaProducto ventaProducto : ventaProductos) {
-//                database.service.VentaProductoService.saveBill(ventaProducto);
-            }
+            database.service.VentaProductoService.saveBill(ventaProductos);
             try {
                 Venta venta = generateVenta();
                 venta.setSerieVenta(VentaDao.generateBillNumber());
@@ -229,7 +238,7 @@ public class FacturationController implements Initializable {
                 alert.setTitle("Info");
                 alert.setContentText("Venta generada con exito");
                 alert.showAndWait();
-            } catch (NumberFormatException exception){
+            } catch (NumberFormatException exception) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("Error");
@@ -237,7 +246,7 @@ public class FacturationController implements Initializable {
                         "database.service.VentaService.createSale(venta)");
                 alert.showAndWait();
             }
-        } catch (NumberFormatException exception){
+        } catch (NumberFormatException exception) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
@@ -301,8 +310,8 @@ public class FacturationController implements Initializable {
         return venta;
     }
 
-    public void enableButtonAddToInvoice(Integer stock){
-        if (stock > 0){
+    public void enableButtonAddToInvoice(Integer stock) {
+        if (stock > 0) {
             addButton.setDisable(false);
         }
     }

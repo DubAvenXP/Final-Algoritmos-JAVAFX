@@ -118,7 +118,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="quantityInput" prefHeight="35.0" prefWidth="210.0">
+                              <TextField fx:id="quantityInput" onKeyPressed="#addProductToInvoiceEnter" prefHeight="35.0" prefWidth="210.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -152,7 +152,7 @@
                         </HBox>
                         <HBox prefHeight="77.5" prefWidth="310.0">
                            <children>
-                              <Button fx:id="addButton" disable="true" mnemonicParsing="false" onMouseClicked="#addProductToInvoice" prefHeight="35.0" prefWidth="195.0" text="Agregar">
+                              <Button fx:id="addButton" disable="true" mnemonicParsing="false" onMouseClicked="#addProductToInvoiceClic" prefHeight="35.0" prefWidth="195.0" text="Agregar">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -284,7 +284,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="generateButton" mnemonicParsing="false" onMouseClicked="#generateInvoice" prefHeight="35.0" prefWidth="144.0" text="GENERAR FACTURA">
+                  <Button fx:id="generateButton" mnemonicParsing="false" onMouseClicked="#generateInvoiceOnClic" prefHeight="35.0" prefWidth="144.0" text="GENERAR FACTURA">
                      <font>
                         <Font size="14.0" />
                      </font>
