@@ -217,12 +217,27 @@ public class FacturationController implements Initializable {
     }
 
     public void cancelInvoice(MouseEvent mouseEvent) {
-        for (ProductoFactura productoFactura : listadoProductosFactura) {
-            int idProduct = productoFactura.getId();
-            Integer stock = database.service.VentaService.availableProduct(idProduct);
-            int newStock = productoFactura.getCantidad() + stock;
-            database.service.VentaService.updateStock(newStock, idProduct);
-            facturationTable.refresh();
+        try {
+            for (ProductoFactura productoFactura : listadoProductosFactura) {
+                int idProduct = productoFactura.getId();
+                Integer stock = database.service.VentaService.availableProduct(idProduct);
+                int newStock = productoFactura.getCantidad() + stock;
+                database.service.VentaService.updateStock(newStock, idProduct);
+                facturationTable.refresh();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("Info");
+                alert.setContentText("Venta generada con exito");
+                alert.showAndWait();
+            }
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText(e + " Error al cancelar la factura" +
+                    "database.service.VentaProductoService.saveBill(ventaProducto)");
+            alert.showAndWait();
         }
     }
 
@@ -232,23 +247,14 @@ public class FacturationController implements Initializable {
             Venta venta = generateVenta();
             venta.setSerieVenta(serial);
             database.service.VentaService.createSale(venta);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Info");
-            alert.setContentText("Venta generada con exito");
-            alert.showAndWait();
-
             try {
                 List<VentaProducto> ventaProductos = generateVentaProductoObjects();
-//            for (VentaProducto ventaProducto : ventaProductos) {
-//                System.out.println("id venta "+ventaProducto.getIdVentaProducto());
-//                System.out.println("id producto " + ventaProducto.getIdProducto());
-//                System.out.println("cantidad " + ventaProducto.getCantidad());
-//                System.out.println("precio venta " + ventaProducto.getPrecioVenta());
-//                System.out.println("serie venta " + ventaProducto.getSerieVenta());
-//            }
                 database.service.VentaProductoService.saveBill(ventaProductos);
-
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("Info");
+                alert.setContentText("Venta generada con exito");
+                alert.showAndWait();
 
             } catch (NumberFormatException exception) {
                 Alert secondAlert = new Alert(Alert.AlertType.ERROR);
