@@ -53,4 +53,12 @@ public class ProductoService {
         ProductoDao.updateProductDB(producto);
     }
 
+    public static List<Producto> stockZero(){
+        return ProductoDao.stockZeroDB();
+    }
+
+    public static List<Producto> bestSellers(){
+        return ProductoDao.bestSellers();
+    }
+
 }

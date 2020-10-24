@@ -1,6 +1,7 @@
 package database.dao;
 
 import database.Connect;
+import database.models.Cliente;
 import database.models.Producto;
 import database.models.Venta;
 
@@ -193,6 +194,43 @@ public class VentaDao {
         }
         Connect.closeConnection();
         return billNumber;
+    }
+
+    public static List<Venta> viewBillClient(String nit){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Venta> clienteList = new ArrayList<>();
+        try(Connection connection = Connect.getConnection()){
+            String sql = "select \"serieVenta\",\"nitCliente\",monto,\"metodoPago\",\"fechaVenta\", (select(nombre) from cliente \n" +
+                    "where cliente.nit = venta.\"nitCliente\") as \"nombre\" from public.venta where \"nitCliente\" = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, nit);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                Venta venta = new Venta();
+                venta.setSerieVenta(rs.getString(1));
+                venta.setNitCliente(rs.getString(2));
+                venta.setMonto(rs.getDouble(3));
+                venta.setMetodoPago(rs.getString(4));
+                venta.setFechaVenta(rs.getString(5));
+                venta.setNombreCliente(rs.getString(6));
+                clienteList.add(venta);
+            }
+        } catch (SQLException e) {
+            System.out.println("No se pudo traer la factura\n" + e);
+        }
+        for (Venta venta : clienteList) {
+            System.out.println("No Factura:" + venta.getSerieVenta());
+            System.out.println("Nit: " + venta.getNitCliente());
+            System.out.println("NOMBRE:" + venta.getNombreCliente());
+            System.out.println("Monto:" + venta.getMonto());
+            System.out.println("Forma pago:" + venta.getMetodoPago());
+            System.out.println("Fecha:" + venta.getFechaVenta());
+            System.out.println();
+        }
+        Connect.closeConnection();
+        return clienteList;
     }
 
 }

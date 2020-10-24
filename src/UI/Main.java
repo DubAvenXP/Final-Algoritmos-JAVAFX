@@ -1,6 +1,10 @@
 package UI;
 
+import database.dao.ProductoDao;
+import database.models.Producto;
+import database.models.Venta;
 import database.models.VentaProducto;
+import database.service.ProductoService;
 import database.service.VentaProductoService;
 import database.service.VentaService;
 import javafx.application.Application;

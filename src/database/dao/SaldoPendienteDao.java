@@ -1,12 +1,14 @@
 package database.dao;
 
 import database.Connect;
+import database.models.Cliente;
 import database.models.SaldoPendiente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class SaldoPendienteDao {
 
@@ -51,5 +53,13 @@ public class SaldoPendienteDao {
         Connect.closeConnection();
         return id;
     }
+
+//    public static List<SaldoPendiente> viewDobter(){
+//
+//    }
+
+//    public static Cliente clientDobter(String nit){
+//        return
+//    }
 
 }

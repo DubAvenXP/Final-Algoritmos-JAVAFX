@@ -50,4 +50,8 @@ public class VentaService {
         return VentaDao.balanceDB();
     }
 
+    public static List<Venta> viewBillClient(String nit){
+        return  VentaDao.viewBillClient(nit);
+    }
+
 }
