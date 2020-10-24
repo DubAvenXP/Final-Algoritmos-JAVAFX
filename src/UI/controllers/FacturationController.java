@@ -217,13 +217,13 @@ public class FacturationController implements Initializable {
     }
 
     public void cancelInvoice(MouseEvent mouseEvent) {
-//        for (ProductoFactura productoFactura : listadoProductosFactura) {
-//            int idProduct = productoFactura.getId();
-//            Integer stock = database.service.VentaService.availableProduct(idProduct);
-//            int newStock = productoFactura.getCantidad() + stock;
-//            database.service.VentaService.updateStock(newStock, idProduct);
-//            facturationTable.refresh();
-//        }
+        for (ProductoFactura productoFactura : listadoProductosFactura) {
+            int idProduct = productoFactura.getId();
+            Integer stock = database.service.VentaService.availableProduct(idProduct);
+            int newStock = productoFactura.getCantidad() + stock;
+            database.service.VentaService.updateStock(newStock, idProduct);
+            facturationTable.refresh();
+        }
     }
 
 
