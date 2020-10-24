@@ -98,6 +98,9 @@ public class FacturationController implements Initializable {
 
     Double totalToPay;
 
+    //variable estatica que genera el serie venta
+    public static String serial = VentaDao.generateBillNumber();
+
     ObservableList<ProductoFactura> listadoProductosFactura = FXCollections.observableArrayList();
 
     @Override
@@ -227,7 +230,7 @@ public class FacturationController implements Initializable {
     public void generateInvoiceOnClic() {
         try {
             Venta venta = generateVenta();
-            venta.setSerieVenta(VentaDao.generateBillNumber());
+            venta.setSerieVenta(serial);
             database.service.VentaService.createSale(venta);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
@@ -301,9 +304,11 @@ public class FacturationController implements Initializable {
         List<VentaProducto> ventaProductos = new ArrayList<>();
         for (ProductoFactura productoFactura : listadoProductosFactura) {
             VentaProducto ventaProducto = new VentaProducto();
+            ventaProducto.setSerieVenta(serial);
             ventaProducto.setIdProducto(productoFactura.getId());
             ventaProducto.setCantidad(productoFactura.getCantidad());
             ventaProducto.setPrecioVenta(productoFactura.getPrecioTotal());
+            ventaProductos.add(ventaProducto);
         }
         return ventaProductos;
     }
