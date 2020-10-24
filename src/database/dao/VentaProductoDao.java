@@ -72,11 +72,11 @@ public class VentaProductoDao {
     }
 
     /**
-     * Metodo para ver toda la informacion de la facturacion
+     * Metodo para ver toda la informacion de la venta de los productos en la facturacion
      *
      * @return retorna un List con la informacion de la factura guardada
      */
-    public static List<VentaProducto> viewBillDB() {
+    public static List<VentaProducto> viewSalesProducts() {
         PreparedStatement ps;
         ResultSet rs;
         List<VentaProducto> listVentaProducto = new ArrayList<>();

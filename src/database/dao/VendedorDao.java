@@ -128,7 +128,7 @@ public class VendedorDao {
     }
 
     /**
-     * Metodo para actualizar un cliente
+     * Metodo para actualizar un Vendedor
      * @param vendedor objeto de tipo Vendedor que recibe como parametro para insertar los nuevos datos en la
      *                 base de datos
      */

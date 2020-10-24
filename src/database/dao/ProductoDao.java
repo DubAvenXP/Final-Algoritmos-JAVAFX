@@ -269,4 +269,91 @@ public class ProductoDao {
         return quantitySell;
     }
 
+    /**
+     * Metodo que trae los producto ordenados de mayor a menor precio
+     * @return retorna un List de productos con los datos
+     */
+    public static List<Producto> highestPrice(){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Producto> productoList = new ArrayList<>();
+        try (Connection connection = Connect.getConnection()){
+            String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, (SELECT (\"nombre\") FROM \"proveedor\"  \n" +
+                    "WHERE \"proveedor\".\"idProveedor\" = \"producto\".\"idProveedor\") AS \"Proveedor\" FROM \"producto\"" +
+                    "ORDER BY precio DESC";
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                Producto producto = new Producto();
+                producto.setIdProducto(rs.getInt(1));
+                producto.setNombre(rs.getString(2));
+                producto.setPrecio(rs.getDouble(3));
+                producto.setStock(rs.getInt(4));
+                producto.setDescripcion(rs.getString(5));
+                producto.setProvider(rs.getString(6));
+                productoList.add(producto);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("No se pudieron traer lo productos\n" + e);
+        }
+        for (Producto producto : productoList) {
+            System.out.println("ID PRODUCTO:" + producto.getIdProducto());
+            System.out.println("NOMBRE: " + producto.getNombre());
+            System.out.println("PRECIO:" + producto.getPrecio());
+            System.out.println("STOCK:" + producto.getStock());
+            System.out.println("DESCRIPCION:" + producto.getDescripcion());
+            System.out.println("ID PROVEEDOR:" + producto.getIdProvider());
+            System.out.println("DESC PROVEEDOR:" + producto.getProvider());
+            System.out.println();
+        }
+        Connect.closeConnection();
+        return productoList;
+    }
+
+    /**
+     * Meotodo que trae los productos ordenados de menor a mayor precio
+     * @return retona un List con la informacion de productos
+     */
+    public static List<Producto> lowestPrice(){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Producto> productoList = new ArrayList<>();
+        try (Connection connection = Connect.getConnection()){
+            String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, (SELECT (\"nombre\") FROM \"proveedor\"  \n" +
+                    "WHERE \"proveedor\".\"idProveedor\" = \"producto\".\"idProveedor\") AS \"Proveedor\" FROM \"producto\"" +
+                    "ORDER BY precio ASC";
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                Producto producto = new Producto();
+                producto.setIdProducto(rs.getInt(1));
+                producto.setNombre(rs.getString(2));
+                producto.setPrecio(rs.getDouble(3));
+                producto.setStock(rs.getInt(4));
+                producto.setDescripcion(rs.getString(5));
+                producto.setProvider(rs.getString(6));
+                productoList.add(producto);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("No se pudieron traer lo productos\n" + e);
+        }
+        for (Producto producto : productoList) {
+            System.out.println("ID PRODUCTO:" + producto.getIdProducto());
+            System.out.println("NOMBRE: " + producto.getNombre());
+            System.out.println("PRECIO:" + producto.getPrecio());
+            System.out.println("STOCK:" + producto.getStock());
+            System.out.println("DESCRIPCION:" + producto.getDescripcion());
+            System.out.println("ID PROVEEDOR:" + producto.getIdProvider());
+            System.out.println("DESC PROVEEDOR:" + producto.getProvider());
+            System.out.println();
+        }
+        Connect.closeConnection();
+        return productoList;
+    }
+
+
 }

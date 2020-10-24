@@ -173,6 +173,10 @@ public class VentaDao {
         return ventaList;
     }
 
+    /**
+     * Metodo que genera el numero de serie para la factura
+     * @return retorna un string con el numero de serie de la factura
+     */
     public static String generateBillNumber(){
         String billNumber = "";
         try (Connection connection = Connect.getConnection()){
@@ -196,6 +200,11 @@ public class VentaDao {
         return billNumber;
     }
 
+    /**
+     * Metoto para ver todas las facturas pertenecientes a un cliente
+     * @param nit perteneciente al cliente al que se quiere buscar
+     * @return retorna un List con los datos de las facturas del cliente
+     */
     public static List<Venta> viewBillClient(String nit){
         PreparedStatement ps;
         ResultSet rs;
