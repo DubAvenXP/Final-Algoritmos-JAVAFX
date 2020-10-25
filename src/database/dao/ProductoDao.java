@@ -233,6 +233,7 @@ public class ProductoDao {
                 producto.setNombre(rs.getString(3));
                 producto.setDescripcion(rs.getString(4));
                 producto.setPrecio(rs.getDouble(5));
+                producto.setStock(null);
                 productoList.add(producto);
             }
         } catch (SQLException e) {
@@ -281,7 +282,7 @@ public class ProductoDao {
         try (Connection connection = Connect.getConnection()){
             String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, (SELECT (\"nombre\") FROM \"proveedor\"  \n" +
                     "WHERE \"proveedor\".\"idProveedor\" = \"producto\".\"idProveedor\") AS \"Proveedor\" FROM \"producto\"" +
-                    "ORDER BY precio DESC";
+                    "ORDER BY precio DESC LIMIT 10";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -324,7 +325,7 @@ public class ProductoDao {
         try (Connection connection = Connect.getConnection()){
             String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, (SELECT (\"nombre\") FROM \"proveedor\"  \n" +
                     "WHERE \"proveedor\".\"idProveedor\" = \"producto\".\"idProveedor\") AS \"Proveedor\" FROM \"producto\"" +
-                    "ORDER BY precio ASC";
+                    "ORDER BY precio ASC  LIMIT 10";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
 

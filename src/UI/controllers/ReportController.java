@@ -11,8 +11,11 @@ import java.util.List;
 
 public class ReportController {
 
+    /*
+    * Clientes
+    * */
 
-    public void exportClientsToExcel() {
+    public void exportClients() {
         List<Cliente> clientes = database.service.ClienteService.listClient();
         String[] headers = HeadersModels.clientHeaders;
         FileModel fileModel = new FileModel("Clientes", "Clientes");
@@ -24,7 +27,23 @@ public class ReportController {
         }
     }
 
-    public void exportProductsToExcel() {
+    public void exportDebtors(){
+        List<SaldoPendiente> saldosPendientes = database.service.SaldoPendienteService.viewAllDobter();
+        String[] headers = HeadersModels.saldoPendienteHeaders;
+        FileModel fileModel = new FileModel("Deudores", "Deudores");
+        try {
+            UI.utils.CreateExcelFile.exportDebtorCustomersToExcel(saldosPendientes, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
+    }
+
+    /*
+    * Productos
+    * */
+
+    public void exportProducts() {
         List<Producto> productos = database.service.ProductoService.listProduct();
         String[] headers = HeadersModels.productoHeaders;
         FileModel fileModel = new FileModel("Productos", "Productos");
@@ -36,12 +55,48 @@ public class ReportController {
         }
     }
 
-    public void exportDebtorsToExcel(){
-        List<SaldoPendiente> saldosPendientes = database.service.SaldoPendienteService.viewAllDobter();
-        String[] headers = HeadersModels.saldoPendienteHeaders;
-        FileModel fileModel = new FileModel("Deudores", "Deudores");
+    public void exportProductsOutOfStock(){
+        List<Producto> productos = database.service.ProductoService.stockZero();
+        String[] headers = HeadersModels.productoHeaders;
+        FileModel fileModel = new FileModel("ProductosSinExistencias", "Sin existencias");
         try {
-            UI.utils.CreateExcelFile.exportDebtorCustomersToExcel(saldosPendientes, headers, fileModel);
+            UI.utils.CreateExcelFile.exportProductsToExcel(productos, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
+    }
+
+    public void exportBestSellerProducts(){
+        List<Producto> productos = database.service.ProductoService.bestSellers();
+        String[] headers = HeadersModels.productoHeaders;
+        FileModel fileModel = new FileModel("ProductosMejoresVendidos", "Mejores vendidos");
+        try {
+            UI.utils.CreateExcelFile.exportProductsToExcel(productos, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
+    }
+
+    public void exportMoreExpensiveProducts(){
+        List<Producto> productos = database.service.ProductoService.highestPrice();
+        String[] headers = HeadersModels.productoHeaders;
+        FileModel fileModel = new FileModel("ProductosMasCaros", "Prod. mas caros");
+        try {
+            UI.utils.CreateExcelFile.exportProductsToExcel(productos, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
+    }
+
+    public void exportCheaperProducts(){
+        List<Producto> productos = database.service.ProductoService.lowestPrice();
+        String[] headers = HeadersModels.productoHeaders;
+        FileModel fileModel = new FileModel("ProductosMasBaratos", "Prod. mas baratos");
+        try {
+            UI.utils.CreateExcelFile.exportProductsToExcel(productos, headers, fileModel);
             alertInfoSuccess();
         } catch (Error error) {
             alertError(error);
