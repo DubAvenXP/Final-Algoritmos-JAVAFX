@@ -12,6 +12,8 @@ public class VentaProducto {
     private Integer idProducto;
     private Integer cantidad;
     private Double precioVenta;
+    private String nombreProducto;
+    private String descripcionProducto;
 
     public VentaProducto() {
     }
@@ -62,5 +64,21 @@ public class VentaProducto {
 
     public void setPrecioVenta(Double precioVenta) {
         this.precioVenta = precioVenta;
+    }
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public String getDescripcionProducto() {
+        return descripcionProducto;
+    }
+
+    public void setDescripcionProducto(String descripcionProducto) {
+        this.descripcionProducto = descripcionProducto;
     }
 }

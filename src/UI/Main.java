@@ -2,6 +2,8 @@ package UI;
 
 import database.dao.ProductoDao;
 import database.dao.SaldoPendienteDao;
+import database.dao.VentaDao;
+import database.dao.VentaProductoDao;
 import database.models.Producto;
 import database.models.SaldoPendiente;
 import database.models.Venta;
@@ -31,6 +33,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+//        launch(args);
     }
 }

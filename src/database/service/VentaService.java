@@ -54,4 +54,8 @@ public class VentaService {
         return  VentaDao.viewBillClient(nit);
     }
 
+    public static List<Venta> viewAllBill(){
+        return  VentaDao.viewAllBill();
+    }
+
 }

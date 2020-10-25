@@ -106,7 +106,7 @@ public class VentaProductoDao {
      *                     en la base de datos
      * @return retorna un string con la secuencia sql correcta para hacer el query en la base de datos
      */
-    private static String valuesProducts(List<VentaProducto> productoList){
+    public static String valuesProducts(List<VentaProducto> productoList){
         String productSize = "";
         if (productoList.size() == 5){
             productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
@@ -120,6 +120,48 @@ public class VentaProductoDao {
             productSize = "(?, ?, ?, ?, ?)";
         }
         return productSize;
+    }
+
+    /**
+     * Metodo que traer todos lo productos vendidos en la facturas
+     * @return retorna un List con la informacion de las ventas de los prpductos
+     */
+    public static List<VentaProducto> viewAllProductSales(){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<VentaProducto> ventaProductoList = new ArrayList<>();
+        try (Connection connection = Connect.getConnection()){
+            String sql = "select \"serieVenta\", \"idProducto\", cantidad, \"precioVenta\",\n" +
+                    "(select (nombre) from producto where producto.\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"nombre\",\n" +
+                    "(select (descripcion) from producto where producto.\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"descripcion\"\n" +
+                    "from public.\"ventaProducto\" order by \"serieVenta\" asc";
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                VentaProducto ventaProducto = new VentaProducto();
+                ventaProducto.setSerieVenta(rs.getString(1));
+                ventaProducto.setIdProducto(rs.getInt(2));
+                ventaProducto.setCantidad(rs.getInt(3));
+                ventaProducto.setPrecioVenta(rs.getDouble(4));
+                ventaProducto.setNombreProducto(rs.getString(5));
+                ventaProducto.setDescripcionProducto(rs.getString(6));
+                ventaProductoList.add(ventaProducto);
+            }
+            for (VentaProducto ventaProducto : ventaProductoList) {
+                System.out.println("NO FACTURA; " + ventaProducto.getSerieVenta());
+                System.out.println("ID PRODUCTO; " + ventaProducto.getIdProducto());
+                System.out.println("NOMBRE PRO; " + ventaProducto.getNombreProducto());
+                System.out.println("DESC PROD; " + ventaProducto.getDescripcionProducto());
+                System.out.println("CANTIDAD; " + ventaProducto.getCantidad());
+                System.out.println("TOTAL; " + ventaProducto.getPrecioVenta());
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            System.out.println("No se pudieron traer los producto\n" + e);
+        }
+        Connect.closeConnection();
+        return ventaProductoList;
     }
 
 }

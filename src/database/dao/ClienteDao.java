@@ -56,7 +56,8 @@ public class ClienteDao {
         List<Cliente> clienteArrayList = new ArrayList<>();
 
         try (Connection connection = Connect.getConnection()) {
-            String sql = "SELECT * FROM public.cliente";
+            String sql = "SELECT \"idCliente\", nit, nombre, apellido, direccion, telefono " +
+                    "FROM public.cliente order by \"idCliente\" asc";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {

@@ -242,4 +242,41 @@ public class VentaDao {
         return clienteList;
     }
 
+    public static List<Venta> viewAllBill(){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Venta> ventaList = new ArrayList<>();
+        try (Connection connection = Connect.getConnection()){
+            String sql = "select * from public.venta";
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                Venta venta = new Venta();
+                venta.setIdVenta(rs.getInt(1));
+                venta.setUserVendedor(rs.getString(2));
+                venta.setNitCliente(rs.getString(3));
+                venta.setSerieVenta(rs.getString(4));
+                venta.setMonto(rs.getDouble(5));
+                venta.setMetodoPago(rs.getString(6));
+                venta.setFechaVenta(rs.getString(7));
+                ventaList.add(venta);
+            }
+        } catch (SQLException e) {
+            System.out.println("No se pudieron traer la facturas\n" + e);
+        }
+        for (Venta venta : ventaList) {
+            System.out.println(venta.getIdVenta());
+            System.out.println(venta.getUserVendedor());
+            System.out.println(venta.getNitCliente());
+            System.out.println(venta.getSerieVenta());
+            System.out.println(venta.getMonto());
+            System.out.println(venta.getMetodoPago());
+            System.out.println(venta.getFechaVenta());
+            System.out.println();
+        }
+        Connect.closeConnection();
+        return ventaList;
+    }
+
 }

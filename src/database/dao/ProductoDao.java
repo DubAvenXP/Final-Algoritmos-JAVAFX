@@ -219,10 +219,10 @@ public class ProductoDao {
         List<Producto> productoList = new ArrayList<>();
         Integer count = 0;
         try(Connection connection = Connect.getConnection()){
-            String bestSeller = "select \"idProducto\", count(*),(SELECT (\"nombre\") FROM \"producto\" " +
-                    "WHERE \"producto\".\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"nombre\"," +
-                    "(select (\"descripcion\") FROM \"producto\" WHERE \"producto\".\"idProducto\" = \"ventaProducto\".\"idProducto\") " +
-                    "as \"descripcion\" from public.\"ventaProducto\" group by \"idProducto\" order by count desc  FETCH FIRST 5 ROWS ONLY";
+            String bestSeller = "select \"idProducto\", count(*),(SELECT (\"nombre\") FROM \"producto\" WHERE \"producto\".\"idProducto\" = \"ventaProducto\".\"idProducto\")" +
+                    "as \"nombre\", (select (\"descripcion\") FROM \"producto\" WHERE \"producto\".\"idProducto\" = \"ventaProducto\".\"idProducto\")\n" +
+                    "as \"descripcion\", (select (\"precio\") FROM \"producto\" WHERE \"producto\".\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"precio\" \n" +
+                    "from public.\"ventaProducto\" group by \"idProducto\" order by count desc  FETCH FIRST 5 ROWS ONLY";
             ps = connection.prepareStatement(bestSeller);
             rs = ps.executeQuery();
 
@@ -232,6 +232,7 @@ public class ProductoDao {
                 producto.setBestSellerCount(ProductoDao.totalSell(rs.getInt(1)));
                 producto.setNombre(rs.getString(3));
                 producto.setDescripcion(rs.getString(4));
+                producto.setPrecio(rs.getDouble(5));
                 productoList.add(producto);
             }
         } catch (SQLException e) {

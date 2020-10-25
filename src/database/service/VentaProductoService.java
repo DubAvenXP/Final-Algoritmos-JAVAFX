@@ -29,4 +29,11 @@ public class VentaProductoService {
         return VentaProductoDao.viewSalesProducts();
     }
 
+    /**
+     * Metodo que comunica con la capa Dao
+     * @return retona un List con la informacion de los productos vendidoss
+     */
+    public static List<VentaProducto> viewAllProductSales(){
+        return VentaProductoDao.viewAllProductSales();
+    }
 }
