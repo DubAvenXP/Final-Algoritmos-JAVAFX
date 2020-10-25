@@ -16,6 +16,7 @@ public class Venta {
     private String fechaVenta;
     private Double monto;
     private String metodoPago;
+    private String nombreCliente;
 
     public Venta() {
     }
@@ -100,5 +101,13 @@ public class Venta {
 
     public void setMetodoPago(String metodoPago) {
         this.metodoPago = metodoPago;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 }

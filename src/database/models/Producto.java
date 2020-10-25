@@ -14,6 +14,7 @@ public class Producto{
     private Integer stock;
     private String provider;
     private Integer idProvider = proveedor.getIdProveedor();
+    private Integer bestSellerCount;
 
     public Producto() {
 
@@ -82,6 +83,14 @@ public class Producto{
 
     public void setIdProvider(Integer idProvider) {
         this.idProvider = idProvider;
+    }
+
+    public Integer getBestSellerCount() {
+        return bestSellerCount;
+    }
+
+    public void setBestSellerCount(Integer bestSellerCount) {
+        this.bestSellerCount = bestSellerCount;
     }
 }
 

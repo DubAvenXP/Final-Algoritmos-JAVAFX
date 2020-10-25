@@ -2,6 +2,7 @@ package database.dao;
 
 import database.Connect;
 import database.models.Cliente;
+import database.models.Producto;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -173,4 +174,5 @@ public class ClienteDao {
         }
         return id;
     }
+
 }

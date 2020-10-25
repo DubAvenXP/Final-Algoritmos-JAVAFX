@@ -56,7 +56,7 @@ public class ProductoDao {
         try(Connection connection = Connect.getConnection()){
             String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, \"idProveedor\",  (SELECT (\"nombre\") " +
                     "FROM \"proveedor\" WHERE \"proveedor\".\"idProveedor\" = \"producto\".\"idProveedor\") " +
-                    "AS \"Proveedor\" FROM \"producto\"";
+                    "AS \"Proveedor\" FROM public.producto order by \"idProveedor\" asc";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -178,5 +178,182 @@ public class ProductoDao {
         }
         return id;
     }
+
+    /**
+     * Metodo para retornar productos sin stock
+     * @return retorna un List de Producto con toda la informacion de los productos sin stock
+     */
+    public static List<Producto> stockZeroDB(){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Producto> productoList = new ArrayList<>();
+        try (Connection connection = Connect.getConnection()){
+            String stockZero = "select * from public.producto where stock = 0";
+            ps = connection.prepareStatement(stockZero);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                Producto producto = new Producto();
+                producto.setIdProducto(rs.getInt(1));
+                producto.setIdProvider(rs.getInt(2));
+                producto.setNombre(rs.getString(3));
+                producto.setPrecio(rs.getDouble(4));
+                producto.setStock(rs.getInt(5));
+                producto.setDescripcion(rs.getString(6));
+                productoList.add(producto);
+            }
+        } catch (SQLException e) {
+            System.out.println("No se pudieron traer los productos sin stock\n" + e);
+        }
+        Connect.closeConnection();
+        return productoList;
+    }
+
+    /**
+     * Metodo para ver los 5 productos que vas veces se venden en la base de datos
+     * @return retorna los productos con mayor cantidad vendida
+     */
+    public static List<Producto> bestSellers(){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Producto> productoList = new ArrayList<>();
+        Integer count = 0;
+        try(Connection connection = Connect.getConnection()){
+            String bestSeller = "select \"idProducto\", count(*),(SELECT (\"nombre\") FROM \"producto\" " +
+                    "WHERE \"producto\".\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"nombre\"," +
+                    "(select (\"descripcion\") FROM \"producto\" WHERE \"producto\".\"idProducto\" = \"ventaProducto\".\"idProducto\") " +
+                    "as \"descripcion\" from public.\"ventaProducto\" group by \"idProducto\" order by count desc  FETCH FIRST 5 ROWS ONLY";
+            ps = connection.prepareStatement(bestSeller);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                Producto producto = new Producto();
+                producto.setIdProducto(rs.getInt(1));
+                producto.setBestSellerCount(ProductoDao.totalSell(rs.getInt(1)));
+                producto.setNombre(rs.getString(3));
+                producto.setDescripcion(rs.getString(4));
+                productoList.add(producto);
+            }
+        } catch (SQLException e) {
+            System.out.println("No se pudieron traer los productos\n" + e);
+        }
+        Connect.closeConnection();
+        return productoList;
+    }
+
+    /**
+     * Metodo que tiene la logica para hacer la suma de las cantidades de producto vendidos
+     * @param id parametro que recibe perteneciente al id del producto
+     * @return retorna la cantidad de productos vendidos totales
+     */
+    public static Integer totalSell(Integer id){
+        Integer quantitySell = 0;
+        PreparedStatement ps;
+        ResultSet rs;
+        try (Connection connection = Connect.getConnection()){
+            String sql = "select \"idProducto\", cantidad from public.\"ventaProducto\" where \"idProducto\" = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                Producto producto = new Producto();
+                Integer aux = rs.getInt(2);
+                quantitySell += aux;
+            }
+            System.out.println("Fin suma-------");
+        } catch (SQLException e) {
+            System.out.println("No se pudo hacer la suma" + e);
+        }
+        Connect.closeConnection();
+        return quantitySell;
+    }
+
+    /**
+     * Metodo que trae los producto ordenados de mayor a menor precio
+     * @return retorna un List de productos con los datos
+     */
+    public static List<Producto> highestPrice(){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Producto> productoList = new ArrayList<>();
+        try (Connection connection = Connect.getConnection()){
+            String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, (SELECT (\"nombre\") FROM \"proveedor\"  \n" +
+                    "WHERE \"proveedor\".\"idProveedor\" = \"producto\".\"idProveedor\") AS \"Proveedor\" FROM \"producto\"" +
+                    "ORDER BY precio DESC";
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                Producto producto = new Producto();
+                producto.setIdProducto(rs.getInt(1));
+                producto.setNombre(rs.getString(2));
+                producto.setPrecio(rs.getDouble(3));
+                producto.setStock(rs.getInt(4));
+                producto.setDescripcion(rs.getString(5));
+                producto.setProvider(rs.getString(6));
+                productoList.add(producto);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("No se pudieron traer lo productos\n" + e);
+        }
+        for (Producto producto : productoList) {
+            System.out.println("ID PRODUCTO:" + producto.getIdProducto());
+            System.out.println("NOMBRE: " + producto.getNombre());
+            System.out.println("PRECIO:" + producto.getPrecio());
+            System.out.println("STOCK:" + producto.getStock());
+            System.out.println("DESCRIPCION:" + producto.getDescripcion());
+            System.out.println("ID PROVEEDOR:" + producto.getIdProvider());
+            System.out.println("DESC PROVEEDOR:" + producto.getProvider());
+            System.out.println();
+        }
+        Connect.closeConnection();
+        return productoList;
+    }
+
+    /**
+     * Meotodo que trae los productos ordenados de menor a mayor precio
+     * @return retona un List con la informacion de productos
+     */
+    public static List<Producto> lowestPrice(){
+        PreparedStatement ps;
+        ResultSet rs;
+        List<Producto> productoList = new ArrayList<>();
+        try (Connection connection = Connect.getConnection()){
+            String sql = "SELECT \"idProducto\", nombre, precio, stock, descripcion, (SELECT (\"nombre\") FROM \"proveedor\"  \n" +
+                    "WHERE \"proveedor\".\"idProveedor\" = \"producto\".\"idProveedor\") AS \"Proveedor\" FROM \"producto\"" +
+                    "ORDER BY precio ASC";
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                Producto producto = new Producto();
+                producto.setIdProducto(rs.getInt(1));
+                producto.setNombre(rs.getString(2));
+                producto.setPrecio(rs.getDouble(3));
+                producto.setStock(rs.getInt(4));
+                producto.setDescripcion(rs.getString(5));
+                producto.setProvider(rs.getString(6));
+                productoList.add(producto);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("No se pudieron traer lo productos\n" + e);
+        }
+        for (Producto producto : productoList) {
+            System.out.println("ID PRODUCTO:" + producto.getIdProducto());
+            System.out.println("NOMBRE: " + producto.getNombre());
+            System.out.println("PRECIO:" + producto.getPrecio());
+            System.out.println("STOCK:" + producto.getStock());
+            System.out.println("DESCRIPCION:" + producto.getDescripcion());
+            System.out.println("ID PROVEEDOR:" + producto.getIdProvider());
+            System.out.println("DESC PROVEEDOR:" + producto.getProvider());
+            System.out.println();
+        }
+        Connect.closeConnection();
+        return productoList;
+    }
+
 
 }
