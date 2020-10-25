@@ -31,18 +31,15 @@
                            </font>
                         </Label>
                         <Label text="Reportes general de clientes en formato pdf" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <VBox>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="151.0" text="Listado completo clientes" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Clientes morosos" />
+                              <Button mnemonicParsing="false" onMouseClicked="#exportClientsToExcel" prefHeight="45.0" prefWidth="200.0" text="Listado completo clientes" />
+                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="Clientes morosos" />
+                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="Clientes activos" />
+                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="Clientes inactivos" />
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Clientes activos" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Clientes inactivos" />
-                           </children>
-                        </HBox>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                      </children>
                      <padding>
                         <Insets left="15.0" right="15.0" />
@@ -59,19 +56,15 @@
                            </font>
                         </Label>
                         <Label text="Reportes general de productos en formato pdf" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <VBox>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="167.0" text="Listado completo productos" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Productos sin existencias" />
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Listado completo productos" />
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Productos sin existencias" />
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Productos mas vendidos" />
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Mayor precio" />
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Menor precio" />
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="146.0" text="Productos mas vendidos" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Mayor precio" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Menor precio" />
-                           </children>
-                        </HBox>
+                        </VBox>
                      </children>
                      <padding>
                         <Insets left="15.0" right="15.0" />
@@ -88,13 +81,12 @@
                            </font>
                         </Label>
                         <Label prefHeight="17.0" prefWidth="278.0" text="Reportes general de proveedores en foramato pdf" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <VBox>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="179.0" text="Listado completo proveedores" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Proveedores y productos" />
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Listado completo proveedores" />
+                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Proveedores y productos" />
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                        </VBox>
                      </children>
                      <padding>
                         <Insets left="15.0" right="15.0" />
@@ -120,18 +112,14 @@
                         <TextField prefHeight="25.0" prefWidth="245.0" />
                         <Label prefHeight="34.0" prefWidth="62.0" text="Nombre:" />
                         <TextField prefHeight="25.0" prefWidth="245.0" />
-                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="333.0">
+                        <VBox>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Facturas cliente" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Datos cliente" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="Facturas cliente" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="Datos cliente" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="Productos mas consumidos" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="Cuentas por cobrar" />
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="333.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Productos mas consumidos" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Cuentas por cobrar" />
-                           </children>
-                        </HBox>
+                        </VBox>
                      </children>
                      <padding>
                         <Insets left="15.0" right="15.0" />
@@ -148,18 +136,14 @@
                         <TextField prefHeight="25.0" prefWidth="245.0" />
                         <Label prefHeight="34.0" prefWidth="62.0" text="Nombre:" />
                         <TextField prefHeight="25.0" prefWidth="245.0" />
-                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="333.0">
+                        <VBox>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="clientes que mas consumen" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Datos producto" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="clientes que mas consumen" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="Datos producto" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="Producto en facturas" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="ingresos que genera" />
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="333.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Producto en facturas" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="ingresos que genera" />
-                           </children>
-                        </HBox>
+                        </VBox>
                      </children>
                      <padding>
                         <Insets left="15.0" right="15.0" />
@@ -176,13 +160,12 @@
                         <TextField prefHeight="25.0" prefWidth="245.0" />
                         <Label prefHeight="34.0" prefWidth="62.0" text="Nombre:" />
                         <TextField prefHeight="25.0" prefWidth="245.0" />
-                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="333.0">
+                        <VBox>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Productos del proveedor" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" text="Datos proveedor" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="Productos del proveedor" />
+                              <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="36.0" text="Datos proveedor" />
                            </children>
-                        </HBox>
-                        <HBox prefHeight="52.0" prefWidth="333.0" />
+                        </VBox>
                      </children>
                      <padding>
                         <Insets left="15.0" right="15.0" />
