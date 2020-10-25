@@ -2,10 +2,7 @@ package UI.controllers;
 
 import UI.models.ProductoFactura;
 import database.dao.VentaDao;
-import database.models.Producto;
-import database.models.SaldoPendiente;
-import database.models.Venta;
-import database.models.VentaProducto;
+import database.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -125,10 +122,10 @@ public class FacturationController implements Initializable {
 
     public void searchClient() {
         String clientNit = nitClientInput.getText();
-        String clientName = database.service.ClienteService.listClientNit(clientNit);
+        Cliente cliente = database.service.ClienteService.listClientNit(clientNit);
 
-        if (clientName.length() > 0) {
-            nameClientInput.setText(clientName);
+        if (cliente.getNombre().length() > 0) {
+            nameClientInput.setText(cliente.getNombre() + " " + cliente.getApellido());
             sellerUser.setText("admin");
             serialNumber.setText(serial);
         } else {

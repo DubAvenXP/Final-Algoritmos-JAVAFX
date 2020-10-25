@@ -7,14 +7,40 @@ import database.models.Cliente;
 import database.models.Producto;
 import database.models.Proveedor;
 import database.models.SaldoPendiente;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
+import java.security.Key;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReportController {
 
+    @FXML
+    private TextField nitClienteInput;
+
+    @FXML
+    private TextField nombreClienteInput;
+
+    @FXML
+    private TextField idProductoInput;
+
+    @FXML
+    private TextField nombreProductoInput;
+
+    @FXML
+    private TextField idProveedorInput;
+
+    @FXML
+    private TextField nombreProveedorInput;
+
+
     /*
-    * Clientes
-    * */
+     * Clientes
+     * */
 
     public void exportClients() {
         List<Cliente> clientes = database.service.ClienteService.listClient();
@@ -28,7 +54,7 @@ public class ReportController {
         }
     }
 
-    public void exportDebtors(){
+    public void exportDebtors() {
         List<SaldoPendiente> saldosPendientes = database.service.SaldoPendienteService.viewAllDobter();
         String[] headers = HeadersModels.saldoPendienteHeaders;
         FileModel fileModel = new FileModel("Deudores", "Deudores");
@@ -40,9 +66,24 @@ public class ReportController {
         }
     }
 
+    public void exportClient() {
+        String nit = nitClienteInput.getText();
+        List<Cliente> clientes = new ArrayList<>();
+        Cliente cliente = database.service.ClienteService.listClientNit(nit);
+        clientes.add(cliente);
+        String[] headers = HeadersModels.clientHeaders;
+        FileModel fileModel = new FileModel("Clientes", "Clientes");
+        try {
+            UI.utils.CreateExcelFile.exportClientsToExcel(clientes, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
+    }
+
     /*
-    * Productos
-    * */
+     * Productos
+     * */
 
     public void exportProducts() {
         List<Producto> productos = database.service.ProductoService.listProduct();
@@ -56,7 +97,7 @@ public class ReportController {
         }
     }
 
-    public void exportProductsOutOfStock(){
+    public void exportProductsOutOfStock() {
         List<Producto> productos = database.service.ProductoService.stockZero();
         String[] headers = HeadersModels.productoHeaders;
         FileModel fileModel = new FileModel("ProductosSinExistencias", "Sin existencias");
@@ -68,7 +109,7 @@ public class ReportController {
         }
     }
 
-    public void exportBestSellerProducts(){
+    public void exportBestSellerProducts() {
         List<Producto> productos = database.service.ProductoService.bestSellers();
         String[] headers = HeadersModels.productoHeaders;
         FileModel fileModel = new FileModel("ProductosMejoresVendidos", "Mejores vendidos");
@@ -80,7 +121,7 @@ public class ReportController {
         }
     }
 
-    public void exportMoreExpensiveProducts(){
+    public void exportMoreExpensiveProducts() {
         List<Producto> productos = database.service.ProductoService.highestPrice();
         String[] headers = HeadersModels.productoHeaders;
         FileModel fileModel = new FileModel("ProductosMasCaros", "Prod. mas caros");
@@ -92,7 +133,7 @@ public class ReportController {
         }
     }
 
-    public void exportCheaperProducts(){
+    public void exportCheaperProducts() {
         List<Producto> productos = database.service.ProductoService.lowestPrice();
         String[] headers = HeadersModels.productoHeaders;
         FileModel fileModel = new FileModel("ProductosMasBaratos", "Prod. mas baratos");
@@ -104,7 +145,7 @@ public class ReportController {
         }
     }
 
-    public void exportProviders(){
+    public void exportProviders() {
         List<Proveedor> proveedores = database.service.ProveedorService.listProvider();
         String[] headers = HeadersModels.proveedorHeaders;
         FileModel fileModel = new FileModel("Proveedores", "listado proveedores");
@@ -116,6 +157,10 @@ public class ReportController {
         }
     }
 
+    /*
+    * Utils
+    * */
+
     public void alertInfoSuccess() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -125,13 +170,37 @@ public class ReportController {
         alert.showAndWait();
     }
 
-    public void alertError(Error error){
+    public void alertError(Error error) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setTitle("Error");
         alert.setContentText(error + "ocurrio un error al " +
                 "crear el archivo .xls");
         alert.showAndWait();
+    }
+
+    public void searchClient(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            String nit = nitClienteInput.getText();
+            Cliente cliente = database.service.ClienteService.listClientNit(nit);
+            nombreClienteInput.setText(cliente.getNombre() + " " + cliente.getApellido());
+        }
+    }
+
+    public void searchProduct(KeyEvent keyEvent){
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            int id = Integer.parseInt(idProductoInput.getText());
+            Producto producto = database.service.ProductoService.listProductByID(id);
+            nombreProductoInput.setText(producto.getNombre());
+        }
+    }
+
+    public void searchProvider(KeyEvent keyEvent){
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            int id = Integer.parseInt(idProveedorInput.getText());
+            Proveedor proveedor = database.service.ProveedorService.listProviderByID(id);
+            nombreProductoInput.setText(proveedor.getNombre());
+        }
     }
 
 

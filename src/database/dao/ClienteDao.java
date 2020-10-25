@@ -82,25 +82,31 @@ public class ClienteDao {
      * @param nit perteneciente al cliente del cual se quiere treaer la informacion
      * @return retorna un String con la informacion del cliente
      */
-    public static String viewClientByNit(String nit) {
+    public static Cliente viewClientByNit(String nit) {
         PreparedStatement ps;
         ResultSet rs;
-        String clientName = new String();
+        Cliente client = new Cliente();
         try (Connection connection = Connect.getConnection()) {
-            String sql = "SELECT nombre, apellido FROM public.cliente WHERE nit = ?";
+            String sql = "SELECT \"idCliente\", nit, nombre, apellido, direccion, telefono " +
+                    "FROM public.cliente WHERE nit = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(1, nit);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                clientName = rs.getString(1) + " " + rs.getString(2);
+                client.setIdCliente(rs.getInt(1));
+                client.setNit(rs.getString(2));
+                client.setNombre(rs.getString(3));
+                client.setApellido(rs.getString(4));
+                client.setDireccion(rs.getString(5));
+                client.setTelefono(rs.getString(6));
             }
         } catch (SQLException e) {
             System.out.println("No se pudo traer el cliente o este no existe\n" + e);
         }
         Connect.closeConnection();
 
-        return clientName;
+        return client;
     }
 
     /**

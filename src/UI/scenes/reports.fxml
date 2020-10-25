@@ -69,7 +69,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="nitClienteInput" prefHeight="25.0" prefWidth="245.0">
+                        <TextField fx:id="nitClienteInput" onKeyPressed="#searchClient" prefHeight="25.0" prefWidth="245.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -191,7 +191,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="idProductoInput" prefHeight="25.0" prefWidth="245.0">
+                        <TextField fx:id="idProductoInput" onKeyPressed="#searchProduct" prefHeight="25.0" prefWidth="245.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -278,7 +278,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="idProveedorInput" prefHeight="25.0" prefWidth="245.0">
+                        <TextField fx:id="idProveedorInput" onKeyPressed="#searchProvider" prefHeight="25.0" prefWidth="245.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
