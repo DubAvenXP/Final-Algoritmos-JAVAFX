@@ -1,6 +1,7 @@
 package UI.controllers;
 
 import UI.utils.CreateExcelFile;
+import UI.utils.HeadersModels;
 import database.models.Cliente;
 import javafx.scene.control.Alert;
 import java.io.IOException;
@@ -14,8 +15,10 @@ public class ReportController {
 
     public void exportClientsToExcel() throws IOException {
         List<Cliente> clientes = getListClients();
+        String[] headers = HeadersModels.clientHeaders;
         try {
-            UI.utils.CreateExcelFile.exportClientsToExcel(clientes);
+
+            UI.utils.CreateExcelFile.exportClientsToExcel(clientes, headers);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Info");

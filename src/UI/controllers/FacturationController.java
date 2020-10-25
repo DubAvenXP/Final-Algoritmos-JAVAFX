@@ -76,7 +76,7 @@ public class FacturationController implements Initializable {
     private TableColumn<ProductoFactura, Double> totalPrice;
 
     @FXML
-    private Button deleteButton;
+    private TextField serialNumber;
 
     @FXML
     private Button cancelButton;
@@ -126,6 +126,7 @@ public class FacturationController implements Initializable {
             nameClientInput.setText(clientName);
             payMethod.setText("Efectivo");
             sellerUser.setText("admin");
+            serialNumber.setText(serial);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);

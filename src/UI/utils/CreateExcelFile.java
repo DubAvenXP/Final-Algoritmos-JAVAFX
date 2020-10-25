@@ -19,7 +19,7 @@ public class CreateExcelFile {
 
 
     public static String reportPath;
-    public static void exportClientsToExcel(List<Cliente> clientes) {
+    public static void exportClientsToExcel(List<Cliente> clientes, String[] header) {
 
         String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("_dMMMyyyy_HH-mm"));
         final String GLOBALUSER = System.getProperty("user.name");
@@ -28,16 +28,6 @@ public class CreateExcelFile {
 
         XSSFWorkbook libro = new XSSFWorkbook();
         XSSFSheet hoja1 = libro.createSheet(hoja);
-
-        //Headers
-        String[] header = new String[]{
-                "id",
-                "nit",
-                "nombre",
-                "apellido",
-                "direccion",
-                "telefono"
-        };
 
         //Bold
         CellStyle style = libro.createCellStyle();

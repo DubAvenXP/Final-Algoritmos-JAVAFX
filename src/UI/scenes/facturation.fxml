@@ -40,10 +40,23 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="26.0" prefWidth="425.0">
                            <children>
+                              <Label prefHeight="20.0" prefWidth="79.0" text="No. Factura:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="serialNumber" disable="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
                               <Label prefHeight="20.0" prefWidth="112.0" text="Metodo de pago:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
                               </Label>
                               <TextField fx:id="payMethod" disable="true">
                                  <font>
