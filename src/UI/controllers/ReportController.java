@@ -72,7 +72,7 @@ public class ReportController {
         Cliente cliente = database.service.ClienteService.listClientNit(nit);
         clientes.add(cliente);
         String[] headers = HeadersModels.clientHeaders;
-        FileModel fileModel = new FileModel("Clientes", "Clientes");
+        FileModel fileModel = new FileModel("Cliente", "individualCliente");
         try {
             UI.utils.CreateExcelFile.exportClientsToExcel(clientes, headers, fileModel);
             alertInfoSuccess();
@@ -145,10 +145,40 @@ public class ReportController {
         }
     }
 
+    public void exportProduct(){
+        int id = Integer.parseInt(idProductoInput.getText());
+        List<Producto> productos = new ArrayList<>();
+        Producto producto = database.service.ProductoService.listProductByID(id);
+        productos.add(producto);
+        String[] headers = HeadersModels.productoHeaders;
+        FileModel fileModel = new FileModel("Producto", "individual producto");
+        try {
+            UI.utils.CreateExcelFile.exportProductsToExcel(productos, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
+    }
+
     public void exportProviders() {
         List<Proveedor> proveedores = database.service.ProveedorService.listProvider();
         String[] headers = HeadersModels.proveedorHeaders;
         FileModel fileModel = new FileModel("Proveedores", "listado proveedores");
+        try {
+            UI.utils.CreateExcelFile.exportProvidersToExcel(proveedores, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
+    }
+
+    public void exportProvider() {
+        int id = Integer.parseInt(idProveedorInput.getText());
+        List<Proveedor> proveedores = new ArrayList<>();
+        Proveedor proveedor = database.service.ProveedorService.listProviderByID(id);
+        proveedores.add(proveedor);
+        String[] headers = HeadersModels.proveedorHeaders;
+        FileModel fileModel = new FileModel("Proveedores", "individual proveedores");
         try {
             UI.utils.CreateExcelFile.exportProvidersToExcel(proveedores, headers, fileModel);
             alertInfoSuccess();
@@ -199,7 +229,7 @@ public class ReportController {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             int id = Integer.parseInt(idProveedorInput.getText());
             Proveedor proveedor = database.service.ProveedorService.listProviderByID(id);
-            nombreProductoInput.setText(proveedor.getNombre());
+            nombreProveedorInput.setText(proveedor.getNombre());
         }
     }
 

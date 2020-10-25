@@ -84,7 +84,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </TextField>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Facturas cliente">
+                        <Button maxWidth="200.0" mnemonicParsing="false" onMouseClicked="#exportClient" prefHeight="40.0" prefWidth="250.0" text="Datos cliente">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -92,7 +92,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Datos cliente">
+                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Facturas cliente">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -206,7 +206,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </TextField>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="clientes que mas consumen">
+                        <Button maxWidth="200.0" mnemonicParsing="false" onMouseClicked="#exportProduct" prefHeight="40.0" prefWidth="250.0" text="Datos producto">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -214,7 +214,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Datos producto">
+                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="clientes que mas consumen">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -293,7 +293,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </TextField>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Productos del proveedor">
+                        <Button maxWidth="200.0" mnemonicParsing="false" onMouseClicked="#exportProvider" prefHeight="40.0" prefWidth="250.0" text="Datos proveedor">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -301,7 +301,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Datos proveedor">
+                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Productos del proveedor">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
