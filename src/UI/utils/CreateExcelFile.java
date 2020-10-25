@@ -3,6 +3,7 @@ package UI.utils;
 
 import database.models.Cliente;
 import database.models.Producto;
+import database.models.Proveedor;
 import database.models.SaldoPendiente;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -192,6 +193,37 @@ public class CreateExcelFile {
         }
 
 
+        reportPath = "C:\\Users\\" + GLOBALUSER + "\\Downloads\\" + fileName;
+        createFile(reportPath, libro);
+    }
+
+    public static void exportProvidersToExcel(List<Proveedor> proveedores, String[] header, FileModel fileConfig){
+        String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
+        String hoja = fileConfig.getSheetName();
+        XSSFWorkbook libro = new XSSFWorkbook();
+        XSSFSheet hoja1 = libro.createSheet(hoja);
+        setBoldStyle(libro);
+        int index = 0;
+
+        for (int i = 0; i <= proveedores.size(); i++) {
+            XSSFRow row = hoja1.createRow(i); //Se crea la fila
+            for (int j = 0; j < header.length; j++) {
+                if (i == 0) { //para la cabecera
+                    XSSFCell cell = row.createCell(j); //Se crean las celdas para la cabecera
+                    cell.setCellValue(header[j]); //Se añade el contenido
+                }
+            }
+            if (i != 0 && index < proveedores.size()) {
+                Proveedor proveedor = proveedores.get(index);
+                XSSFCell id = row.createCell(0);
+                id.setCellValue(proveedor.getIdProveedor());
+                XSSFCell nombre = row.createCell(1);
+                nombre.setCellValue(proveedor.getNombre());
+                XSSFCell descripcion = row.createCell(2);
+                descripcion.setCellValue(proveedor.getDescripcion());
+                index++;
+            }
+        }
         reportPath = "C:\\Users\\" + GLOBALUSER + "\\Downloads\\" + fileName;
         createFile(reportPath, libro);
     }

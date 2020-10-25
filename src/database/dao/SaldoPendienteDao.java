@@ -92,15 +92,6 @@ public class SaldoPendienteDao {
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los deudores\n" + e);
         }
-        for (SaldoPendiente saldoPendiente : dobterList) {
-            System.out.println("ID:" + saldoPendiente.getIdSaldoPendiente());
-            System.out.println("NIT: " + saldoPendiente.getNitClient());
-            System.out.println("NOMBRE:" + saldoPendiente.getNombreCliente());
-            System.out.println("TOTAL:" + saldoPendiente.getTotalPagar());
-            System.out.println("DEUDA:" + saldoPendiente.getDeudaPendiente());
-            System.out.println("ABONO:" + saldoPendiente.getAbono());
-            System.out.println();
-        }
         return dobterList;
     }
 

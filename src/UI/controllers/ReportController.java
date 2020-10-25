@@ -5,6 +5,7 @@ import UI.utils.FileModel;
 import UI.utils.HeadersModels;
 import database.models.Cliente;
 import database.models.Producto;
+import database.models.Proveedor;
 import database.models.SaldoPendiente;
 import javafx.scene.control.Alert;
 import java.util.List;
@@ -97,6 +98,18 @@ public class ReportController {
         FileModel fileModel = new FileModel("ProductosMasBaratos", "Prod. mas baratos");
         try {
             UI.utils.CreateExcelFile.exportProductsToExcel(productos, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
+    }
+
+    public void exportProviders(){
+        List<Proveedor> proveedores = database.service.ProveedorService.listProvider();
+        String[] headers = HeadersModels.proveedorHeaders;
+        FileModel fileModel = new FileModel("Proveedores", "listado proveedores");
+        try {
+            UI.utils.CreateExcelFile.exportProvidersToExcel(proveedores, headers, fileModel);
             alertInfoSuccess();
         } catch (Error error) {
             alertError(error);

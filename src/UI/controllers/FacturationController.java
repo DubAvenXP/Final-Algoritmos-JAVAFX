@@ -254,12 +254,6 @@ public class FacturationController implements Initializable {
             try {
                 List<VentaProducto> ventaProductos = generateVentaProductoObjects();
                 database.service.VentaProductoService.saveBill(ventaProductos);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Info");
-                alert.setContentText("Venta generada con exito");
-                alert.showAndWait();
-
             } catch (NumberFormatException exception) {
                 Alert secondAlert = new Alert(Alert.AlertType.ERROR);
                 secondAlert.setHeaderText(null);
@@ -286,6 +280,11 @@ public class FacturationController implements Initializable {
             generateInvoice();
             SaldoPendiente saldoPendiente = generateSaldoPendienteObjets();
             database.service.SaldoPendienteService.createDobter(saldoPendiente);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Info");
+            alert.setContentText("Venta generada con exito");
+            alert.showAndWait();
         } else if (methodToPay.equals("tarjeta") || methodToPay.equals("efectivo")){
             generateInvoice();
         }
