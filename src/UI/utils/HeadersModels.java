@@ -18,8 +18,7 @@ public class HeadersModels {
             "descripcion",
             "stock",
             "provider",
-            "idProvider",
-            "bestSellerCount"
+            "idProvider"
     };
 
     public static String[] proveedorHeaders = new String[]{
@@ -45,5 +44,16 @@ public class HeadersModels {
             "idProducto",
             "cantidad",
             "precioVenta"
+    };
+
+    public static String[] saldoPendienteHeaders = new String[]{
+            "idSaldoPendiente",
+            "nitClient",
+            "nombreCliente",
+            "totalPagar",
+            "serieVenta",
+            "deudaPendiente",
+            "abono",
+            "tipoPago"
     };
 }

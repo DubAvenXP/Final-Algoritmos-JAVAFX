@@ -1,38 +1,69 @@
 package UI.controllers;
 
 import UI.utils.CreateExcelFile;
+import UI.utils.FileModel;
 import UI.utils.HeadersModels;
 import database.models.Cliente;
+import database.models.Producto;
+import database.models.SaldoPendiente;
 import javafx.scene.control.Alert;
-import java.io.IOException;
 import java.util.List;
 
 public class ReportController {
 
-    public List<Cliente> getListClients() {
-        return database.service.ClienteService.listClient();
+
+    public void exportClientsToExcel() {
+        List<Cliente> clientes = database.service.ClienteService.listClient();
+        String[] headers = HeadersModels.clientHeaders;
+        FileModel fileModel = new FileModel("Clientes", "Clientes");
+        try {
+            UI.utils.CreateExcelFile.exportClientsToExcel(clientes, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
     }
 
-    public void exportClientsToExcel() throws IOException {
-        List<Cliente> clientes = getListClients();
-        String[] headers = HeadersModels.clientHeaders;
+    public void exportProductsToExcel() {
+        List<Producto> productos = database.service.ProductoService.listProduct();
+        String[] headers = HeadersModels.productoHeaders;
+        FileModel fileModel = new FileModel("Productos", "Productos");
         try {
-
-            UI.utils.CreateExcelFile.exportClientsToExcel(clientes, headers);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Info");
-            alert.setContentText("Archivo creado correctamente en la ruta \n" +
-                    CreateExcelFile.reportPath);
-            alert.showAndWait();
-        } catch (Error exception) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText(exception + "ocurrio un error al " +
-                    "crear el archivo .xls");
-            alert.showAndWait();
+            UI.utils.CreateExcelFile.exportProductsToExcel(productos, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
         }
+    }
+
+    public void exportDebtorsToExcel(){
+        List<SaldoPendiente> saldosPendientes = database.service.SaldoPendienteService.viewAllDobter();
+        String[] headers = HeadersModels.saldoPendienteHeaders;
+        FileModel fileModel = new FileModel("Deudores", "Deudores");
+        try {
+            UI.utils.CreateExcelFile.exportDebtorCustomersToExcel(saldosPendientes, headers, fileModel);
+            alertInfoSuccess();
+        } catch (Error error) {
+            alertError(error);
+        }
+    }
+
+    public void alertInfoSuccess() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Info");
+        alert.setContentText("Archivo creado correctamente en la ruta \n" +
+                CreateExcelFile.reportPath);
+        alert.showAndWait();
+    }
+
+    public void alertError(Error error){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Error");
+        alert.setContentText(error + "ocurrio un error al " +
+                "crear el archivo .xls");
+        alert.showAndWait();
     }
 
 

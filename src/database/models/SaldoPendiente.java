@@ -27,11 +27,11 @@ public class SaldoPendiente {
 
     }
 
-    public Integer getIsSaldoPendiente() {
+    public Integer getIdSaldoPendiente() {
         return idSaldoPendiente;
     }
 
-    public void setIsSaldoPendiente(Integer idSaldoPendiente) {
+    public void setIdSaldoPendiente(Integer idSaldoPendiente) {
         this.idSaldoPendiente = idSaldoPendiente;
     }
 

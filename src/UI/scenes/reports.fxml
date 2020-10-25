@@ -34,7 +34,7 @@
                         <VBox>
                            <children>
                               <Button mnemonicParsing="false" onMouseClicked="#exportClientsToExcel" prefHeight="45.0" prefWidth="200.0" text="Listado completo clientes" />
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="Clientes morosos" />
+                              <Button mnemonicParsing="false" onMouseClicked="#exportDebtorsToExcel" prefHeight="45.0" prefWidth="200.0" text="Clientes morosos" />
                               <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="Clientes activos" />
                               <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" text="Clientes inactivos" />
                            </children>
@@ -58,7 +58,7 @@
                         <Label text="Reportes general de productos en formato pdf" />
                         <VBox>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Listado completo productos" />
+                              <Button mnemonicParsing="false" onMouseClicked="#exportProductsToExcel" prefHeight="36.0" prefWidth="200.0" text="Listado completo productos" />
                               <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Productos sin existencias" />
                               <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Productos mas vendidos" />
                               <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" text="Mayor precio" />
