@@ -3,6 +3,7 @@ package UI.controllers;
 import UI.models.ProductoFactura;
 import database.dao.VentaDao;
 import database.models.Producto;
+import database.models.SaldoPendiente;
 import database.models.Venta;
 import database.models.VentaProducto;
 import javafx.collections.FXCollections;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class FacturationController implements Initializable {
     @FXML
-    private TextField payMethod;
+    private ComboBox<String> payMethod;
 
     @FXML
     private TextField nitClientInput;
@@ -100,11 +101,15 @@ public class FacturationController implements Initializable {
 
     //variable estatica que genera el serie venta
     public static String serial = VentaDao.generateBillNumber();
+    ObservableList<String> payMethods = FXCollections.observableArrayList(
+            "Efectivo", "Tarjeta", "Cuotas"
+    );
 
     ObservableList<ProductoFactura> listadoProductosFactura = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        payMethod.setItems(payMethods);
         this.index.setCellValueFactory(new PropertyValueFactory<ProductoFactura, Integer>("index"));
         this.id.setCellValueFactory(new PropertyValueFactory<ProductoFactura, Integer>("id"));
         this.product.setCellValueFactory(new PropertyValueFactory<ProductoFactura, String>("producto"));
@@ -124,7 +129,6 @@ public class FacturationController implements Initializable {
 
         if (clientName.length() > 0) {
             nameClientInput.setText(clientName);
-            payMethod.setText("Efectivo");
             sellerUser.setText("admin");
             serialNumber.setText(serial);
         } else {
@@ -181,7 +185,7 @@ public class FacturationController implements Initializable {
 
     public void addProductToInvoice() {
         try {
-            ProductoFactura productoFactura = generateProductoFactura();
+            ProductoFactura productoFactura = generateProductoFacturaObject();
             int cantidad = Integer.parseInt(quantityInput.getText());
             Integer stock = Integer.parseInt(stockInput.getText()) - cantidad;
             database.service.VentaService.updateStock(stock, productoFactura.getId());
@@ -242,10 +246,9 @@ public class FacturationController implements Initializable {
         }
     }
 
-
-    public void generateInvoiceOnClic() {
+    public void generateInvoice(){
         try {
-            Venta venta = generateVenta();
+            Venta venta = generateVentaObject();
             venta.setSerieVenta(serial);
             database.service.VentaService.createSale(venta);
             try {
@@ -275,7 +278,20 @@ public class FacturationController implements Initializable {
         }
     }
 
-    public ProductoFactura generateProductoFactura() {
+
+    public void generateInvoiceOnClic() {
+        String methodToPay = payMethod.getSelectionModel().getSelectedItem().toLowerCase();
+        System.out.println("method to pay" + methodToPay);
+        if (methodToPay.equals("cuotas")){
+            generateInvoice();
+            SaldoPendiente saldoPendiente = generateSaldoPendienteObjets();
+            database.service.SaldoPendienteService.createDobter(saldoPendiente);
+        } else if (methodToPay.equals("tarjeta") || methodToPay.equals("efectivo")){
+            generateInvoice();
+        }
+    }
+
+    public ProductoFactura generateProductoFacturaObject() {
         ProductoFactura productoFactura = new ProductoFactura();
         Double precioUnitario = Double.parseDouble(priceInput.getText());
         Integer cantidad = Integer.parseInt(quantityInput.getText());
@@ -320,12 +336,12 @@ public class FacturationController implements Initializable {
         return ventaProductos;
     }
 
-    public Venta generateVenta() {
+    public Venta generateVentaObject() {
         Venta venta = new Venta();
         venta.setNitCliente(nitClientInput.getText());
         venta.setUserVendedor(sellerUser.getText());
         venta.setMonto(totalToPay);
-        venta.setMetodoPago(payMethod.getText());
+        venta.setMetodoPago(payMethod.getSelectionModel().getSelectedItem().toLowerCase());
         return venta;
     }
 
@@ -334,4 +350,19 @@ public class FacturationController implements Initializable {
             addButton.setDisable(false);
         }
     }
+
+    public SaldoPendiente generateSaldoPendienteObjets(){
+        SaldoPendiente saldoPendiente = new SaldoPendiente();
+        saldoPendiente.setNitClient(nitClientInput.getText());
+        saldoPendiente.setNombreCliente(nameClientInput.getText());
+        saldoPendiente.setTotalPagar(totalToPay);
+        saldoPendiente.setSerieVenta(serial);
+        saldoPendiente.setDeudaPendiente(totalToPay);
+        saldoPendiente.setAbono(0.0);
+        saldoPendiente.setTipoPago(payMethod.getSelectionModel().getSelectedItem().toLowerCase());
+        return saldoPendiente;
+    }
+
+
 }
+
