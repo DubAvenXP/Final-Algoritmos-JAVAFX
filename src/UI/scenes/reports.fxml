@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="815.0" prefWidth="1100.0" style="-fx-background-color: #e7e7de;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.controllers.ReportController">
    <children>
-      <VBox layoutY="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutY="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label prefHeight="34.0" prefWidth="278.0" text="REPORTES GENERALES">
                <font>
@@ -92,7 +92,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Facturas cliente">
+                        <Button fx:id="exportSalesByClient" maxWidth="200.0" mnemonicParsing="false" onMouseClicked="#exportSalesByClient" prefHeight="40.0" prefWidth="250.0" text="Facturas cliente">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -100,15 +100,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Productos mas consumidos">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Cuentas por cobrar">
+                        <Button maxWidth="200.0" mnemonicParsing="false" onMouseClicked="#exportAccountsReceivable" prefHeight="40.0" prefWidth="250.0" text="Cuentas por cobrar">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -175,7 +167,15 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="15.0" top="10.0" />
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#exportAllSalesProduct" prefHeight="40.0" prefWidth="250.0" text="Listado productos vendidos">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
                         <Label minHeight="53.0" prefHeight="81.0" prefWidth="223.0" text="Reportes individuales por producto en formato xlsx" textAlignment="CENTER" wrapText="true">
@@ -207,30 +207,6 @@
                            </font>
                         </TextField>
                         <Button maxWidth="200.0" mnemonicParsing="false" onMouseClicked="#exportProduct" prefHeight="40.0" prefWidth="250.0" text="Datos producto">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="clientes que mas consumen">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Producto en facturas">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="ingresos que genera">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -317,6 +293,14 @@
                </children>
             </HBox>
             <HBox prefHeight="375.0" prefWidth="1100.0" />
+            <Label prefHeight="35.0" prefWidth="948.0" text="Nota: todos los reportes estan en formato excel">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

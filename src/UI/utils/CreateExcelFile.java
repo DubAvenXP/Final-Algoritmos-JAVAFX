@@ -1,10 +1,7 @@
 package UI.utils;
 
 
-import database.models.Cliente;
-import database.models.Producto;
-import database.models.Proveedor;
-import database.models.SaldoPendiente;
+import database.models.*;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 
@@ -104,9 +101,9 @@ public class CreateExcelFile {
         for (int i = 0; i <= saldosPendientes.size(); i++) {
             XSSFRow row = hoja1.createRow(i); //Se crea la fila
             for (int j = 0; j < header.length; j++) {
-                if (i == 0) { //para la cabecera
+                if (i == 0) { //para la cabecera o encabezados
                     XSSFCell cell = row.createCell(j); //Se crean las celdas para la cabecera
-                    cell.setCellValue(header[j]); //Se añade el contenido
+                    cell.setCellValue(header[j]); //Se añade el contenido (de a los titulos columnas)
                 }
             }
             if (i != 0 && index < saldosPendientes.size()) {
@@ -119,15 +116,10 @@ public class CreateExcelFile {
                 nombre.setCellValue(saldoPendiente.getNombreCliente());
                 XSSFCell totalPagar = row.createCell(3);
                 totalPagar.setCellValue("Q" + saldoPendiente.getTotalPagar());
-                XSSFCell serieVenta = row.createCell(4);
-                serieVenta.setCellValue(saldoPendiente.getSerieVenta());
-                XSSFCell deudaPendiente = row.createCell(5);
+                XSSFCell deudaPendiente = row.createCell(4);
                 deudaPendiente.setCellValue("Q" + saldoPendiente.getDeudaPendiente());
-                XSSFCell abono = row.createCell(6);
+                XSSFCell abono = row.createCell(5);
                 abono.setCellValue("Q" + saldoPendiente.getAbono());
-                XSSFCell tipoPago = row.createCell(7);
-                tipoPago.setCellValue(saldoPendiente.getTipoPago());
-
                 index++;
             }
         }
@@ -142,8 +134,8 @@ public class CreateExcelFile {
         XSSFSheet hoja1 = libro.createSheet(hoja);
         setBoldStyle(libro);
         int index = 0;
-        if (productos.get(0).getStock() == null){
-            System.out.println("productos mas vendidos");
+
+        if (productos.get(0).getStock() == null) {
             header[4] = "Cantidad productos vendidos";
             header[5] = "Ingresos generados";
             header[6] = "";
@@ -171,7 +163,7 @@ public class CreateExcelFile {
                 if (producto.getStock() != null) {
                     XSSFCell stock = row.createCell(4);
                     stock.setCellValue(producto.getStock());
-                    if (producto.getIdProvider() == null){
+                    if (producto.getIdProvider() == null) {
                         XSSFCell provider = row.createCell(5);
                         provider.setCellValue(producto.getProvider());
                     } else {
@@ -187,7 +179,6 @@ public class CreateExcelFile {
                     XSSFCell ingresosGenerados = row.createCell(5);
                     ingresosGenerados.setCellValue(producto.getBestSellerCount() * producto.getPrecio());
                 }
-
                 index++;
             }
         }
@@ -197,7 +188,7 @@ public class CreateExcelFile {
         createFile(reportPath, libro);
     }
 
-    public static void exportProvidersToExcel(List<Proveedor> proveedores, String[] header, FileModel fileConfig){
+    public static void exportProvidersToExcel(List<Proveedor> proveedores, String[] header, FileModel fileConfig) {
         String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
         String hoja = fileConfig.getSheetName();
         XSSFWorkbook libro = new XSSFWorkbook();
@@ -221,6 +212,88 @@ public class CreateExcelFile {
                 nombre.setCellValue(proveedor.getNombre());
                 XSSFCell descripcion = row.createCell(2);
                 descripcion.setCellValue(proveedor.getDescripcion());
+                index++;
+            }
+        }
+        reportPath = "C:\\Users\\" + GLOBALUSER + "\\Downloads\\" + fileName;
+        createFile(reportPath, libro);
+    }
+
+    public static void exportSalesByClientToExcel(List<Venta> ventas, String[] header, FileModel fileConfig) {
+        String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
+        String hoja = fileConfig.getSheetName();
+        XSSFWorkbook libro = new XSSFWorkbook();
+        XSSFSheet hoja1 = libro.createSheet(hoja);
+        setBoldStyle(libro);
+        int index = 0;
+
+        for (int i = 0; i <= ventas.size(); i++) {
+            XSSFRow row = hoja1.createRow(i); //Se crea la fila
+            for (int j = 0; j < header.length; j++) {
+                if (i == 0) { //para la cabecera
+                    XSSFCell cell = row.createCell(j); //Se crean las celdas para la cabecera
+                    cell.setCellValue(header[j]); //Se añade el contenido
+                }
+            }
+            if (i != 0 && index < ventas.size()) {
+                Venta venta = ventas.get(index);
+                XSSFCell id = row.createCell(0);
+                id.setCellValue(venta.getIdVenta());
+                XSSFCell nit = row.createCell(1);
+                nit.setCellValue(venta.getNitCliente());
+                XSSFCell userVendedor = row.createCell(2);
+                userVendedor.setCellValue(venta.getUserVendedor());
+                XSSFCell nombre = row.createCell(3);
+                nombre.setCellValue(venta.getNombreCliente());
+                XSSFCell serieVenta = row.createCell(4);
+                serieVenta.setCellValue(venta.getSerieVenta());
+                XSSFCell fechaVenta = row.createCell(5);
+                fechaVenta.setCellValue(venta.getFechaVenta());
+                XSSFCell monto = row.createCell(6);
+                monto.setCellValue("Q" + venta.getMonto());
+                XSSFCell metodoPago = row.createCell(7);
+                metodoPago.setCellValue(venta.getMetodoPago());
+                index++;
+            }
+        }
+        reportPath = "C:\\Users\\" + GLOBALUSER + "\\Downloads\\" + fileName;
+        createFile(reportPath, libro);
+    }
+
+    public static void exportSalesByProductToExcel(List<VentaProducto> ventaProductos, String[] header, FileModel fileConfig) {
+        String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
+        String hoja = fileConfig.getSheetName();
+        XSSFWorkbook libro = new XSSFWorkbook();
+        XSSFSheet hoja1 = libro.createSheet(hoja);
+        setBoldStyle(libro);
+        int index = 0;
+
+        for (int i = 0; i <= ventaProductos.size(); i++) {
+            XSSFRow row = hoja1.createRow(i); //Se crea la fila
+            for (int j = 0; j < header.length; j++) {
+                if (i == 0) { //para la cabecera
+                    XSSFCell cell = row.createCell(j); //Se crean las celdas para la cabecera
+                    cell.setCellValue(header[j]); //Se añade el contenido
+                }
+            }
+            if (i != 0 && index < ventaProductos.size()) {
+                VentaProducto ventaProducto = ventaProductos.get(index);
+                XSSFCell serieVenta = row.createCell(0);
+                serieVenta.setCellValue(ventaProducto.getSerieVenta());
+                XSSFCell idProduccto = row.createCell(1);
+                if (ventaProducto.getIdProducto() != null) {
+                    idProduccto.setCellValue(ventaProducto.getIdProducto());
+                } else{
+                    idProduccto.setCellValue("S/D");
+                }
+                XSSFCell cantidad = row.createCell(2);
+                cantidad.setCellValue(ventaProducto.getCantidad());
+                XSSFCell precioVenta = row.createCell(3);
+                precioVenta.setCellValue(ventaProducto.getPrecioVenta());
+                XSSFCell nombreProducto = row.createCell(4);
+                nombreProducto.setCellValue(ventaProducto.getNombreProducto());
+                XSSFCell descripcionProducto = row.createCell(5);
+                descripcionProducto.setCellValue(ventaProducto.getDescripcionProducto());
                 index++;
             }
         }

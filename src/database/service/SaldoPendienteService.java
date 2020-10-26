@@ -29,7 +29,7 @@ public class SaldoPendienteService {
      * @param nit perteneciente al deudor del que se quiere saber la informacion
      * @return retorna un List con los datos del deudor
      */
-    public static SaldoPendiente viewDobter(String nit){
+    public static List<SaldoPendiente>  viewDobter(String nit){
         return SaldoPendienteDao.viewDobter(nit);
     }
 

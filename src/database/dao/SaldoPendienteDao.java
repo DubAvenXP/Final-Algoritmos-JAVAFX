@@ -101,10 +101,11 @@ public class SaldoPendienteDao {
      * @param nit perteneciente al deudor de que se quiere tener la informacion
      * @return retorna un objeto de tipo SaldoPendiente con la informacion
      */
-    public static SaldoPendiente viewDobter(String nit) {
+    public static List<SaldoPendiente> viewDobter(String nit) {
         PreparedStatement ps;
         ResultSet rs;
-        SaldoPendiente dobter = new SaldoPendiente();
+        List<SaldoPendiente> saldosPendientes = new ArrayList<>();
+
         try (Connection connection = Connect.getConnection()) {
             String sql = "select * from public.\"saldoPendiente\" where \"nitCliente\" = ?";
             ps = connection.prepareStatement(sql);
@@ -112,17 +113,19 @@ public class SaldoPendienteDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                SaldoPendiente dobter = new SaldoPendiente();
                 dobter.setIdSaldoPendiente(rs.getInt(1));
                 dobter.setNitClient(rs.getString(2));
                 dobter.setNombreCliente(rs.getString(3));
                 dobter.setTotalPagar(rs.getDouble(4));
                 dobter.setDeudaPendiente(rs.getDouble(5));
                 dobter.setAbono(rs.getDouble(6));
+                saldosPendientes.add(dobter);
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los deudores\n" + e);
         }
-        return dobter;
+        return saldosPendientes;
     }
 
     /**

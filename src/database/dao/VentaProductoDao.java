@@ -22,7 +22,7 @@ public class VentaProductoDao {
      * Metodo para guardar los productos de una factura ne la base de datos
      *
      * @param productoList recibe un List de tipo VentaProducto donde traer los parametros del producto para ser insertados
-     *                       en la base de datos
+     *                     en la base de datos
      */
     public static void saveBillDB(List<VentaProducto> productoList) {
         try (Connection connection = Connect.getConnection()) {
@@ -41,7 +41,7 @@ public class VentaProductoDao {
                 index++;
                 idProductSale++;
             }
-                ps.executeUpdate();
+            ps.executeUpdate();
             System.out.println("Factura guardada con exito");
         } catch (SQLException e) {
             System.out.println("No se pudo guardar la factura" + e);
@@ -102,21 +102,22 @@ public class VentaProductoDao {
 
     /**
      * Este metodo es el que evalua la cantidad de productos que trae el List de VentaProducto
+     *
      * @param productoList recibe un List de tipo VentaProducto donde traer los parametros del producto para ser insertados
      *                     en la base de datos
      * @return retorna un string con la secuencia sql correcta para hacer el query en la base de datos
      */
-    public static String valuesProducts(List<VentaProducto> productoList){
+    public static String valuesProducts(List<VentaProducto> productoList) {
         String productSize = "";
-        if (productoList.size() == 5){
+        if (productoList.size() == 5) {
             productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
-        }else if (productoList.size() == 4){
+        } else if (productoList.size() == 4) {
             productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
-        }else if (productoList.size() == 3){
+        } else if (productoList.size() == 3) {
             productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
-        }else if (productoList.size() == 2){
+        } else if (productoList.size() == 2) {
             productSize = "(?, ?, ?, ?, ?), (?, ?, ?, ?, ?)";
-        }else if (productoList.size() == 1){
+        } else if (productoList.size() == 1) {
             productSize = "(?, ?, ?, ?, ?)";
         }
         return productSize;
@@ -124,21 +125,22 @@ public class VentaProductoDao {
 
     /**
      * Metodo que traer todos lo productos vendidos en la facturas
+     *
      * @return retorna un List con la informacion de las ventas de los prpductos
      */
-    public static List<VentaProducto> viewAllProductSales(){
+    public static List<VentaProducto> viewAllProductSales() {
         PreparedStatement ps;
         ResultSet rs;
         List<VentaProducto> ventaProductoList = new ArrayList<>();
-        try (Connection connection = Connect.getConnection()){
+        try (Connection connection = Connect.getConnection()) {
             String sql = "select \"serieVenta\", \"idProducto\", cantidad, \"precioVenta\",\n" +
-                    "(select (nombre) from producto where producto.\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"nombre\",\n" +
+                    "(select (nombnre) from producto where producto.\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"nombre\",\n" +
                     "(select (descripcion) from producto where producto.\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"descripcion\"\n" +
                     "from public.\"ventaProducto\" order by \"serieVenta\" asc";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
 
-            while (rs.next()){
+            while (rs.next()) {
                 VentaProducto ventaProducto = new VentaProducto();
                 ventaProducto.setSerieVenta(rs.getString(1));
                 ventaProducto.setIdProducto(rs.getInt(2));

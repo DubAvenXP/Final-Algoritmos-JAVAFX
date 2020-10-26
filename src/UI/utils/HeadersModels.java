@@ -31,19 +31,20 @@ public class HeadersModels {
             "idVenta",
             "nitCliente",
             "userVendedor",
+            "nombreCliente",
             "serieVenta",
             "fechaVenta",
             "monto",
-            "metodoPago",
-            "nombreCliente"
+            "metodoPago"
     };
 
     public static String[] ventaProductosHeaders = new String[]{
-            "idVentaProducto",
             "serieVenta",
             "idProducto",
             "cantidad",
-            "precioVenta"
+            "precioVenta",
+            "nombreProducto",
+            "descripcionProducto"
     };
 
     public static String[] saldoPendienteHeaders = new String[]{
@@ -51,9 +52,7 @@ public class HeadersModels {
             "nitClient",
             "nombreCliente",
             "totalPagar",
-            "serieVenta",
             "deudaPendiente",
-            "abono",
-            "tipoPago"
+            "abono"
     };
 }

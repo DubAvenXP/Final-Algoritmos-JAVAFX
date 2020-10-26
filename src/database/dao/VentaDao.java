@@ -210,7 +210,7 @@ public class VentaDao {
         ResultSet rs;
         List<Venta> clienteList = new ArrayList<>();
         try(Connection connection = Connect.getConnection()){
-            String sql = "select \"serieVenta\",\"nitCliente\",monto,\"metodoPago\",\"fechaVenta\", (select(nombre) from cliente \n" +
+            String sql = "select \"serieVenta\",\"nitCliente\", monto,\"metodoPago\",\"fechaVenta\", \"idVenta\", \"nombreVendedor\", (select(nombre) from cliente \n" +
                     "where cliente.nit = venta.\"nitCliente\") as \"nombre\" from public.venta where \"nitCliente\" = ?";
             ps = connection.prepareStatement(sql);
             ps.setString(1, nit);
@@ -223,7 +223,9 @@ public class VentaDao {
                 venta.setMonto(rs.getDouble(3));
                 venta.setMetodoPago(rs.getString(4));
                 venta.setFechaVenta(rs.getString(5));
-                venta.setNombreCliente(rs.getString(6));
+                venta.setIdVenta(Integer.parseInt(rs.getString(6)));
+                venta.setUserVendedor(rs.getString(7));
+                venta.setNombreCliente(rs.getString(8));
                 clienteList.add(venta);
             }
         } catch (SQLException e) {
@@ -233,6 +235,7 @@ public class VentaDao {
             System.out.println("No Factura:" + venta.getSerieVenta());
             System.out.println("Nit: " + venta.getNitCliente());
             System.out.println("NOMBRE:" + venta.getNombreCliente());
+            System.out.println("vendedor:" + venta.getUserVendedor());
             System.out.println("Monto:" + venta.getMonto());
             System.out.println("Forma pago:" + venta.getMetodoPago());
             System.out.println("Fecha:" + venta.getFechaVenta());
