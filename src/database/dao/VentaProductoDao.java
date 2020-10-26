@@ -134,9 +134,9 @@ public class VentaProductoDao {
         List<VentaProducto> ventaProductoList = new ArrayList<>();
         try (Connection connection = Connect.getConnection()) {
             String sql = "select \"serieVenta\", \"idProducto\", cantidad, \"precioVenta\",\n" +
-                    "(select (nombnre) from producto where producto.\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"nombre\",\n" +
+                    "(select (nombre) from producto where producto.\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"nombre\",\n" +
                     "(select (descripcion) from producto where producto.\"idProducto\" = \"ventaProducto\".\"idProducto\") as \"descripcion\"\n" +
-                    "from public.\"ventaProducto\" order by \"serieVenta\" asc";
+                    "from public.\"ventaProducto\" order by \"idVentaProducto\" desc";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -149,15 +149,6 @@ public class VentaProductoDao {
                 ventaProducto.setNombreProducto(rs.getString(5));
                 ventaProducto.setDescripcionProducto(rs.getString(6));
                 ventaProductoList.add(ventaProducto);
-            }
-            for (VentaProducto ventaProducto : ventaProductoList) {
-                System.out.println("NO FACTURA; " + ventaProducto.getSerieVenta());
-                System.out.println("ID PRODUCTO; " + ventaProducto.getIdProducto());
-                System.out.println("NOMBRE PRO; " + ventaProducto.getNombreProducto());
-                System.out.println("DESC PROD; " + ventaProducto.getDescripcionProducto());
-                System.out.println("CANTIDAD; " + ventaProducto.getCantidad());
-                System.out.println("TOTAL; " + ventaProducto.getPrecioVenta());
-                System.out.println();
             }
         } catch (SQLException e) {
             System.out.println("No se pudieron traer los producto\n" + e);
