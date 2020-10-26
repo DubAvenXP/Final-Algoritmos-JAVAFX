@@ -1,5 +1,5 @@
-# Proyecto-final-algoritmos-backend
-Este el proyecto final de algoritmos de la Universidad Mariano Gálvez | Se realizo la una interfaz grafica con la ayuda de JavaFX
+# Proyecto-final-algoritmos-JAVAFX
+Este el proyecto final de algoritmos de la Universidad Mariano Gálvez | Se realizo la una interfaz grafica con la ayuda de JavaFX y la base de datos se encuentra alojada en HEROKU
 
 En este repositorio encontraras todo el proyecto backend
 
@@ -22,5 +22,5 @@ Para realizar este proyecto tuvimos que aprender lo siguiente:
 7. PERSISTENCIA DE DATOS
 
 **Nota: Un archivo readme.md es una excelente practica.**
-Para ver nuestro proyecto  dale click al siguiente enlace .
-[Este es el epico enlace para ir a nuestro proyecto](https://dubavenxp.github.io/proyecto-final-logica "proyecto")
+Para ver nuestra documentacion dale click al siguiente enlace .
+[Este es el epico enlace para ir a nuestro proyecto](https://dounder.github.io/bootstrap4 "proyecto")
