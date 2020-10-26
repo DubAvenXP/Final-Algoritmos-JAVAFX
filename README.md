@@ -23,4 +23,4 @@ Para realizar este proyecto tuvimos que aprender lo siguiente:
 
 **Nota: Un archivo readme.md es una excelente practica.**
 Para ver nuestra documentacion dale click al siguiente enlace .
-[Este es el epico enlace para ir a nuestro proyecto](https://dounder.github.io/bootstrap4 "proyecto")
+[Este es el epico enlace para ir a la documentacion del proyecto](https://dounder.github.io/bootstrap4 "proyecto")
