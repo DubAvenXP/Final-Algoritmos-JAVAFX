@@ -2,6 +2,9 @@ package UI.utils;
 
 public class HeadersModels {
 
+    /**
+     * Descripcion: Array que contiene los encabezados que iran como titulo en el excel a crearse para clientes
+     * */
     public static String[] clientHeaders = new String[]{
             "id",
             "nit",
@@ -11,6 +14,9 @@ public class HeadersModels {
             "telefono"
     };
 
+    /**
+     * Descripcion: Array que contiene los encabezados que iran como titulo en el excel a crearse para productos
+     * */
     public static String[] productoHeaders = new String[]{
             "idProducto",
             "nombre",
@@ -21,12 +27,18 @@ public class HeadersModels {
             "idProvider"
     };
 
+    /**
+     * Descripcion: Array que contiene los encabezados que iran como titulo en el excel a crearse para proveedores
+     * */
     public static String[] proveedorHeaders = new String[]{
             "idProveedor",
             "nombre",
             "descripcion"
     };
 
+    /**
+     * Descripcion: Array que contiene los encabezados que iran como titulo en el excel a crearse para ventas
+     * */
     public static String[] ventaHeaders = new String[]{
             "idVenta",
             "nitCliente",
@@ -38,6 +50,10 @@ public class HeadersModels {
             "metodoPago"
     };
 
+    /**
+     * Descripcion: Array que contiene los encabezados que iran como titulo en el excel a crearse para los productos
+     * vendidos
+     * */
     public static String[] ventaProductosHeaders = new String[]{
             "serieVenta",
             "idProducto",
@@ -47,6 +63,9 @@ public class HeadersModels {
             "descripcionProducto"
     };
 
+    /**
+     * Descripcion: Array que contiene los encabezados que iran como titulo en el excel a crearse para clientes morosos
+     * */
     public static String[] saldoPendienteHeaders = new String[]{
             "idSaldoPendiente",
             "nitClient",

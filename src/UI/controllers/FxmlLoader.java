@@ -7,7 +7,12 @@ import java.net.URL;
 public class FxmlLoader {
     private Pane view;
 
-
+    /**
+     * Descripcion: este metodo hace que la vista de la aplicacion sea dinamica ya que genera
+     * un objeto del Tipo pane que corresponde a una nueva vista
+     * @param fileName este metodo recibe como parametro el nombre del archivo fxml que se desea cargar
+     * @return pane retorna un objeto del tipo Pane correspondiente al archivo cargado
+     * */
     public Pane getPage(String fileName) {
         try {
             URL fileUrl = UI.Main.class.getResource("/UI/scenes/"

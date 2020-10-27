@@ -43,9 +43,15 @@ public class ProviderController implements Initializable {
     @FXML
     private Button createButton;
 
+    //variable utilizada para almacenar los proveedores que provienen de la base de datos
     List<Proveedor> proveedorList = database.service.ProveedorService.listProvider();
+    // lista observable necesaria para mostrar datos en una tabla de javaFX
     ObservableList<Proveedor> proveedorObservableList = FXCollections.observableArrayList();
 
+    /**
+     * Descripcion: este metodo añade todos los proveedores del proveedorList obtenidos de la clase
+     * ProveedorService a el observable list utilizado para mostrar los proveedores en la tabla de la UI
+     * */
     public void addProvidersToObservableList(){
         proveedorObservableList.addAll(proveedorList);
     }
@@ -64,6 +70,11 @@ public class ProviderController implements Initializable {
         providersTable.setItems(proveedorObservableList);
     }
 
+    /**
+     * Descripcion: este metodo obtiene la fila seleccionada en la tabla de la UI
+     * y lo convierte a un objeto del tipo Proveedor para mandar los valores de sus atributos
+     * a los textField de la UI
+     * */
     public void rowSelected(MouseEvent mouseEvent) {
         newButton.setDisable(false);
         createButton.setDisable(true);
@@ -75,6 +86,11 @@ public class ProviderController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo crea un nuevo objeto del tipo Proveedor a partir de los datos ingresados en
+     * los textFields
+     * @return proveedor
+     * */
     public Proveedor getProviderInfo(){
         Proveedor proveedor = new Proveedor();
         try{
@@ -92,6 +108,10 @@ public class ProviderController implements Initializable {
         return proveedor;
     }
 
+    /**
+     * Descripcion: este metodo crea un objeto del tipo Proveedor y lo envia a la clase ProveedorService para
+     * que esta cree un nuevo provedor
+     * */
     public void createProvider(MouseEvent mouseEvent) {
         Proveedor proveedor = getProviderInfo();
         if (proveedor != null) {
@@ -108,6 +128,10 @@ public class ProviderController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo crea un objeto del tipo Proveedor que el usuario modifica y lo compara con el
+     * objeto original para actualizarlo a traves de la clase ProveedorService
+     * */
     public void updateProvider(MouseEvent mouseEvent) {
         Proveedor proveedor = providersTable.getSelectionModel().getSelectedItem();
         if (proveedor == null) {
@@ -143,6 +167,10 @@ public class ProviderController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo elimina un objeto del tipo Proveedor en la lista observable y manda el id del
+     * objeto a la clase ProveedorService para que esta lo elimine de la base de datos
+     * */
     public void deleteProvider(MouseEvent mouseEvent) {
         Proveedor proveedor = providersTable.getSelectionModel().getSelectedItem();
         if (proveedor == null) {
@@ -164,6 +192,10 @@ public class ProviderController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo se encarga de vaciar los textFields cada vez que se actualiza, elimina y crea
+     * un proveedor
+     * */
     public void newProvider() {
         createButton.setDisable(false);
         newButton.setDisable(true);

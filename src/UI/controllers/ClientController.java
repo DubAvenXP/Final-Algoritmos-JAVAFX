@@ -59,11 +59,15 @@ public class ClientController implements Initializable {
 
     @FXML
     private Button createButton;
-
+    //variable utilizada para almacenar los clientes que provienen de la base de datos
     List<Cliente> clienteList = database.service.ClienteService.listClient();
+    // lista observable necesaria para mostrar datos en una tabla de javaFX
     ObservableList<Cliente> observableClientList = FXCollections.observableArrayList();
 
-
+    /**
+     * Descripcion: este metodo añade todos los clientes del clienteList obtenidos de la clase
+     * ClienteService a el observable list utilizado para mostrar los clientes en la tabla de la UI
+     * */
     public void addClientsToObservableList(){
         observableClientList.addAll(clienteList);
     }
@@ -84,7 +88,11 @@ public class ClientController implements Initializable {
         tableClients.setItems(observableClientList);
     }
 
-
+    /**
+     * Descripcion: este metodo obtiene la fila seleccionada en la tabla de la UI
+     * y lo convierte a un objeto del tipo Cliente para mandar los valores de sus atributos
+     * a los textField de la UI
+     * */
     public void rowSelected(MouseEvent mouseEvent) {
         newButton.setDisable(false);
         createButton.setDisable(true);
@@ -99,6 +107,11 @@ public class ClientController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo crea un nuevo objeto del tipo Cliente a partir de los datos ingresados en
+     * los textFields
+     * @return cliente
+     * */
     public Cliente getClientInfo() {
         Cliente cliente = new Cliente();
         try {
@@ -119,6 +132,10 @@ public class ClientController implements Initializable {
         return cliente;
     }
 
+    /**
+     * Descripcion: este metodo crea un objeto del tipo Cliente y lo envia a la clase ClienteService para
+     * que esta cree un nuevo cliente
+     * */
     public void createClient(MouseEvent mouseEvent) {
         Cliente cliente = getClientInfo();
         if (cliente != null) {
@@ -135,6 +152,10 @@ public class ClientController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo crea un objeto del tipo Cliente que el usuario modifica y lo compara con el
+     * objeto original para actualizarlo a traves de la clase ClienteService
+     * */
     public void updateClient(MouseEvent mouseEvent) {
         Cliente cliente = tableClients.getSelectionModel().getSelectedItem();
         if (cliente == null) {
@@ -173,6 +194,10 @@ public class ClientController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo elimina un objeto del tipo Cliente en la lista observable y manda el id del
+     * objeto a la clase ClienteService para que esta lo elimine de la base de datos
+     * */
     public void deleteClient(MouseEvent mouseEvent) {
         Cliente cliente = tableClients.getSelectionModel().getSelectedItem();
         if (cliente == null) {
@@ -194,6 +219,10 @@ public class ClientController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo se encarga de vaciar los textFields cada vez que se actualiza, elimina y crea
+     * un cliente
+     * */
     public void newClient() {
         createButton.setDisable(false);
         newButton.setDisable(true);

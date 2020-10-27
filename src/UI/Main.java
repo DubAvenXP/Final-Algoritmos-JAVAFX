@@ -6,6 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ *  La clase Main sobreescribe el metodo start para crear la interfaz
+ * */
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -16,7 +19,9 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
+    /**
+     * Metodo main: punto de entrada de la aplicacion, que inicializa la app
+     * */
     public static void main(String[] args) {
         launch(args);
     }

@@ -67,9 +67,15 @@ public class ProductController implements Initializable {
     @FXML
     private Button createButton;
 
+    // lista  utilizada para almacenar los productos que provienen de la base de datos
     List<Producto> productoList = database.service.ProductoService.listProduct();
+    // lista observable necesaria para mostrar datos en una tabla de javaFX
     ObservableList<Producto> productoObservableList = FXCollections.observableArrayList();
 
+    /**
+     * Descripcion: este metodo añade todos los productos del productoList obtenidos de la clase
+     * ProductoService a el observable list utilizado para mostrar los productos en la tabla de la UI
+     * */
     public void addProductsToObservableList(){
         productoObservableList.addAll(productoList);
     }
@@ -89,6 +95,11 @@ public class ProductController implements Initializable {
         productTable.setItems(productoObservableList);
     }
 
+    /**
+     * Descripcion: este metodo obtiene la fila seleccionada en la tabla de la UI
+     * y lo convierte a un objeto del tipo Producto para mandar los valores de sus atributos
+     * a los textField de la UI
+     * */
     public void rowSelected(MouseEvent mouseEvent){
         newButton.setDisable(false);
         createButton.setDisable(true);
@@ -104,6 +115,11 @@ public class ProductController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo crea un nuevo objeto del tipo Producto a partir de los datos ingresados en
+     * los textFields
+     * @return producto
+     * */
     public Producto getProductInfo(){
         Producto producto = new Producto();
         try{
@@ -125,6 +141,10 @@ public class ProductController implements Initializable {
         return producto;
     }
 
+    /**
+     * Descripcion: este metodo crea un objeto del tipo Producto y lo envia a la clase ProductoService para
+     * que esta cree un nuevo producto
+     * */
     public void createProduct(MouseEvent mouseEvent){
         Producto producto = getProductInfo();
         if(producto != null){
@@ -141,6 +161,10 @@ public class ProductController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo crea un objeto del tipo Producto que el usuario modifica y lo compara con el
+     * objeto original para actualizarlo a traves de la clase ProductoService
+     * */
     public void updateProduct(MouseEvent mouseEvent){
         Producto producto = productTable.getSelectionModel().getSelectedItem();
         if (producto == null) {
@@ -179,6 +203,10 @@ public class ProductController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo elimina un objeto del tipo Producto en la lista observable y manda el id del
+     * objeto a la clase ProductoService para que esta lo elimine de la base de datos
+     * */
     public void deleteProduct(MouseEvent mouseEvent){
         Producto producto = productTable.getSelectionModel().getSelectedItem();
         if (producto == null) {
@@ -200,6 +228,10 @@ public class ProductController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo se encarga de vaciar los textFields cada vez que se actualiza, elimina y crea
+     * un producto
+     * */
     public void newProduct() {
         createButton.setDisable(false);
         newButton.setDisable(true);

@@ -100,7 +100,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="idProductInput" onKeyPressed="#searchProducttEnter" prefHeight="35.0" prefWidth="210.0" promptText="Ingrese el id del producto">
+                              <TextField fx:id="idProductInput" onKeyPressed="#searchProductEnter" prefHeight="35.0" prefWidth="210.0" promptText="Ingrese el id del producto">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

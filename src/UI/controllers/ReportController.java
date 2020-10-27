@@ -38,6 +38,10 @@ public class ReportController {
      * Clientes
      * */
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los clientes y ejecuta internamente otro metodo de
+     * la clase createExcelFile llamado exportClientsToExcel para crear un archivo con extension xlsx
+     * */
     public void exportClients() {
         List<Cliente> clientes = database.service.ClienteService.listClient();
         String[] headers = HeadersModels.clientHeaders;
@@ -50,6 +54,10 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los clientes y ejecuta internamente otro metodo de
+     * la clase createExcelFile llamado exportDebtorsCustomersToExcel para crear un archivo con extension xlsx
+     * */
     public void exportDebtors() {
         List<SaldoPendiente> saldosPendientes = database.service.SaldoPendienteService.viewAllDobter();
         String[] headers = HeadersModels.saldoPendienteHeaders;
@@ -62,6 +70,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de un cliente especificado a traves de un textfield
+     * y ejecuta internamente otro metodo de la clase createExcelFile llamado exportClientsToExcel para crear un
+     * archivo con extension xlsx
+     * */
     public void exportClient() {
         String nit = nitClienteInput.getText();
         List<Cliente> clientes = new ArrayList<>();
@@ -77,6 +90,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de un cliente especificado a traves de un textfield
+     * y ejecuta internamente otro metodo de la clase createExcelFile llamado exportSalesByClientToExcel para crear un
+     * archivo con extension xlsx que contiene la facturas del cliente
+     * */
     public void exportSalesByClient(){
         String nit = nitClienteInput.getText();
         List<Venta> ventas = database.service.VentaService.viewBillClient(nit);
@@ -90,6 +108,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los clientes y ejecuta internamente otro metodo de
+     * la clase createExcelFile llamado exportDebtorsCustomersToExcel para crear un archivo con extension xlsx
+     * que contiene las cuentas que el cliente debe
+     * */
     public void exportAccountsReceivable(){
         String nit = nitClienteInput.getText();
         List<SaldoPendiente> saldosPendientes = database.service.SaldoPendienteService.viewDobter(nit);
@@ -107,6 +130,10 @@ public class ReportController {
      * Productos
      * */
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los productos y ejecuta internamente otro metodo de
+     * la clase createExcelFile llamado exportProductsToExcel para crear un archivo con extension xlsx
+     * */
     public void exportProducts() {
         List<Producto> productos = database.service.ProductoService.listProduct();
         String[] headers = HeadersModels.productoHeaders;
@@ -119,6 +146,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los productos y ejecuta internamente otro metodo de
+     * la clase createExcelFile llamado exportProductsToExcel para crear un archivo con extension xlsx que
+     * contiene los productos de los cuales no hay existencias en bodega
+     * */
     public void exportProductsOutOfStock() {
         List<Producto> productos = database.service.ProductoService.stockZero();
         String[] headers = HeadersModels.productoHeaders;
@@ -131,6 +163,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los productos y ejecuta internamente otro metodo de
+     * la clase createExcelFile llamado exportProductsToExcel para crear un archivo con extension xlsx que
+     * contiene los productos mas vendidos
+     * */
     public void exportBestSellerProducts() {
         List<Producto> productos = database.service.ProductoService.bestSellers();
         String[] headers = HeadersModels.productoHeaders;
@@ -143,6 +180,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los productos y ejecuta internamente otro metodo de
+     * la clase createExcelFile llamado exportProductsToExcel para crear un archivo con extension xlsx que
+     * contiene los productos mas caros
+     * */
     public void exportMoreExpensiveProducts() {
         List<Producto> productos = database.service.ProductoService.highestPrice();
         String[] headers = HeadersModels.productoHeaders;
@@ -155,6 +197,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los productos y ejecuta internamente otro metodo de
+     * la clase createExcelFile llamado exportProductsToExcel para crear un archivo con extension xlsx que
+     * contiene los productos mas baratos
+     * */
     public void exportCheaperProducts() {
         List<Producto> productos = database.service.ProductoService.lowestPrice();
         String[] headers = HeadersModels.productoHeaders;
@@ -167,6 +214,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de un producto especificado a traves de un textfield
+     * y ejecuta internamente otro metodo de la clase createExcelFile llamado exportProductsToExcel para crear un
+     * archivo con extension xlsx
+     * */
     public void exportProduct(){
         int id = Integer.parseInt(idProductoInput.getText());
         List<Producto> productos = new ArrayList<>();
@@ -182,6 +234,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los productos vendidos y ejecuta internamente
+     * otro metodo de la clase createExcelFile llamado exportSalesByProductToExcel para crear un archivo con extension
+     * xlsx
+     * */
     public void exportAllSalesProduct(){
         List<VentaProducto> ventaProductos = database.service.VentaProductoService.viewAllProductSales();
         String[] headers = HeadersModels.ventaProductosHeaders;
@@ -194,6 +251,10 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de los productos y ejecuta internamente otro metodo de
+     * la clase createExcelFile llamado exportProvidersToExcel para crear un archivo con extension xlsx
+     * */
     public void exportProviders() {
         List<Proveedor> proveedores = database.service.ProveedorService.listProvider();
         String[] headers = HeadersModels.proveedorHeaders;
@@ -206,6 +267,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion de un proveeodr especificado a traves de un textfield
+     * y ejecuta internamente otro metodo de la clase createExcelFile llamado exportProvidersToExcel para crear un
+     * archivo con extension xlsx
+     * */
     public void exportProvider() {
         int id = Integer.parseInt(idProveedorInput.getText());
         List<Proveedor> proveedores = new ArrayList<>();
@@ -225,6 +291,10 @@ public class ReportController {
     * Utils
     * */
 
+    /**
+     * Descripcion: Metodo que lanza una alerta que indica que la descarga del reporte fue exitosa e indica
+     * la ruta de descarga
+     * */
     public void alertInfoSuccess() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -234,6 +304,11 @@ public class ReportController {
         alert.showAndWait();
     }
 
+    /**
+     * Descripcion: Metodo que que recibe como parametro un error y lanza una alerta con el error especifico
+     * al descargar un reporte
+     * @param error del tipo Error
+     * */
     public void alertError(Error error) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
@@ -243,6 +318,10 @@ public class ReportController {
         alert.showAndWait();
     }
 
+    /**
+     * Descripcion: metodo que busca un cliente cuando se presiona enter en un textField de la UI utilizado
+     * para introducir el nit del cliente
+     * */
     public void searchClient(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             String nit = nitClienteInput.getText();
@@ -251,6 +330,10 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: metodo que busca un producto cuando se presiona enter en un textField de la UI utilizado
+     * para introducir el id del Producto
+     * */
     public void searchProduct(KeyEvent keyEvent){
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             int id = Integer.parseInt(idProductoInput.getText());
@@ -259,6 +342,10 @@ public class ReportController {
         }
     }
 
+    /**
+     * Descripcion: metodo que busca un proveedor cuando se presiona enter en un textField de la UI utilizado
+     * para introducir el id del proveedor
+     * */
     public void searchProvider(KeyEvent keyEvent){
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             int id = Integer.parseInt(idProveedorInput.getText());

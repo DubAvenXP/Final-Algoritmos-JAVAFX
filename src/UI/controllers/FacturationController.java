@@ -38,9 +38,6 @@ public class FacturationController implements Initializable {
     private Button addButton;
 
     @FXML
-    private DatePicker dateInput;
-
-    @FXML
     private TextField nameClientInput;
 
     @FXML
@@ -77,21 +74,6 @@ public class FacturationController implements Initializable {
     private TextField serialNumber;
 
     @FXML
-    private Button cancelButton;
-
-    @FXML
-    private Button generateButton;
-
-    @FXML
-    private Button searchClientButton;
-
-    @FXML
-    private Button searchProductButton;
-
-    @FXML
-    private TextField totalItemsInput;
-
-    @FXML
     private TextField totalToPayInput;
 
     Double totalToPay;
@@ -102,7 +84,10 @@ public class FacturationController implements Initializable {
             "Efectivo", "Tarjeta", "Cuotas"
     );
 
+
+    //Para que las tablas funcionen en la UI se necesitan listas Observables
     ObservableList<ProductoFactura> listadoProductosFactura = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -116,10 +101,20 @@ public class FacturationController implements Initializable {
         facturationTable.setItems(listadoProductosFactura);
     }
 
+    /**
+     * Descripcion: este metodo obtiene la fila seleccionada en la tabla de la UI
+     * y lo convierte a un objeto
+     * @return ProductoFactura
+     * */
     public ProductoFactura rowSelected() {
         return facturationTable.getSelectionModel().getSelectedItem();
     }
 
+    /**
+     * Descripcion: Este metodo obtiene los datos del input del nit en la UI
+     * y busca la informacion del cliente por medio de la clase ClienteService para mandarla
+     * a los input requeridos
+     * */
     public void searchClient() {
         String clientNit = nitClientInput.getText();
         Cliente cliente = database.service.ClienteService.listClientNit(clientNit);
@@ -137,16 +132,29 @@ public class FacturationController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: Este metodo ejecuta el metodo searchClient()
+     * cuando se presiona el boton "buscar cliente" en la UI
+     * */
     public void searchClientClicked(MouseEvent mouseEvent) {
         searchClient();
     }
 
+    /**
+     * Descripcion: Este metodo ejecuta el metodo searchClient()
+     * cuando se presiona la tecla ENTER en el textField nitClientInput
+     * */
     public void searchClientEnter(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             searchClient();
         }
     }
 
+    /**
+     * Descripcion: Este metodo obtiene los datos del input del idProduct en la UI
+     * y busca la informacion del producto por medio de la clase ProductoService para mandarla
+     * a los input requeridos
+     * */
     public void searchProduct() {
         Integer productId = Integer.parseInt(idProductInput.getText());
         Producto producto = database.service.ProductoService.listProductByID(productId);
@@ -165,21 +173,41 @@ public class FacturationController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: Este metodo ejecuta el metodo searchProduct()
+     * cuando se presiona el boton "buscar producto" en la UI
+     * */
     public void searchProductClicked(MouseEvent mouseEvent) {
         searchProduct();
     }
 
-    public void searchProducttEnter(KeyEvent keyEvent) {
+    /**
+     * Descripcion: Este metodo ejecuta el metodo searchProduct()
+     * cuando se presiona la tecla ENTER en el textField idProduct
+     * */
+    public void searchProductEnter(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             searchProduct();
         }
     }
 
+    /**
+     * Descripcion: este metodo ejecuta el metodo rowSelected para
+     * obtener un Objeto product factura. El objeto que obtiene
+     * lo elimina ejecutando el metodo DeleteProduct
+     * */
     public void onDeleteButtonClicked(MouseEvent mouseEvent) {
         ProductoFactura productoFactura = rowSelected();
         deleteProduct(productoFactura);
     }
 
+    /**
+     * Descripcion: Este metodo obtiene toda la informacion que necesita a traves de los textFields
+     * de la UI y la translada a la tabla añadiendolos a la lista observable listadoProductosFactura
+     * cada vez que añade un producto se comunica con la clase VentaService para actualizar
+     * el stock. Por ultimo actualiza la variable totalToPay para asi mostrar constantemente la cantidad
+     * a pagar
+     * */
     public void addProductToInvoice() {
         try {
             ProductoFactura productoFactura = generateProductoFacturaObject();
@@ -200,16 +228,30 @@ public class FacturationController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: Este metodo ejecuta el metodo addProductToInvoice() cada vez que se presiona
+     * el boton "agregar" en la UI para agregar productos a la factura
+     * */
     public void addProductToInvoiceClic(MouseEvent mouseEvent) {
         addProductToInvoice();
     }
 
+    /**
+     * Descripcion: Este metodo ejecuta el metodo addProductToInvoice() cada vez que se presiona
+     * la tecla "ENTER" en el textField cantidad en la UI para agregar productos a la factura
+     * */
     public void addProductToInvoiceEnter(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             addProductToInvoice();
         }
     }
 
+    /**
+     * Descripcion: Este metodo elimina productos de la lista observable listadoProductosFactura
+     * y actualiza el stock para devolverlo a su estado inicial
+     * @param productoFactura es un objeto de la clase ProductoFactura se debe obtener de la
+     *                        lista observable para poder eliminar el producto
+     * */
     public void deleteProduct(ProductoFactura productoFactura) {
         int idProduct = productoFactura.getId();
         Integer stock = database.service.VentaService.availableProduct(idProduct);
@@ -218,6 +260,10 @@ public class FacturationController implements Initializable {
         listadoProductosFactura.remove(productoFactura);
     }
 
+    /**
+     * Descripcion: Este metodo elimina todos los objetos del observable lista y actualiza el stock
+     * a su estado inicial
+     * */
     public void cancelInvoice(MouseEvent mouseEvent) {
         try {
             for (ProductoFactura productoFactura : listadoProductosFactura) {
@@ -243,6 +289,9 @@ public class FacturationController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo genera una factura y genera un venta
+     * */
     public void generateInvoice(){
         try {
             Venta venta = generateVentaObject();
@@ -269,7 +318,10 @@ public class FacturationController implements Initializable {
         }
     }
 
-
+    /**
+     * Descripcion: este metodo ejecuta el metodo generateInvoice generando una factura y generado un venta
+     * cada vez que se presiona el boton generar factura en la UI
+     * */
     public void generateInvoiceOnClic() {
         String methodToPay = payMethod.getSelectionModel().getSelectedItem().toLowerCase();
         System.out.println("method to pay" + methodToPay);
@@ -287,6 +339,10 @@ public class FacturationController implements Initializable {
         }
     }
 
+    /**
+     * Descripcion: este metodo genera un objeto ProductoFactura por medio de las variables disponibles en la UI
+     * @return ProductoFactura retorna un objeto de la clase ProductoFactura
+     * */
     public ProductoFactura generateProductoFacturaObject() {
         ProductoFactura productoFactura = new ProductoFactura();
         Double precioUnitario = Double.parseDouble(priceInput.getText());
@@ -303,6 +359,9 @@ public class FacturationController implements Initializable {
         return productoFactura;
     }
 
+    /**
+     *Descripcion: este metodo vacia las textFields de la UI para que le usuario siga introduciendo datos
+     * */
     public void emptyFields() {
         idProductInput.setText("");
         nameProductInput.setText("");
@@ -311,6 +370,10 @@ public class FacturationController implements Initializable {
         stockInput.setText("");
     }
 
+    /**
+     * Descripcion: este metodo actualiza la variable de scope global totalToPay para actualizar constantemente
+     * el textField de total a pagar constantemente
+     * */
     public void calculateTotalToPay() {
         totalToPay = 0.0;
         for (ProductoFactura productoFactura : listadoProductosFactura) {
@@ -319,6 +382,11 @@ public class FacturationController implements Initializable {
         totalToPayInput.setText("Q" + totalToPay);
     }
 
+    /**
+     * Descripcion: este metodo convierte la lista observable que es del tipo ProductoFactura a una lista
+     * de objetos VentaProducto
+     * @return List del tipo VentaProducto
+     * */
     public List<VentaProducto> generateVentaProductoObjects() {
         List<VentaProducto> ventaProductos = new ArrayList<>();
         for (ProductoFactura productoFactura : listadoProductosFactura) {
@@ -332,6 +400,10 @@ public class FacturationController implements Initializable {
         return ventaProductos;
     }
 
+    /**
+     * Descripcion: Con la informacion disponible en la UI este metodo genera un objeto Venta
+     * @return venta
+     * */
     public Venta generateVentaObject() {
         Venta venta = new Venta();
         venta.setNitCliente(nitClientInput.getText());
@@ -341,12 +413,20 @@ public class FacturationController implements Initializable {
         return venta;
     }
 
+    /**
+     * Descripcion: Cuando se busca un producto, este metodo detecta si el stock es cero
+     * si este es igual a cero deshabilita el boton para agregar producto a factura
+     * */
     public void enableButtonAddToInvoice(Integer stock) {
         if (stock > 0) {
             addButton.setDisable(false);
         }
     }
 
+    /**
+     * Descripcion: este metodo genera objetos del tipo SaldoPendiente
+     * @return SaldoPendiente
+     * */
     public SaldoPendiente generateSaldoPendienteObjets(){
         SaldoPendiente saldoPendiente = new SaldoPendiente();
         saldoPendiente.setNitClient(nitClientInput.getText());
@@ -358,7 +438,6 @@ public class FacturationController implements Initializable {
         saldoPendiente.setTipoPago(payMethod.getSelectionModel().getSelectedItem().toLowerCase());
         return saldoPendiente;
     }
-
 
 }
 

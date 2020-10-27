@@ -12,6 +12,10 @@ public class RepositoryController implements Initializable {
     @FXML
     private WebView web;
 
+    /**
+     * Descripcion: Este metodo se ejecuta al inicializar el fxml y
+     * carga la pagina web del repositorio https://github.com/DubAvenXP/Final-Algoritmos-JAVAFX
+     * */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         final WebEngine webEngine = web.getEngine();

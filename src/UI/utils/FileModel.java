@@ -1,5 +1,10 @@
 package UI.utils;
 
+/**
+ * Descripcion: modelo utilizado par crear objetos del tipo FileModel que tienen la informacion principal
+ * de un archivo de excel
+ * */
+
 public class FileModel {
     private String fileName;
     private String sheetName;

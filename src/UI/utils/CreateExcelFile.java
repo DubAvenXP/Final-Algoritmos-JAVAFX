@@ -21,12 +21,21 @@ public class CreateExcelFile {
      * Variables y metodos genericos
      * */
 
+    //Variable estatica que contiene el path para guardar los documentos del usuario
     public static String reportPath;
 
+    //variable estatica con el valor de la fecha y hora exacta del momento que se crea un archivo
     public static String now = generateNow();
 
+    //variable statica que obtiene el usuario loggeado en windows
     private static final String GLOBALUSER = System.getProperty("user.name");
 
+    /**
+     * Descripcion: Metodo que crea un archivo xlsx y lo envia a un path determinado
+     * @param reportPath String que almacena el path donde se crara el archivo
+     * @param libro XSSFWorkbook objeto perteneciente a la libreria io que almacena
+     *              un libro de excel
+     * */
     public static void createFile(String reportPath, XSSFWorkbook libro) {
         try (OutputStream fileOut = new FileOutputStream(reportPath)) {
             libro.write(fileOut);
@@ -35,10 +44,19 @@ public class CreateExcelFile {
         }
     }
 
+    /**
+     * Descripcion: metodo que obtiene el valor de la fecha y hora exacta del presente momento
+     * @return now
+     * */
     public static String generateNow() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("_dMMMyyyy_HH-mm"));
     }
 
+    /**
+     * Descripcion: metodo que envia determinados estilos a un libro de excel
+     * @param libro XSSFWorkbook objeto perteneciente a la libreria io que almacena
+     *              un libro de excel
+     * */
     public static void setBoldStyle(XSSFWorkbook libro) {
         //Generar el estilo de fuente del libro a Bold
         CellStyle style = libro.createCellStyle();
@@ -52,6 +70,12 @@ public class CreateExcelFile {
      * Metodos para exportar a excel
      * */
 
+    /**
+     * Descripcion: metodo que escribe los datos de una lista de clientes a un libro de excel
+     * @param clientes Lista que almacena objetos del tipo cliente
+     * @param header Lista de strings con los encabezados o titulos de las columnas
+     * @param fileConfig objeto del tipo FileModel que almacena el nombre de la hoja y archivo de excel
+     * */
     public static void exportClientsToExcel(List<Cliente> clientes, String[] header, FileModel fileConfig) {
 
         String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
@@ -90,6 +114,12 @@ public class CreateExcelFile {
         createFile(reportPath, libro);
     }
 
+    /**
+     * Descripcion: metodo que escribe los datos de una lista de deudores a un libro de excel
+     * @param saldosPendientes Lista que almacena objetos del tipo cliente
+     * @param header Lista de strings con los encabezados o titulos de las columnas
+     * @param fileConfig objeto del tipo FileModel que almacena el nombre de la hoja y archivo de excel
+     * */
     public static void exportDebtorCustomersToExcel(List<SaldoPendiente> saldosPendientes, String[] header, FileModel fileConfig) {
         String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
         String hoja = fileConfig.getSheetName();
@@ -127,6 +157,12 @@ public class CreateExcelFile {
         createFile(reportPath, libro);
     }
 
+    /**
+     * Descripcion: metodo que escribe los datos de una lista de productos a un libro de excel
+     * @param productos Lista que almacena objetos del tipo cliente
+     * @param header Lista de strings con los encabezados o titulos de las columnas
+     * @param fileConfig objeto del tipo FileModel que almacena el nombre de la hoja y archivo de excel
+     * */
     public static void exportProductsToExcel(List<Producto> productos, String[] header, FileModel fileConfig) {
         String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
         String hoja = fileConfig.getSheetName();
@@ -188,6 +224,12 @@ public class CreateExcelFile {
         createFile(reportPath, libro);
     }
 
+    /**
+     * Descripcion: metodo que escribe los datos de una lista de proveedores a un libro de excel
+     * @param proveedores Lista que almacena objetos del tipo cliente
+     * @param header Lista de strings con los encabezados o titulos de las columnas
+     * @param fileConfig objeto del tipo FileModel que almacena el nombre de la hoja y archivo de excel
+     * */
     public static void exportProvidersToExcel(List<Proveedor> proveedores, String[] header, FileModel fileConfig) {
         String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
         String hoja = fileConfig.getSheetName();
@@ -219,6 +261,12 @@ public class CreateExcelFile {
         createFile(reportPath, libro);
     }
 
+    /**
+     * Descripcion: metodo que escribe los datos de una lista de ventas a un libro de excel
+     * @param ventas Lista que almacena objetos del tipo cliente
+     * @param header Lista de strings con los encabezados o titulos de las columnas
+     * @param fileConfig objeto del tipo FileModel que almacena el nombre de la hoja y archivo de excel
+     * */
     public static void exportSalesByClientToExcel(List<Venta> ventas, String[] header, FileModel fileConfig) {
         String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
         String hoja = fileConfig.getSheetName();
@@ -260,6 +308,12 @@ public class CreateExcelFile {
         createFile(reportPath, libro);
     }
 
+    /**
+     * Descripcion: metodo que escribe los datos de una lista de productos vendidos a un libro de excel
+     * @param ventaProductos Lista que almacena objetos del tipo cliente
+     * @param header Lista de strings con los encabezados o titulos de las columnas
+     * @param fileConfig objeto del tipo FileModel que almacena el nombre de la hoja y archivo de excel
+     * */
     public static void exportSalesByProductToExcel(List<VentaProducto> ventaProductos, String[] header, FileModel fileConfig) {
         String fileName = fileConfig.getFileName() + "Report" + now + ".xlsx";
         String hoja = fileConfig.getSheetName();

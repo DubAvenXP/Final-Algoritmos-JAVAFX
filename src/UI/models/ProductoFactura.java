@@ -1,5 +1,9 @@
 package UI.models;
 
+/**
+ * Descripcion: clase POJO utilizada como modelo para crear objetos del tipo ProductoFactura
+ * */
+
 public class ProductoFactura {
     private Integer index;
     private Integer id;
