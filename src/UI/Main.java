@@ -1,25 +1,10 @@
 package UI;
 
-import database.dao.ProductoDao;
-import database.dao.SaldoPendienteDao;
-import database.dao.VentaDao;
-import database.dao.VentaProductoDao;
-import database.models.Producto;
-import database.models.SaldoPendiente;
-import database.models.Venta;
-import database.models.VentaProducto;
-import database.service.ProductoService;
-import database.service.VentaProductoService;
-import database.service.VentaService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Main extends Application {
     @Override

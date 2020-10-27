@@ -16,7 +16,7 @@ public class DocumentationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         final WebEngine webEngine = web.getEngine();
-        String url = "https://dounder.github.io/bootstrap4";
-        webEngine.load(url);
+        String newUrl = "https://dounder.github.io/bootstrap4";
+        webEngine.load(newUrl);
     }
 }

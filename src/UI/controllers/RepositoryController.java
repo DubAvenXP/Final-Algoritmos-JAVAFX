@@ -15,7 +15,7 @@ public class RepositoryController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         final WebEngine webEngine = web.getEngine();
-        String url = "https://dubavenxp.github.io/proyecto-final-logica/html/sobrenosotros.html";
+        String url = "https://github.com/DubAvenXP/Final-Algoritmos-JAVAFX";
         webEngine.load(url);
     }
 }
