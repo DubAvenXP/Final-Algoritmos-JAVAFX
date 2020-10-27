@@ -69,9 +69,9 @@
                                                 <font>
                                                     <Font size="20.0" />
                                                 </font>
-                                    <cursor>
-                                       <Cursor fx:constant="HAND" />
-                                    </cursor>
+                                                <cursor>
+                                                    <Cursor fx:constant="HAND" />
+                                                </cursor>
                                             </Button>
                                         </children>
                                         <VBox.margin>
@@ -110,10 +110,97 @@
                 </children>
             </AnchorPane>
         </center>
-      <left>
-         <VBox fx:id="aside" alignment="TOP_CENTER" prefHeight="628.0" prefWidth="0.0" style="-fx-background-color: #00587a; -fx-width: 100%;" visible="false" BorderPane.alignment="CENTER">
-            <children>
-               <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#facturationScreen" prefHeight="50.0" prefWidth="137.0" text="Facturacion" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+        <left>
+            <VBox fx:id="aside" alignment="TOP_CENTER" prefHeight="628.0" prefWidth="0.0" style="-fx-background-color: #00587a; -fx-width: 100%;" visible="false" BorderPane.alignment="CENTER">
+                <children>
+                    <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#facturationScreen" prefHeight="50.0" prefWidth="137.0" text="Facturacion" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Label>
+                    <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reportsScreen" prefHeight="50.0" prefWidth="137.0" text="Reportes" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Label>
+                    <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#stadisticsScreen" prefHeight="50.0" prefWidth="137.0" text="Estadisticas" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Label>
+                    <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#productsScreen" prefHeight="50.0" prefWidth="137.0" text="Productos" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Label>
+                    <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#clientsScreen" prefHeight="50.0" prefWidth="137.0" text="Clientes" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Label>
+                    <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#providersScreen" prefHeight="50.0" prefWidth="137.0" text="Proveedores" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Label>
+                </children>
+            </VBox>
+        </left>
+        <top>
+            <AnchorPane fx:id="header" prefHeight="18.0" prefWidth="1150.0" style="-fx-background-color: #0f3057;" visible="false" BorderPane.alignment="CENTER">
+                <children>
+                    <ImageView fitHeight="59.0" fitWidth="45.0" layoutX="14.0" layoutY="4.0" onMouseClicked="#homeScreen" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../images/java-icon.png" />
+                        </image>
+                    </ImageView>
+                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="787.0" layoutY="10.0" onMouseClicked="#homeScreen" prefHeight="50.0" prefWidth="137.0" text="Home" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Label>
+                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="910.0" layoutY="11.0" onMouseClicked="#documentationScreen" prefHeight="50.0" prefWidth="137.0" text="Documentacion" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Label>
+               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1052.0" layoutY="11.0" onMouseClicked="#repositoryController" prefHeight="50.0" prefWidth="137.0" text="Repositorio" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>
@@ -121,96 +208,17 @@
                      <Cursor fx:constant="HAND" />
                   </cursor>
                </Label>
-               <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reportsScreen" prefHeight="50.0" prefWidth="137.0" text="Reportes" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font>
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </Label>
-               <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#stadisticsScreen" prefHeight="50.0" prefWidth="137.0" text="Estadisticas" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font>
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </Label>
-               <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#productsScreen" prefHeight="50.0" prefWidth="137.0" text="Productos" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </Label>
-               <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#clientsScreen" prefHeight="50.0" prefWidth="137.0" text="Clientes" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font>
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </Label>
-               <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#providersScreen" prefHeight="50.0" prefWidth="137.0" text="Proveedores" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </Label>
-            </children>
-         </VBox>
-      </left>
-      <top>
-         <AnchorPane fx:id="header" prefHeight="18.0" prefWidth="1150.0" style="-fx-background-color: #0f3057;" visible="false" BorderPane.alignment="CENTER">
-            <children>
-               <ImageView fitHeight="59.0" fitWidth="45.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/java-icon.png" />
-                  </image>
-               </ImageView>
-               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="943.0" layoutY="10.0" prefHeight="50.0" prefWidth="137.0" text="Admin" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </Label>
-               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1058.0" layoutY="10.0" prefHeight="50.0" prefWidth="137.0" text="Desarrollador" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </Label>
-               <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="1202.0" layoutY="20.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/exit_32px.png" />
-                  </image>
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor>
-               </ImageView>
-            </children>
-         </AnchorPane>
-      </top>
+                    <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="1202.0" layoutY="20.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../images/exit_32px.png" />
+                        </image>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </ImageView>
+                </children>
+            </AnchorPane>
+        </top>
     </BorderPane>
 
 </AnchorPane>

@@ -117,13 +117,18 @@ public class LayoutController {
         mainPane.setCenter(view);
     }
 
-    public void adminScreen(MouseEvent mouseEvent){
-        Pane view = loader.getPage("admin");
+    public void homeScreen(MouseEvent mouseEvent){
+        Pane view = loader.getPage("home");
         mainPane.setCenter(view);
     }
 
-    public void developerScreen(MouseEvent mouseEvent){
-        Pane view = loader.getPage("developer");
+    public void documentationScreen(MouseEvent mouseEvent){
+        Pane view = loader.getPage("documentation");
+        mainPane.setCenter(view);
+    }
+
+    public void repositoryController(MouseEvent mouseEvent){
+        Pane view = loader.getPage("repository");
         mainPane.setCenter(view);
     }
 

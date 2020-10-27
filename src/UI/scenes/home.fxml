@@ -1,14 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="UI.controllers.HomeController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="815.0" prefWidth="1100.0" style="-fx-background-color: e7e7de;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.controllers.HomeController">
+    <children>
+        <HBox alignment="CENTER" layoutX="-1.0" layoutY="5.0" prefHeight="112.0" prefWidth="1102.0">
+            <children>
+                <Label prefHeight="48.0" prefWidth="823.0" text="Proyecto final algoritmos javaFX" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="51.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="119.0" prefHeight="671.0" prefWidth="1104.0" style="-fx-background-color: e7e7de;">
+            <children>
+                <Label prefHeight="65.0" prefWidth="698.0" text="Este el proyecto final de algoritmos de la Universidad Mariano Gálvez | Se realizo la una interfaz grafica con la ayuda de JavaFX" textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="106.0" prefWidth="882.0" text="En esta aplicacion encontraras todo lo necesario para llevar el control de facturacion de una tienda de cualquier tipo ya que cuenta con la intefaz de varios crud para llevar el control, poductos, clientes y proveedores, que permiten al usuario crear, leer, actualizar y elminar registros de cualquier tipo." textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="Calibri Italic" size="17.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="18.0" />
+                    </VBox.margin>
+                </Label>
+                <Label prefHeight="30.0" prefWidth="882.0" text="Modulo facturación: " textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="30.0" prefWidth="880.0" text="Esta enfocado en las ventas y manipulacion de una factura en tiempo real." textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="30.0" prefWidth="880.0" text="Modulo reportes: " textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="52.0" prefWidth="882.0" text="pricipalmente enfocado para extraer los datos mas relevantes del modelo de negocio para que el interesado pueda analizar la informacion requerida por medio de archivos de excel" textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="30.0" prefWidth="886.0" text="Base de datos en la nube: " textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="52.0" prefWidth="887.0" text="Con ayuda del manejador de bases de datos posgresql se gestiono la creacion y manipulacion de la base de datos relacional subida a HEROKU" textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="66.0" prefWidth="885.0" text="Los integrantes de este proyecto son:" textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="34.0" prefWidth="878.0" text="ALEJANDRO SEBASTIAN DUBON ESTRADA" textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="34.0" prefWidth="878.0" text="DOUGLAS ALEXANDER RAMIREZ RAMIREZ" textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="34.0" prefWidth="881.0" text="WILMER RUBEN MONTERROZO HERNANDEZ" textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="34.0" prefWidth="884.0" text="ALEXANDER MOISES MONTERROSO CRUZ" textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label prefHeight="34.0" prefWidth="882.0" text="PEDRO ALFONSO GRIJALBA FRANCO" textAlignment="JUSTIFY" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
