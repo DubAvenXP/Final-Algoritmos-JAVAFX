@@ -14,7 +14,8 @@ public class DocumentationController implements Initializable {
     private WebView web;
 
     /**
-     * Descripcion: Este metodo se ejecuta al inicializar el fxml y
+     * Descripcion: Este metodo se ejecuta al inicializar el fxml y es la sobreescritura
+     * de un metodo de la interface Initializable
      * carga la pagina web de la documentacion https://dounder.github.io/bootstrap4
      * */
     @Override

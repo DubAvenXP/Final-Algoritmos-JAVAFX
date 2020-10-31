@@ -13,7 +13,8 @@ public class RepositoryController implements Initializable {
     private WebView web;
 
     /**
-     * Descripcion: Este metodo se ejecuta al inicializar el fxml y
+     * Descripcion: Este metodo se ejecuta al inicializar el fxml y es la sobreescritura
+     * de un metodo de la interface Initializable
      * carga la pagina web del repositorio https://github.com/DubAvenXP/Final-Algoritmos-JAVAFX
      * */
     @Override
